@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1092810410359",
+    "project_id": "the-press-of-india",
+    "storage_bucket": "the-press-of-india.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092810410359:android:98c7a3d295a3141f237972",
+        "android_client_info": {
+          "package_name": "com.vgotweb.thepressofindia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092810410359-p6fg5q424i0adpivpq4p4eaddo2ha23r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEoZT2hIe9IytbRQE4PzjinchtrzCdyb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092810410359-p6fg5q424i0adpivpq4p4eaddo2ha23r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
