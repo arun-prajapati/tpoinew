@@ -118,11 +118,13 @@ class _TestingState extends State<Testing> {
         child: Column(
           children: [
             CategoryContent(posts: myPosts),
+            SizedBox(height: 10,),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,itemCount: myPostsList.length,itemBuilder: (context,index){
-            return
-              PostForCategory(postsList: myPostsList[index],categoryTitle: myCategories[index].name,catId: myCategories[index].id.toString(),);
+            return myPostsList[index].length>2?
+              PostForCategory(postsList: myPostsList[index],categoryTitle: myCategories[index].name,catId: myCategories[index].id.toString(),):SizedBox()
+            ;
                 }),
           ],
         ),

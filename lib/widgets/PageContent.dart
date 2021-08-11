@@ -1,15 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/CustomTextHeadingOftheBanner.dart';
 import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
+import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
 
 class CategoryContent extends StatefulWidget {
+   List<Posts> posts;
 
-  List<Posts> posts;
   CategoryContent({this.posts});
 
   @override
@@ -17,16 +19,117 @@ class CategoryContent extends StatefulWidget {
 }
 
 class _CategoryContentState extends State<CategoryContent> {
+
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return Stack(
+      children: [
+        CarouselSlider(
+          options: CarouselOptions(autoPlay: true,
+            autoPlayInterval: Duration(seconds: 1),
+            autoPlayAnimationDuration: Duration(milliseconds: 400),
+            viewportFraction: 1.0,
+            enlargeCenterPage: false,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _current = index;
+              });
+            },
+            height: 250.0,
+          ),
+          items: widget.posts.map((i) {
+            return Builder(
+              builder: (BuildContext context) {
+                return GestureDetector(onTap: (){
+                   Global.activePost = i;
+                Navigator.of(context).pushNamed('Homenewspagemain');
+                },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+
+                    decoration: BoxDecoration(
+                      color: Colors.amber.withOpacity(0.3),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: CachedNetworkImageProvider(
+                            i.featuredMedia.medium,
+                          )),
+                    ),
+                    child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(height: 100,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.black.withOpacity(0.4),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    i.title.rendered,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    MyDate(i.date),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            ))),
+                  ),
+                );
+              },
+            );
+          }).toList(),
+        ),
+        Positioned( top:0.0,
+          right: 10.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: widget.posts.map((image) {
+              int index=widget.posts.indexOf(image);
+              return Container(
+
+                width: 6.0,
+                height: 6.0,
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                decoration: BoxDecoration(
+
+                    border:  _current == index?Border.all(color: Colors.transparent):
+                    Border.all(color: Colors.white),
+                    shape: BoxShape.circle,
+                    color: _current == index
+                        ? Colors.white
+                        : Colors.transparent
+                ),
+              );
+            },
+            ).toList(), // this was the part the I had to add
+          ),
+        ),
+      ]);
+
+
+    /*ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: widget.posts.length
     ,itemBuilder: (context,index){
-      return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
-    });
+
+
+     // return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
+    });*/
   }
 }
 
@@ -227,7 +330,7 @@ width: MediaQuery.of(context).size.height*0.18,
 decoration: BoxDecoration(borderRadius: BorderRadius.only(
 topRight: Radius.circular(0.0),
 */
-/*bottomRight: Radius.circular(50.0)*//*
+/*bottomRight: Radius.circular(50.0)*/ /*
 ),
 image: DecorationImage(
 image: AssetImage('assets/images/bg.jpg'),
@@ -318,9 +421,9 @@ Divider(height: 1,color: staticDarkblue,thickness: 2,)
                                           width: MediaQuery.of(context).size.height*0.18,
                                           decoration: BoxDecoration(borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(0.0),
-                                            *//*
+                                            */ /*
 */
-/*bottomRight: Radius.circular(50.0)*//*
+/*bottomRight: Radius.circular(50.0)*/ /*
 */
 /*),
                                             image: DecorationImage(
@@ -364,7 +467,7 @@ Divider(height: 1,color: staticDarkblue,thickness: 2,)
                 ),
               );
             }),
-      ),*//*
+      ),*/ /*
 
 
 customBottombar(

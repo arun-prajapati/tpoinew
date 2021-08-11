@@ -56,7 +56,7 @@ class _homepageState extends State<homepage> {
               children: [
 
                 Image.asset('assets/images/headerad.jpg',),
-                SizedBox(height: 10,),
+                SizedBox(height: 0,),
                 CustomAppBar(logoimg: 'assets/images/logo.png',
 
                   clickonmenuicon: (){

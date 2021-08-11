@@ -17,6 +17,8 @@ class CustomDrawer extends StatelessWidget {
   static const _urlinsta = 'https://www.instagram.com/thepressofindia/';
   static const _urltwitter = 'https://twitter.com/thepressofindia';
   static const _urlyoutube = 'https://www.youtube.com/channel/UCGtMZRCb2Mf86kZPcbBaFPA';
+  static const _urlweb = 'https://thepressofindia.com/';
+
 
   void _launchURLFb() async =>
       await canLaunch(_urlfacebook) ? await launch(_urlfacebook) : throw 'Could not launch $_urlfacebook';
@@ -31,6 +33,8 @@ class CustomDrawer extends StatelessWidget {
       await canLaunch(_urlyoutube) ? await launch(_urlyoutube) : throw 'Could not launch $_urlyoutube';
 
 
+  void _launchURLWeb() async =>
+      await canLaunch(_urlweb) ? await launch(_urlweb) : throw 'Could not launch $_urlweb';
 
 
   @override
@@ -121,7 +125,7 @@ class CustomDrawer extends StatelessWidget {
                       },
                     ),
                     ListTile(
-                      leading: Icon(Icons.announcement),
+                      leading: Icon(Icons.announcement,),
                       title: Text("Faq"),
                       onTap: () {
                         Global.activePage = Global.faqPage;
@@ -129,7 +133,7 @@ class CustomDrawer extends StatelessWidget {
                       },
                     ),
 
-                    Divider(height: 1.2, color: Colors.grey.withOpacity(0.3)),
+                    Divider(height:3, color: Colors.grey.withOpacity(0.3)),
 
                     GestureDetector(onTap: (){
                       _launchURLFb();
@@ -169,7 +173,23 @@ class CustomDrawer extends StatelessWidget {
                         title: Text("Youtube"),
                       ),
                     ),
-                    Divider(height: 1, color: Colors.grey.withOpacity(0.3)),
+
+                    GestureDetector(onTap: (){
+
+                      _launchURLWeb();
+                    },
+                      child: ListTile(
+                        leading: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8
+                          ),
+                          child: Image.asset('assets/images/globe.png',height: 17,width: 17,),
+                        ),
+                        title: Text("WebPage"),
+                      ),
+                    ),
+
+                    Divider(height:3, color: Colors.grey.withOpacity(0.3)),
                     ListTile(
                       leading: Icon(Icons.share),
                       title: Text("Share This App"),

@@ -24,7 +24,7 @@ class MinorPost extends StatelessWidget {
     },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(8.0,8,8,0),
-        child: Card( color: Colors.pink,
+        child: Card( /*color: Colors.pink,*/
           child:  Row(
             children: <Widget>[
 
@@ -206,12 +206,14 @@ class HorizontalListofPost extends StatelessWidget {
         ,itemBuilder: (c,i){
           return
             AnimationConfiguration.staggeredList(
-            position: 0,
+            position: i,
               duration: const Duration(milliseconds: 375),
               child: SlideAnimation(
                 verticalOffset: 50.0,
-                child: FadeInAnimation(duration: Duration(seconds: 5),
-                  child:  MinorPostType2(posts: postsList[i+1],),
+                child: SlideAnimation(
+                  child: FadeInAnimation(duration: Duration(seconds: 5),
+                    child:  MinorPostType2(posts: postsList[i+1],),
+                  ),
                 ),
               ),);
 
@@ -289,7 +291,7 @@ class MinorPostType2 extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width*.5,
+            width: MediaQuery.of(context).size.width*.4,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
@@ -302,8 +304,8 @@ class MinorPostType2 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                        width: MediaQuery.of(context).size.width*.5,
-                        height: MediaQuery.of(context).size.width * .5,
+                        width: MediaQuery.of(context).size.width*.4,
+                        height: MediaQuery.of(context).size.width * .4,
                         decoration: new BoxDecoration(
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(5),

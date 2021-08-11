@@ -32,72 +32,75 @@ class CustomAppBar extends StatelessWidget {
         myTabBars.add(Testing(id: int.parse(Global.menu[i].objectId),index: i,catId: Global.menu[i].objectId,));
       }
     }
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            SizedBox(width: 20,),
+    return Container(color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Container(
+          child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(width: 20,),
 
-            GestureDetector(onTap: (){
-         clickonmenuicon();
+              GestureDetector(onTap: (){
+           clickonmenuicon();
 
-            },
-                child: Icon(Icons.menu,color: staticBlack,)),
-            Opacity(
-              opacity: 0,
-              child: Container(
-                  child: Icon(Icons.search,color: staticBlack,)
-              ),
-            ),
-            SizedBox(width: 10,),
-            Opacity(
-              opacity: 0,
-              child: Container(
-                  child: Icon(Icons.refresh,color: staticBlack,)
-              ),
-            ),
-            Spacer(),
-            Container(
-              child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
-                width: MediaQuery.of(context).size.width * 0.3,
-              ),
-            ),
-
-            Spacer(),
-            Opacity(
-              opacity:clickonsearchicon==null?0:1,
-              child: GestureDetector(
-                  onTap: clickonsearchicon??(){
-
-                  },child: Icon(Icons.share,color: staticBlack,)),
-            ),
-            GestureDetector(
-              onTap: (){
-                Navigator.pushNamed(context, 'search');
-                print("search");
               },
-              child: Container(
-                  child: Icon(Icons.search,color: staticBlack,)
+                  child: Icon(Icons.menu,color: staticWhite,)),
+              Opacity(
+                opacity: 0,
+                child: Container(
+                    child: Icon(Icons.search,color: staticWhite,)
+                ),
               ),
-            ),
+              SizedBox(width: 5,),
 
 
+            Text("The Press Of India",style: TextStyle(
+              color:staticWhite,fontSize: 18
+            ),),
+            /*  Container(
+                child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                ),
+              ),*/
 
-            SizedBox(width: 10,),
-            GestureDetector(
-              onTap: (){
-                GetPageData();
-                Show_toast_Now("Data Refreshing", Colors.green);
-                print("refresh data");
-              },
-              child: Container(
-                  child: Icon(Icons.refresh,color: staticBlack,)
+              Spacer(),
+              Opacity(
+                opacity:clickonsearchicon==null?0:1,
+                child: GestureDetector(
+                    onTap: clickonsearchicon??(){
+
+                    },child: Icon(Icons.share,color: staticWhite,)),
               ),
-            ),
-            SizedBox(width: 20,),
 
-          ],
+              GestureDetector(
+                onTap: (){
+                  GetPageData();
+                  Show_toast_Now("Data Refreshing", Colors.green);
+                  print("refresh data");
+                },
+                child: Container(
+                    child: Icon(Icons.refresh,color: staticWhite,)
+                ),
+              ),
+              SizedBox(width: 15,),
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, 'search');
+                  print("search");
+                },
+                child: Container(
+                    child: Icon(Icons.search,color: staticWhite,)
+                ),
+              ),
+
+
+
+
+
+              SizedBox(width: 20,),
+
+            ],
+          ),
         ),
       ),
     );

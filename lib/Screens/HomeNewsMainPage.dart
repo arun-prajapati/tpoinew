@@ -25,7 +25,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
         key: _scaffoldKey,
         bottomNavigationBar: GestureDetector(onTap: (){
 
-          Share.share('check out News');
+          Share.share(Global.activePage.link,subject: "Check Out Latest News" );
         },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 1.6),
