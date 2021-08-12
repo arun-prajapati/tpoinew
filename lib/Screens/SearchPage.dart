@@ -72,12 +72,14 @@ class _searchingState extends State<searching> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 10, bottom: 10),
+                    left: 0, right: 0, top: 10, bottom: 10),
                 child: Container(
-                  child: TextField(
+                  child: TextField(onSubmitted: (value){
+                    searchposts();
+                  },
                     controller: _controller,
                     decoration: new InputDecoration(
-                      contentPadding: EdgeInsets.all(5),
+                      contentPadding: EdgeInsets.all(10),
                       filled: true,
                       fillColor: staticWhite,
                       focusedBorder: OutlineInputBorder(
@@ -86,13 +88,14 @@ class _searchingState extends State<searching> {
                       ),
                       border: new OutlineInputBorder(
                           borderSide: new BorderSide(color: staticBlack)),
-                      hintText: 'Search',
+                      hintText: 'Search Here',
+
                     ),
                   ),
                 ),
               ),
             ),
-            GestureDetector(
+           /* GestureDetector(
               child: Icon(
                 Icons.search,
                 color: Colors.white,
@@ -102,7 +105,7 @@ class _searchingState extends State<searching> {
                 print("searchposts");
                 searchposts();
               }
-            ),
+            ),*/
           ],
         ),
         backgroundColor: staticBlue,

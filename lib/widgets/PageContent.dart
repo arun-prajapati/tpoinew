@@ -27,8 +27,8 @@ class _CategoryContentState extends State<CategoryContent> {
       children: [
         CarouselSlider(
           options: CarouselOptions(autoPlay: true,
-            autoPlayInterval: Duration(seconds: 1),
-            autoPlayAnimationDuration: Duration(milliseconds: 400),
+            autoPlayInterval: Duration(seconds: 4),
+            autoPlayAnimationDuration: Duration(milliseconds: 500),
             viewportFraction: 1.0,
             enlargeCenterPage: false,
             onPageChanged: (index, reason) {
