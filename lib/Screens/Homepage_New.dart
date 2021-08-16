@@ -39,7 +39,7 @@ class _homepageState extends State<homepage> {
   }
   @override
   void initState() {
-    GetPageData();
+    //GetPageData();
     super.initState();
 //    this.getPosts();
   }
@@ -47,48 +47,41 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: Global.myTabs.length,
-        child: Scaffold(
-          key: _scaffoldKey,
-          drawer: CustomDrawer(),
-          body: SafeArea(
-            child: Column(
-              children: [
+      length: Global.myTabs.length,
+      child: Scaffold(
+        key: _scaffoldKey,
+        drawer: CustomDrawer(),
+        body: SafeArea(
+          child: Column(
+            children: [
 
-                Image.asset('assets/images/headerad.jpg',),
-                SizedBox(height: 0,),
-                CustomAppBar(logoimg: 'assets/images/logo.png',
+              Image.asset('assets/images/headerad.jpg',),
+              SizedBox(height: 0,),
+              CustomAppBar(logoimg: 'assets/images/logo.png',
 
-                  clickonmenuicon: (){
+                clickonmenuicon: (){
 
-                    _scaffoldKey.currentState.openDrawer();
+                  _scaffoldKey.currentState.openDrawer();
 
-                  },),
-                TabBar(
-                    isScrollable: true,
-                    unselectedLabelColor:  Colors.black,
-                    indicatorColor:staticBlue,
-                    labelColor: staticBlue,
-                    tabs: Global.myTabs),
-                Expanded(
-                  child: TabBarView(
-                    children:myTabBars
-),
-                ),
-              ],
-            ),
+                },),
+              Expanded(child: Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
+            ],
           ),
+        ),
       ),
 
     );
   }
 
 
-  GetPageData(){
+  /*GetPageData(){
     for(int i =0;i<Global.menu.length;i++){
+
       myTabBars.add(Testing(id: int.parse(Global.menu[i].objectId),index: i,catId: Global.menu[i].objectId,name: Global.menu[i].title,));
     }
+    Testing t1 = Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,);
+    print("))))))))))))))))))))))))))))))))))))))))))${Global.menu[2].title}");
   }
-
+*/
 
 }

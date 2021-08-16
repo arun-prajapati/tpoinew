@@ -44,7 +44,10 @@ dependencies:
 
   url_launcher: ^6.0.9
   image_gallery_saver:
-  permission_handler:
+  pdf: ^3.4.2
+  path_provider: ^2.0.2
+  permission_handler: ^8.1.4+2
+  animated_list_view_scroll: ^1.0.2
 
   flutter_staggered_animations: ^1.0.0
 

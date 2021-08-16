@@ -196,6 +196,8 @@ class HorizontalListofPost extends StatelessWidget {
 
   HorizontalListofPost({this.postsList});
 
+
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
