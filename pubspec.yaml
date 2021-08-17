@@ -47,13 +47,11 @@ dependencies:
   pdf: ^3.4.2
   path_provider: ^2.0.2
   permission_handler: ^8.1.4+2
-  animated_list_view_scroll: ^1.0.2
+  flutter_full_pdf_viewer: ^1.0.6
+  auto_animated: ^3.0.0
+  screenshot: ^1.2.3
 
-  flutter_staggered_animations: ^1.0.0
-
-
-
-
+  gallery_saver: ^2.0.0
 
 dev_dependencies:
   flutter_test:

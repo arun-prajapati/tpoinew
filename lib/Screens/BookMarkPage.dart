@@ -41,20 +41,22 @@ class _BookmarkPageState extends State<BookmarkPage> {
     return Scaffold(  drawer: CustomDrawer(),
       key: _scaffoldKey,
       body:
-      Column(
-        children: [
-          SizedBox(height: 55,),
-          CustomAppBar(logoimg: 'assets/images/logo.png',
-            clickonmenuicon: (){
-              _scaffoldKey.currentState.openDrawer();
-            },),
-          Expanded(child:  myPostsList.isEmpty?Center(child: Text("No Post"),):ListView.builder(
+      SafeArea(
+        child: Column(
+          children: [
+           // SizedBox(height: 55,),
+            CustomAppBar(logoimg: 'assets/images/logo.png',
+              clickonmenuicon: (){
+                _scaffoldKey.currentState.openDrawer();
+              },),
+            Expanded(child:  myPostsList.isEmpty?Center(child: Text("No Post"),):ListView.builder(
 
-          itemCount: myPostsList.length
-          ,itemBuilder: (context,index){
-            return index==0?MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
-          }))
-        ],
+            itemCount: myPostsList.length
+            ,itemBuilder: (context,index){
+              return index==0?MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
+            }))
+          ],
+        ),
       ),
     );
   }

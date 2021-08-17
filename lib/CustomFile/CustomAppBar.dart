@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -6,58 +7,73 @@ import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:morbimirror/CustomFile/Common.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:screenshot/screenshot.dart';
 
 import 'dart:ui' as ui;
 import '../testing.dart';
 import 'CustomColorsFile.dart';
 import 'package:morbimirror/Screens/Homepage_New.dart';
+
 class CustomAppBar extends StatelessWidget {
   final String logoimg;
   final VoidCallback clickonmenuicon;
   final VoidCallback clickonsearchicon;
 
-
-  CustomAppBar(
-      {this.clickonmenuicon,
-        this.clickonsearchicon,
-        this.logoimg,
-        });
+  CustomAppBar({
+    this.clickonmenuicon,
+    this.clickonsearchicon,
+    this.logoimg,
+  });
 
   @override
   Widget build(BuildContext context) {
     List<Widget> myTabBars = new List();
 
-    GetPageData(){
-      for(int i =0;i<Global.menu.length;i++){
-        myTabBars.add(Testing(id: int.parse(Global.menu[i].objectId),index: i,catId: Global.menu[i].objectId,));
+    GetPageData() {
+      for (int i = 0; i < Global.menu.length; i++) {
+        myTabBars.add(Testing(
+          id: int.parse(Global.menu[i].objectId),
+          index: i,
+          catId: Global.menu[i].objectId,
+        ));
       }
     }
-    return Container(color: Colors.black,
+
+    return Container(
+      color: Colors.black,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Container(
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SizedBox(width: 20,),
-
-              GestureDetector(onTap: (){
-           clickonmenuicon();
-
-              },
-                  child: Icon(Icons.menu,color: staticWhite,)),
+              SizedBox(
+                width: 20,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    clickonmenuicon();
+                  },
+                  child: Icon(
+                    Icons.menu,
+                    color: staticWhite,
+                  )),
               Opacity(
                 opacity: 0,
                 child: Container(
-                    child: Icon(Icons.search,color: staticWhite,)
-                ),
+                    child: Icon(
+                  Icons.search,
+                  color: staticWhite,
+                )),
               ),
-              SizedBox(width: 5,),
-
-
-            Text("The Press Of India",style: TextStyle(
-              color:staticWhite,fontSize: 18
-            ),),
-            /*  Container(
+              SizedBox(
+                width: 5,
+              ),
+              Text(
+                "The Press Of India",
+                style: TextStyle(color: staticWhite, fontSize: 18),
+              ),
+              /*  Container(
                 child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
                   width: MediaQuery.of(context).size.width * 0.3,
                 ),
@@ -65,40 +81,43 @@ class CustomAppBar extends StatelessWidget {
 
               Spacer(),
               Opacity(
-                opacity:clickonsearchicon==null?0:1,
+                opacity: clickonsearchicon == null ? 0 : 1,
                 child: GestureDetector(
-                    onTap: clickonsearchicon??(){
-
-                    },child: Icon(Icons.share,color: staticWhite,)),
+                    onTap: clickonsearchicon ?? () {},
+                    child: Icon(
+                      Icons.share,
+                      color: staticWhite,
+                    )),
               ),
-
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   GetPageData();
                   Show_toast_Now("Data Refreshing", Colors.green);
                   print("refresh data");
                 },
                 child: Container(
-                    child: Icon(Icons.refresh,color: staticWhite,)
-                ),
+                    child: Icon(
+                  Icons.refresh,
+                  color: staticWhite,
+                )),
               ),
-              SizedBox(width: 15,),
+              SizedBox(
+                width: 15,
+              ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pushNamed(context, 'search');
                   print("search");
                 },
                 child: Container(
-                    child: Icon(Icons.search,color: staticWhite,)
-                ),
+                    child: Icon(
+                  Icons.search,
+                  color: staticWhite,
+                )),
               ),
-
-
-
-
-
-              SizedBox(width: 20,),
-
+              SizedBox(
+                width: 20,
+              ),
             ],
           ),
         ),
@@ -112,67 +131,81 @@ class CustomAppBarWithHeart extends StatefulWidget {
   final VoidCallback clickonmenuicon;
   final VoidCallback clickonsearchicon;
   final VoidCallback onFav;
-
+final VoidCallback save;
 
   CustomAppBarWithHeart(
-      {this.clickonmenuicon,
-        this.clickonsearchicon,
-        this.logoimg,
-        this.onFav
-      });
+      {this.clickonmenuicon, this.clickonsearchicon, this.logoimg, this.onFav,this.save});
+
 
   @override
   _CustomAppBarWithHeartState createState() => _CustomAppBarWithHeartState();
 }
 
 class _CustomAppBarWithHeartState extends State<CustomAppBarWithHeart> {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            SizedBox(width: 20,),
-            GestureDetector(onTap: (){
-              widget.clickonmenuicon();
-
-            },
-                child: Icon(Icons.menu,color: staticBlack,)),
+            SizedBox(
+              width: 20,
+            ),
+            GestureDetector(
+                onTap: () {
+                  widget.clickonmenuicon();
+                },
+                child: Icon(
+                  Icons.arrow_back_outlined,
+                  color: staticWhite,
+                )),
             Opacity(
               opacity: 0,
-              child: Icon(Icons.favorite_border,color: staticBlack,),
+              child: Icon(
+                Icons.favorite_border,
+                color: staticWhite,
+              ),
             ),
             SizedBox(width: 10),
-
             Spacer(),
-            Container(
+            /*  Container(
               child: Image.asset(widget.logoimg, height: MediaQuery.of(context).size.width * 0.15,
                 width: MediaQuery.of(context).size.width * 0.3,
               ),
-            ),
+            ),*/
 
             Spacer(),
             GestureDetector(
-                onTap: widget.onFav??(){
-                },child: Icon(Global.bookMarkPosts.contains(Global.activePost)? Icons.favorite: Icons.favorite_border,color: staticBlack,)),
-            SizedBox(width: 10),
+                onTap: widget.onFav ?? () {},
+                child: Icon(
+                  Global.bookMarkPosts.contains(Global.activePost)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: staticWhite,
+                )),
+            SizedBox(width: 15),
             Opacity(
-              opacity:widget.clickonsearchicon==null?0:1,
+              opacity: widget.clickonsearchicon == null ? 0 : 1,
               child: GestureDetector(
-                onTap: widget.clickonsearchicon??(){
-
-                },child: Icon(Icons.share,color: staticBlack,)),
+                  onTap: widget.clickonsearchicon ?? () {},
+                  child: Icon(
+                    Icons.share,
+                    color: staticWhite,
+                  )),
             ),
-
-           /* GestureDetector(onTap: (){
-
-              saveScreen();
-            },
-                child: Icon(Icons.save)),*/
-            SizedBox(width: 20,),
-
+            SizedBox(
+              width: 15,
+            ),
+            GestureDetector(
+                onTap:widget.save,
+                child: Icon(
+                  Icons.save,
+                  color: staticWhite,
+                )),
+            SizedBox(
+              width: 20,
+            ),
           ],
         ),
       ),
