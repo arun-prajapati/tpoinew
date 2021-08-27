@@ -5,5 +5,5 @@ const String urlForMenu = BaseURL+"wp-json/wp/v2/menu";
 const String urlForTopBarSubCategories = BaseURL+"wp-json/wp/v2/categories?per_page=100&order=desc&hide_empty=true&parent=";
 
 const String privacyPolicy = "${BaseURL}wp-json/wp/v2/pages/3";
-const String aboutUs = "${BaseURL}wp-json/wp/v2/pages/2149";
-const String faq = "${BaseURL}wp-json/wp/v2/pages/2151";
+const String aboutUs = "${BaseURL}wp-json/wp/v2/pages/17313";
+const String faq = "${BaseURL}wp-json/wp/v2/pages/17315";

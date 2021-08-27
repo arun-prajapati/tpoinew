@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:morbimirror/ApiCall/Category_api.dart';
 import 'package:morbimirror/ApiCall/staticPageContent.dart';
 import 'package:morbimirror/BookMark/bookMark.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -30,17 +31,31 @@ class _splashscreenState extends State<splashscreen> {
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed('home');
   }
+
+  saveValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('key', startTime());
+  }
+
+  getValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //Return String
+    String stringValue = prefs.getString('key');
+    return stringValue;
+    setState(() {
+
+    });
+  }
   void initState() {
     getToken();
     startTime();
+    //getValue();
     super.initState();
 
   }
 
 
   getToken() async {
-
-
 
     String token = await FirebaseMessaging.instance.getToken();
     FirebaseMessaging.instance.subscribeToTopic('News');

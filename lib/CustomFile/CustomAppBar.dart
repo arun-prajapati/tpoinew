@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       color: Colors.black,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+        padding: const EdgeInsets.symmetric(vertical: 6),
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,6 +58,10 @@ class CustomAppBar extends StatelessWidget {
                     Icons.menu,
                     color: staticWhite,
                   )),
+              Icon(
+                Icons.menu,
+                color: Colors.transparent,
+              ),
               Opacity(
                 opacity: 0,
                 child: Container(
@@ -66,18 +70,13 @@ class CustomAppBar extends StatelessWidget {
                   color: staticWhite,
                 )),
               ),
-              SizedBox(
-                width: 5,
-              ),
-              Text(
-                "The Press Of India",
-                style: TextStyle(color: staticWhite, fontSize: 18),
-              ),
-              /*  Container(
-                child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.3,
+              Spacer(),
+
+                Container(
+                child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.14,
+                  width: MediaQuery.of(context).size.width * 0.2,
                 ),
-              ),*/
+              ),
 
               Spacer(),
               Opacity(
@@ -102,7 +101,7 @@ class CustomAppBar extends StatelessWidget {
                 )),
               ),
               SizedBox(
-                width: 15,
+                width: 12,
               ),
               GestureDetector(
                 onTap: () {
@@ -116,7 +115,7 @@ class CustomAppBar extends StatelessWidget {
                 )),
               ),
               SizedBox(
-                width: 20,
+                width: 5,
               ),
             ],
           ),

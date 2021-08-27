@@ -29,10 +29,13 @@ class _CategoryContentState extends State<CategoryContent> {
           children: [
             CarouselSlider(
               options: CarouselOptions(autoPlay: true,
-                autoPlayInterval: Duration(seconds: 4),
-                autoPlayAnimationDuration: Duration(milliseconds: 500),
+                autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+                enableInfiniteScroll: true,
+                enlargeCenterPage: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 300),
                 viewportFraction: 1.0,
-                enlargeCenterPage: false,
+                //enlargeCenterPage: false,
                 onPageChanged: (index, reason) {
                   setState(() {
                     _current = index;
@@ -62,7 +65,7 @@ class _CategoryContentState extends State<CategoryContent> {
                             alignment: Alignment.bottomCenter,
                             child: Container(height: 100,
                                 width: MediaQuery.of(context).size.width,
-                                color: Colors.black.withOpacity(0.4),
+                               // color: Colors.black.withOpacity(0.4),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
@@ -73,18 +76,18 @@ class _CategoryContentState extends State<CategoryContent> {
                                         i.title.rendered,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold,fontSize: 22),
                                       ),
                                       SizedBox(
                                         height: 10,
                                       ),
-                                      Text(
+                                     /* Text(
                                         MyDate(i.date),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12),
-                                      ),
+                                      ),*/
                                     ],
                                   ),
                                 ))),
@@ -119,7 +122,10 @@ class _CategoryContentState extends State<CategoryContent> {
               ),
             ),
           ]),
-      ],
+        SizedBox(height: 5,),
+        Container(height: 50,width: MediaQuery.of(context).size.width,
+            child: Image.asset('assets/images/headerad.jpg'))
+        ,SizedBox(height: 5,),  ],
     );
 
 
