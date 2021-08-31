@@ -22,56 +22,72 @@ class MinorPost extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(8.0, 8, 8, 0),
-        child: Card(
-          /*color: Colors.pink,*/
-          child: Row(
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Center(
-                          child: Container(
-                        height: MediaQuery.of(context).size.width * 0.25,
-                        width: MediaQuery.of(context).size.width * 0.35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(0.0),
+        child: Row(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                        width: 200,
+                        child: Column(
+                          children: [
+                            Text(posts.title.rendered),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(height: 25,  width: 8,
+                                  decoration: BoxDecoration(color: Colors.deepOrange,
+                                      borderRadius: BorderRadius.all(Radius.circular(3))
+                                  ),),
+                              ],
+                            ),
+                            /* Row(
+                              children: [
+                                Text(
+                                  MyDate(posts.date),
+                                ),
+                              ],
+                            ),*/
+                          ],
+                        )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Center(
+                        child: Container(
+                      height: MediaQuery.of(context).size.width * 0.25,
+                      width: MediaQuery.of(context).size.width * 0.37,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(0.0),
 
-                            /*bottomRight: Radius.circular(50.0)*/
-                          ),
-                          image: DecorationImage(
-                            image: NetworkImage(posts.featuredMedia.medium),
-                            fit: BoxFit.fill,
-                          ),
+                          /*bottomRight: Radius.circular(50.0)*/
                         ),
-                      )),
-                      SizedBox(
-                        width: 10,
+                        image: DecorationImage(
+                          image: NetworkImage(posts.featuredMedia.medium),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      Container(
-                          width: 200,
-                          child: Column(
-                            children: [
-                              Text(posts.title.rendered),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    MyDate(posts.date),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ))
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    )),
+                  ],
+                ),
+                SizedBox(height: 10,),
+                Container(width: MediaQuery.of(context).size.width*0.9,
+                  margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
+                  height: 0.2,
+                  color: Colors.black,
+                ),
+         /*       Icon(Icons.ac_unit_sharp)*/
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -212,9 +228,9 @@ class HorizontalListofPost extends StatelessWidget {
     // Start animation after (default zero)
     delay: Duration(seconds: 1),
 
-    showItemInterval: Duration(milliseconds: 200),
+    showItemInterval: Duration(milliseconds: 100),
 
-    showItemDuration: Duration(milliseconds: 100),
+    showItemDuration: Duration(milliseconds: 80),
 
     visibleFraction: 0.03,
     reAnimateOnVisibility: false,
@@ -427,7 +443,7 @@ class HeaderTitle extends StatelessWidget {
                       ),
                     ))),
             SizedBox(
-              width: 20,
+              width: 10,
             ),
           ],
         ),

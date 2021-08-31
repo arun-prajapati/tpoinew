@@ -63,15 +63,19 @@ class _CategoryContentState extends State<CategoryContent> {
                         ),
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Container(height: 100,
+                            child: Container(height: 130,
                                 width: MediaQuery.of(context).size.width,
                                // color: Colors.black.withOpacity(0.4),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
+                                      Container(height: 25,  width: 5,
+                                      decoration: BoxDecoration(color: Colors.deepOrange,
+                                        borderRadius: BorderRadius.all(Radius.circular(5))
+                                      ),),
                                       Text(
                                         i.title.rendered,
                                         style: TextStyle(

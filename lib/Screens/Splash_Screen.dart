@@ -6,6 +6,8 @@ import 'dart:async';
 import 'package:morbimirror/ApiCall/Category_api.dart';
 import 'package:morbimirror/ApiCall/staticPageContent.dart';
 import 'package:morbimirror/BookMark/bookMark.dart';
+import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -34,7 +36,7 @@ class _splashscreenState extends State<splashscreen> {
 
   saveValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('key', startTime());
+    prefs.setString('key', postsToJson.toString());
   }
 
   getValue() async {
@@ -49,7 +51,8 @@ class _splashscreenState extends State<splashscreen> {
   void initState() {
     getToken();
     startTime();
-    //getValue();
+    ////getValue();
+
     super.initState();
 
   }
