@@ -8,6 +8,8 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:auto_animated/auto_animated.dart';
 
+import 'PageContent.dart';
+
 class MinorPost extends StatelessWidget {
   Posts posts;
 
@@ -71,8 +73,9 @@ class MinorPost extends StatelessWidget {
                           /*bottomRight: Radius.circular(50.0)*/
                         ),
                         image: DecorationImage(
-                          image: NetworkImage(posts.featuredMedia.medium),
-                          fit: BoxFit.fill,
+                          image: posts.featuredMedia.medium != null?NetworkImage(posts.featuredMedia.medium):
+                         AssetImage('assets/images/logo.png'),
+                          fit: BoxFit.cover,
                         ),
                       ),
                     )),
@@ -99,10 +102,11 @@ class MajorPost extends StatelessWidget {
 
   MajorPost({this.posts});
 
+  List<Posts> myPosts = [];
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: GestureDetector(
         onTap: () {
           Global.activePost = posts;
@@ -122,7 +126,7 @@ class MajorPost extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Spacer(
-                flex: 2,
+                flex:2,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,10 +148,10 @@ class MajorPost extends StatelessWidget {
                             SizedBox(
                               height: 35,
                             ),
-                            /*   Customtextheader(title: "Morbi",
+                               Customtextheader(title: "Morbi",
                               titleclr: staticWhite,
                               bgcolor: Colors.black,),
-                            SizedBox(height: 5,),*/
+                            SizedBox(height: 5,),
                             customtext(
                               title: posts.title.rendered,
                               titleclr: staticWhite,
@@ -170,6 +174,7 @@ class MajorPost extends StatelessWidget {
             ],
           ),
         ),
+
       ),
     );
   }
@@ -248,7 +253,7 @@ class HorizontalListofPost extends StatelessWidget {
     // And slide transition
     child: SlideTransition(
       position: Tween<Offset>(
-        begin: Offset(0, -0.1),
+        begin: Offset(0, -0.2),
         end: Offset.zero,
       ).animate(animation),
       // Paste you Widget
@@ -433,13 +438,13 @@ class HeaderTitle extends StatelessWidget {
                 child: Container(
                     color: staticDarkblue,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 11,right: 11),
                       child: Text(
-                        'See All' ?? "",
+                        'SEE ALL' ?? "",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width * 0.04,
-                            fontWeight: FontWeight.bold),
+                            fontSize: MediaQuery.of(context).size.width * 0.03,
+                           ),
                       ),
                     ))),
             SizedBox(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,8 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
+import '../Global/Global.dart';
+import '../Models/appdata.dart';
 
 class splashscreen extends StatefulWidget {
   @override
@@ -18,52 +21,61 @@ class splashscreen extends StatefulWidget {
 }
 
 class _splashscreenState extends State<splashscreen> {
-
   startTime() async {
-    readBookMark();
-    getPrivacyPage();
-    getAboutUs();
-    getFaq();
-    getCategories();
-    await getMenu();
-   var _duration = new Duration(seconds: 2);
-    return new Timer(_duration, navigationPage);
+    await readBookMark();
+    await getPrivacyPage();
+    await getAboutUs();
+    await getFaq();
+    await getCategories();
 
+    await getMenu();
+    var _duration = new Duration(seconds: 2);
+    print("Global.alldata ${Global.allData}");
+    return new Timer(_duration, navigationPage);
   }
+
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed('home');
   }
 
-  saveValue() async {
+  /*saveValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('key', postsToJson.toString());
-  }
+    String keyData = jsonEncode(Global.allData);
+    print("mydata ::::::::::: $keyData");
+    prefs.setString('key', Global.allData.toString());
+  }*/
 
   getValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String stringValue = prefs.getString('key');
-    return stringValue;
-    setState(() {
 
-    });
+    print("keyValue :::::::::::: $stringValue");
+    if (stringValue != null) {
+      var s = jsonDecode(stringValue);
+      //print("RRRRRRRRRRRRRRRRRRRRRRRRR ${s[2]["myCategories"]}");
+      Global.allData = (s as List).map((e) => AllData.fromJson(e)).toList();
+     // print("Global.allData[2] ${Global.allData[2].myPostsList[0][0].title}");
+      print("data found");
+    } else {
+      print("data not found");
+    }
+
+    setState(() {});
   }
+
   void initState() {
     getToken();
     startTime();
-    ////getValue();
+    getValue();
 
     super.initState();
-
   }
 
-
   getToken() async {
-
     String token = await FirebaseMessaging.instance.getToken();
     FirebaseMessaging.instance.subscribeToTopic('News');
     print(token);
-
   }
 
   @override
@@ -75,7 +87,11 @@ class _splashscreenState extends State<splashscreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/images/logo.png',height: 200,width: 200,)
+            Image.asset(
+              'assets/images/logo.png',
+              height: 200,
+              width: 200,
+            )
           ],
         ),
       ),
