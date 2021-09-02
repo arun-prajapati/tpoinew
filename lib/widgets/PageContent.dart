@@ -25,7 +25,7 @@ class _CategoryContentState extends State<CategoryContent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Stack(
+        Stack( 
           children: [
             CarouselSlider(
               options: CarouselOptions(autoPlay: true,
