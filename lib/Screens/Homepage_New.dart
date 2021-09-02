@@ -54,9 +54,8 @@ class _homepageState extends State<homepage> {
         body: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 4,),
-              Image.asset('assets/images/headerad.jpg',),
-              SizedBox(height: 8,),
+
+
               CustomAppBar(logoimg: 'assets/images/logo.png',
 
                 clickonmenuicon: (){
@@ -64,7 +63,9 @@ class _homepageState extends State<homepage> {
                   _scaffoldKey.currentState.openDrawer();
 
                 },),
-
+              SizedBox(height: 4,),
+              Image.asset('assets/images/headerad.jpg',),
+              SizedBox(height: 4,),
               Expanded(child: Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
            , ],
           ),

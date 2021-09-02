@@ -31,7 +31,7 @@ class Global{
   static PageData faqPage;
   static PageData aboutUsPage;
   static PageData activePage;
-
+  static String sharedPrefData;
   static List<Posts> bookMarkPosts=new List();
   
 
