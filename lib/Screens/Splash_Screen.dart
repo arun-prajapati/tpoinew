@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import 'package:morbimirror/ApiCall/Category_api.dart';
 import 'package:morbimirror/ApiCall/staticPageContent.dart';
 import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Page.dart';
+import 'package:morbimirror/Models/Posts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Global/Global.dart';
@@ -51,7 +54,25 @@ class _splashscreenState extends State<splashscreen> {
 
     } ).toList();
 
-    print("++++++++++++++++++++++++++");
+
+
+    String myPostsList = sharedPreferences.getString("myPostsList");
+    if(myPostsList!=null){
+      Global.allData[2].myPostsList=((jsonDecode(myPostsList) as List).map((e) => (e as List).map((g) => Posts.fromJson(g)).toList()).toList());
+    }
+
+    String myPosts = sharedPreferences.getString("myPosts");
+    if(myPosts!=null){
+      Global.allData[2].myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
+    }
+    String myCategories = sharedPreferences.getString("myCategories");
+    if(myCategories!=null){
+      Global.allData[2].myCategories=(jsonDecode(myCategories) as List ).map((g) => Category.fromJson(g)).toList();
+    }
+
+
+    print("++++++++++++++++++++++++++ !!!");
+    log(jsonEncode(Global.allData[2]));
     print(Global.allData.length);
 
 

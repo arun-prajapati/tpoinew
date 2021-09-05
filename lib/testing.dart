@@ -42,8 +42,13 @@ class _TestingState extends State<Testing> {
     getCat();
   }
 
+
+
   getCat() async {
     if(Global.allData[widget.index]!=null) {
+      print("||||||||||||||||||||||||||");
+      print(myPosts.length);
+      print(myPostsList.length);
       myPostsList = Global.allData[widget.index].myPostsList;
       myPosts = Global.allData[widget.index].myPosts;
       myCategories = Global.allData[widget.index].myCategories;
@@ -102,16 +107,17 @@ class _TestingState extends State<Testing> {
       print("MyCategories ::::::::: $myCategories");
       isLoading = false;
       setState(() {});
-
-
-
     }
     print("ALLL DATA");
     Global.loadData=false;
-    log(jsonEncode(Global.allData));
+   // log(jsonEncode(Global.allData));
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.setString("data", jsonEncode(Global.allData));
+    sharedPreferences.setString("myPostsList", jsonEncode(myPostsList));
+    sharedPreferences.setString("myPosts", jsonEncode(myPosts));
+    sharedPreferences.setString("myCategories", jsonEncode(myCategories));
 
+
+    log(jsonEncode(Global.allData[2]));
 
 
 
@@ -119,6 +125,10 @@ class _TestingState extends State<Testing> {
 
   @override
   Widget build(BuildContext context) {
+    print("------------------------------------");
+    print(myPosts.length);
+    print(myPostsList.length);
+
     return Scaffold(
       body: isLoading
           ? Center(
@@ -133,7 +143,7 @@ class _TestingState extends State<Testing> {
                       child: Text("No News Available..."),
                     )
                   : OnlyPosts(posts: myPosts)
-              : SingleChildScrollView(
+              :SingleChildScrollView(
                   child: Column(
                     children: [
                       CategoryContent(posts: myPosts),
