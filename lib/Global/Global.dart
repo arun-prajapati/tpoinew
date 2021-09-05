@@ -33,6 +33,7 @@ class Global{
   static PageData activePage;
   static String sharedPrefData;
   static List<Posts> bookMarkPosts=new List();
+  static bool loadData = true;
   
 
 }

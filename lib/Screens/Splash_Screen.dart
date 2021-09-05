@@ -22,6 +22,7 @@ class splashscreen extends StatefulWidget {
 
 class _splashscreenState extends State<splashscreen> {
   startTime() async {
+    await getLocalData();
     await readBookMark();
     await getPrivacyPage();
     await getAboutUs();
@@ -32,6 +33,28 @@ class _splashscreenState extends State<splashscreen> {
     var _duration = new Duration(seconds: 2);
     print("Global.alldata ${Global.allData}");
     return new Timer(_duration, navigationPage);
+  }
+
+  getLocalData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String data = sharedPreferences.getString("data");
+
+
+
+    if(data!=null)
+    Global.allData = (jsonDecode(data) as List).map((e) {
+      if(e==null){
+        return null;
+      }else{
+        return AllData.fromJson(e);
+      }
+
+    } ).toList();
+
+    print("++++++++++++++++++++++++++");
+    print(Global.allData.length);
+
+
   }
 
   void navigationPage() {
@@ -45,7 +68,7 @@ class _splashscreenState extends State<splashscreen> {
     prefs.setString('key', Global.allData.toString());
   }*/
 
-  getValue() async {
+/*  getValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String stringValue = prefs.getString('key');
@@ -62,12 +85,12 @@ class _splashscreenState extends State<splashscreen> {
     }
 
     setState(() {});
-  }
+  }*/
 
   void initState() {
     getToken();
     startTime();
-    getValue();
+    //getValue();
 
     super.initState();
   }

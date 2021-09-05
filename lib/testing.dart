@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
@@ -29,7 +30,7 @@ class Testing extends StatefulWidget {
 }
 
 class _TestingState extends State<Testing> {
-  bool isLoading = true;
+  bool isLoading = Global.allData.isEmpty;
   List<Category> myCategories = new List();
   List<List<Posts>> myPostsList = new List();
   List<Posts> myPosts = new List();
@@ -42,20 +43,22 @@ class _TestingState extends State<Testing> {
   }
 
   getCat() async {
+    if(Global.allData[widget.index]!=null) {
+      myPostsList = Global.allData[widget.index].myPostsList;
+      myPosts = Global.allData[widget.index].myPosts;
+      myCategories = Global.allData[widget.index].myCategories;
+    }
+
     print("Pulling Categories for id ${widget.id} ::: ${widget.name}");
 
-    if (Global.allData[widget.index] == null) {
+    if (Global.allData[widget.index] == null || Global.loadData) {
       myCategories.clear();
       myPostsList.clear();
-      myCategories = await getCategoriesFromURL(
-          Url: urlForTopBarSubCategories + widget.id.toString());
+      myCategories = await getCategoriesFromURL(Url: urlForTopBarSubCategories + widget.id.toString());
 
       if (myCategories.isEmpty) {
         print("Pulling Posts for id ${widget.id}");
-        myPosts = await getPosts(
-            url:
-                "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget.id}");
-
+        myPosts = await getPosts(url:"${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${widget.id}");
         print("---- GOING FOR POSTS ------");
         print(myPosts.length);
       } else {
@@ -84,12 +87,12 @@ class _TestingState extends State<Testing> {
           myPosts: myPosts,
           myPostsList: myPostsList);
       print("GGGGGGGGGGGGG ${Global.allData[2]}");
-      SharedPreferences pref = await SharedPreferences.getInstance();
+/*      SharedPreferences pref = await SharedPreferences.getInstance();
       String abc = jsonEncode(Global.allData);
       print("String ::::::::${abc}");
       pref.setString("key", "$abc");
       String get = pref.getString("key");
-      print("get:::::::::: $get");
+      print("get:::::::::: $get");*/
 
       setState(() {});
     } else {
@@ -99,7 +102,19 @@ class _TestingState extends State<Testing> {
       print("MyCategories ::::::::: $myCategories");
       isLoading = false;
       setState(() {});
+
+
+
     }
+    print("ALLL DATA");
+    Global.loadData=false;
+    log(jsonEncode(Global.allData));
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString("data", jsonEncode(Global.allData));
+
+
+
+
   }
 
   @override
