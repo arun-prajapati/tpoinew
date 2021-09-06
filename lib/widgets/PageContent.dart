@@ -25,6 +25,7 @@ class _CategoryContentState extends State<CategoryContent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //slider home page
         Stack(
           children: [
             CarouselSlider(

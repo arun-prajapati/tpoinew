@@ -2,20 +2,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:morbimirror/ApiCall/All_URLS.dart';
-import 'package:morbimirror/ApiCall/Post_api.dart';
+
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Menu.dart';
-import 'package:morbimirror/Models/Posts.dart';
-import 'package:morbimirror/Models/appdata.dart';
-import 'package:morbimirror/widgets/PageContent.dart';
+
 
 import 'All_URLS.dart';
 
 
 
 
-Getnewsdata(){
+getNewsData(){
 //calling api
 
   http.get(Uri.parse('${BaseURL}wp-json/wp/v2/categories'),
@@ -79,7 +77,7 @@ getCategories() async {
 
 getCategoriesFromURL({String Url}) async {
 
-  List<Category> CategoryList = new List();
+  List<Category> CategoryList = [];
 
 
   await http.get(Uri.parse(Url),

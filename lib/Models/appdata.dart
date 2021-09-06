@@ -2,7 +2,7 @@ import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Posts.dart';
 
 import 'Category.dart';
-import 'Category.dart';
+
 
 class AllData {
   AllData({
