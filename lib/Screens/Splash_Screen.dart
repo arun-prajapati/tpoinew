@@ -41,9 +41,6 @@ class _splashscreenState extends State<splashscreen> {
   getLocalData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String data = sharedPreferences.getString("data");
-
-
-
     if(data!=null)
     Global.allData = (jsonDecode(data) as List).map((e) {
       if(e==null){
@@ -63,6 +60,8 @@ class _splashscreenState extends State<splashscreen> {
 
     String myPosts = sharedPreferences.getString("myPosts");
     if(myPosts!=null){
+      print("CCCCCCCCCCCCCCCCCCCCCCCC");
+
       Global.allData[2].myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
     }
     String myCategories = sharedPreferences.getString("myCategories");

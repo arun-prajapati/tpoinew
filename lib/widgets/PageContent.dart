@@ -64,7 +64,7 @@ class _CategoryContentState extends State<CategoryContent> {
                         ),
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Container(height: 130,
+                            child: Container(height: 80,
                                 width: MediaQuery.of(context).size.width,
                                // color: Colors.black.withOpacity(0.4),
                                 child: Padding(
@@ -79,6 +79,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                       ),),
                                       Text(
                                         i.title.rendered,
+                                        overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,fontSize: 22),
