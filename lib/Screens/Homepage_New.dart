@@ -67,7 +67,7 @@ class _homepageState extends State<homepage> {
               Image.asset('assets/images/headerad.jpg',),
               SizedBox(height: 4,),
               Expanded(child: Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
-           , ],
+            ],
           ),
         ),
       ),

@@ -22,7 +22,7 @@ class AllData {
   );
 
   Map<String, dynamic> toJson() => {
-    "myCategories": List<dynamic>.from(myCategories.map((x) => x.toJson())),
+      "myCategories": List<dynamic>.from(myCategories.map((x) => x.toJson())),
     "myPostsList": List<dynamic>.from(myPostsList.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
     "myPosts": List<dynamic>.from(myPosts.map((x) => x.toJson())),
   };

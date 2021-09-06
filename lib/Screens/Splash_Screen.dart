@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import 'package:morbimirror/ApiCall/Category_api.dart';
 import 'package:morbimirror/ApiCall/staticPageContent.dart';
 import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Page.dart';
+import 'package:morbimirror/Models/Posts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Global/Global.dart';
@@ -22,6 +25,7 @@ class splashscreen extends StatefulWidget {
 
 class _splashscreenState extends State<splashscreen> {
   startTime() async {
+    await getLocalData();
     await readBookMark();
     await getPrivacyPage();
     await getAboutUs();
@@ -32,6 +36,46 @@ class _splashscreenState extends State<splashscreen> {
     var _duration = new Duration(seconds: 2);
     print("Global.alldata ${Global.allData}");
     return new Timer(_duration, navigationPage);
+  }
+
+  getLocalData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String data = sharedPreferences.getString("data");
+
+
+
+    if(data!=null)
+    Global.allData = (jsonDecode(data) as List).map((e) {
+      if(e==null){
+        return null;
+      }else{
+        return AllData.fromJson(e);
+      }
+
+    } ).toList();
+
+
+
+    String myPostsList = sharedPreferences.getString("myPostsList");
+    if(myPostsList!=null){
+      Global.allData[2].myPostsList=((jsonDecode(myPostsList) as List).map((e) => (e as List).map((g) => Posts.fromJson(g)).toList()).toList());
+    }
+
+    String myPosts = sharedPreferences.getString("myPosts");
+    if(myPosts!=null){
+      Global.allData[2].myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
+    }
+    String myCategories = sharedPreferences.getString("myCategories");
+    if(myCategories!=null){
+      Global.allData[2].myCategories=(jsonDecode(myCategories) as List ).map((g) => Category.fromJson(g)).toList();
+    }
+
+
+    print("++++++++++++++++++++++++++ !!!");
+    log(jsonEncode(Global.allData[2]));
+    print(Global.allData.length);
+
+
   }
 
   void navigationPage() {
@@ -45,7 +89,7 @@ class _splashscreenState extends State<splashscreen> {
     prefs.setString('key', Global.allData.toString());
   }*/
 
-  getValue() async {
+/*  getValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String stringValue = prefs.getString('key');
@@ -62,12 +106,12 @@ class _splashscreenState extends State<splashscreen> {
     }
 
     setState(() {});
-  }
+  }*/
 
   void initState() {
     getToken();
     startTime();
-    getValue();
+    //getValue();
 
     super.initState();
   }
