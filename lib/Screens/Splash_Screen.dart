@@ -32,6 +32,7 @@ class _splashscreenState extends State<splashscreen> {
     await getFaq();
     await getCategories();
 
+    
     await getMenu();
     var _duration = new Duration(seconds: 2);
     print("Global.alldata ${Global.allData}");
