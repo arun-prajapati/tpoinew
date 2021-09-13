@@ -56,17 +56,21 @@ class _splashscreenState extends State<splashscreen> {
 
     String myPostsList = sharedPreferences.getString("myPostsList");
     if(myPostsList!=null){
+      print("PPPPPPPPPPPPPP");
       Global.allData[2].myPostsList=((jsonDecode(myPostsList) as List).map((e) => (e as List).map((g) => Posts.fromJson(g)).toList()).toList());
     }
 
     String myPosts = sharedPreferences.getString("myPosts");
     if(myPosts!=null){
-      print("CCCCCCCCCCCCCCCCCCCCCCCC");
+      print("XXXXXXXXXXXX");
+
 
       Global.allData[2].myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
     }
     String myCategories = sharedPreferences.getString("myCategories");
     if(myCategories!=null){
+      print("NNNNNNNNNNN");
+
       Global.allData[2].myCategories=(jsonDecode(myCategories) as List ).map((g) => Category.fromJson(g)).toList();
     }
 
@@ -133,8 +137,8 @@ class _splashscreenState extends State<splashscreen> {
           children: <Widget>[
             Image.asset(
               'assets/images/logo.png',
-              height: 200,
-              width: 200,
+              height: 110,
+              width: 110,
             )
           ],
         ),

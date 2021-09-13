@@ -1,52 +1,103 @@
 import 'package:flutter/material.dart';
-import 'package:morbimirror/widgets/MajorPost.dart';
-import 'package:video_player/video_player.dart';
+import 'dart:ui' as ui;
 
-import 'ApiCall/Category_api.dart';
-import 'ApiCall/Post_api.dart';
 
-class testing extends StatefulWidget {
+class animation extends StatefulWidget {
   @override
-  _testingState createState() => _testingState();
+  animationState createState() => new animationState();
 }
 
-class _testingState extends State<testing> {
-  VideoPlayerController _controller;
-
-  Future<ClosedCaptionFile> _loadCaptions() async {
-    final String fileContents = await DefaultAssetBundle.of(context)
-        .loadString('assets/bumble_bee_captions.srt');
-    return SubRipCaptionFile(fileContents);
-  }
+class animationState extends State<animation> with TickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+  bool upDown = true;
 
   @override
   void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(
-      'http://www.streambox.fr/playlists/test_001/stream.m3u8',
-      closedCaptionFile: _loadCaptions(),
-      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
+    _controller = new AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 180),
     );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
-    _controller.setLooping(true);
-    _controller.initialize();
-  }
+    _animation = new CurvedAnimation(
+      parent: _controller,
+      curve: new Interval(0.0, 1.0, curve: Curves.linear),
+    );
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+ 
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
+    final ui.Size logicalSize = MediaQuery.of(context).size;
+    final double _width = logicalSize.width;
+    final double _height = logicalSize.height;
 
-      ),
+
+    void _up(){
+      setState((){
+        if(upDown) {
+          upDown = false;
+          _controller.forward(from: 0.0);
+        } else {
+          upDown = true;
+          _controller.reverse(from: 1.0);
+        }
+      });
+    }
+
+    return new Scaffold(
+        body: new Stack(
+            children: <Widget>[
+              new Positioned(
+                bottom: 0.0,
+                child: new AnimatedBuilder(
+                  animation: _animation,
+                  builder: (BuildContext context, Widget child) {
+                    return new Container(
+                      height: _height,
+                      child: new CustomPaint(
+                        painter: new Sky(_width, _height * _animation.value),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              new Positioned(
+                  bottom: 16.0,
+                  right: 16.0,
+                  child: new FloatingActionButton(
+                    backgroundColor: new Color(0xFFE57373),
+                    child: new Icon(Icons.add),
+                    onPressed: (){
+                      _up();
+                    },
+                  )
+              )
+            ]
+        )
     );
+  }
+}
+
+class Sky extends CustomPainter {
+  final double _width;
+  double _rectHeight;
+
+  Sky(this._width, this._rectHeight);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawRect(
+      new Rect.fromLTRB(
+          0.0, size.height - _rectHeight, this._width, size.height
+      ),
+      new Paint()..color = new Color(0xFF0099FF),
+    );
+  }
+
+  @override
+  bool shouldRepaint(Sky oldDelegate) {
+    return _width != oldDelegate._width || _rectHeight != oldDelegate._rectHeight;
   }
 }

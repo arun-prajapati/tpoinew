@@ -42,13 +42,13 @@ class customBottombar extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(
           children: [
-            Image.asset(img,width: 200,height: 150,),
+            /*Image.asset(img,width: 200,height: 150,),
             SizedBox(height: 20,),
             Text(title,textAlign: TextAlign.justify,style: TextStyle(
               color: titleclr,fontWeight: FontWeight.w600,
 
-            ),),
-            SizedBox(height: 18,),
+            ),),*/
+            SizedBox(height: 6,),
             Column(
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.start,

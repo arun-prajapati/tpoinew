@@ -36,20 +36,18 @@ class _NewsmainpageState extends State<Newsmainpage> {
         onTap: () {
           Share.share(Global.activePage.link, subject: "Check Out Latest News");
         },
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 1.6),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/images/shareF.png',
-              ),
-              Image.asset('assets/images/shareW.png'),
-              Image.asset('assets/images/shareT.png')
-            ],
-          ),
+
+        child: Row(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(child: Image.asset('assets/images/shareF.png',fit:BoxFit.contain)),
+            Expanded(child: Image.asset('assets/images/shareW.png',fit:BoxFit.contain)),
+            Expanded(child: Image.asset('assets/images/shareT.png',fit:BoxFit.contain)),
+            //Expanded(child: Image.asset('assets/images/shareT.png'))
+
+          ],
         ),
       ),
       //drawer: CustomDrawer(),

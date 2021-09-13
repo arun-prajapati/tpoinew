@@ -53,11 +53,9 @@ class MyApp extends StatelessWidget {
         'Homenewspagemain':(context)=>Newsmainpage(),
         'search':(context)=>searching(),
         'drawer_category':(context)=>News_category_drawer(),
-        'test':(context)=>testing(),
+        'test':(context)=>Testing(),
         'staticPage':(context)=>StaticPageDisplay(),
         'bookmark':(context)=>BookmarkPage()
-
-
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/CustomTextHeadingOftheBanner.dart';
@@ -440,7 +441,13 @@ class PostForCategory extends StatelessWidget {
   }
 }
 
+
+
+
+
 class HorizontalListofPost extends StatelessWidget {
+
+
   List<Posts> postsList;
 
   HorizontalListofPost({this.postsList});
@@ -454,8 +461,10 @@ class HorizontalListofPost extends StatelessWidget {
     showItemDuration: Duration(milliseconds: 80),
 
     visibleFraction: 0.03,
-    reAnimateOnVisibility: false,
+    reAnimateOnVisibility: true,
   );
+
+
 
   Widget buildAnimatedItem(
       BuildContext context,
@@ -469,7 +478,7 @@ class HorizontalListofPost extends StatelessWidget {
     // And slide transition
     child: SlideTransition(
       position: Tween<Offset>(
-        begin: Offset(0, -0.2),
+        begin: Offset(0, -1),
         end: Offset.zero,
       ).animate(animation),
       // Paste you Widget
@@ -490,6 +499,22 @@ class HorizontalListofPost extends StatelessWidget {
 
   }
 }
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
 
 class MajorPostType2 extends StatelessWidget {
   Posts posts;

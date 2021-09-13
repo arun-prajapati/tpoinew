@@ -140,7 +140,7 @@ class _TestingState extends State<Testing> {
           : myCategories.isEmpty
               ? myPosts.isEmpty && myPostsList.isEmpty
                   ? Center(
-                      child: Text("No News Available..."),
+                      child: Text("News Loading..."),
                     )
                   : OnlyPosts(posts: myPosts)
               :SingleChildScrollView(
