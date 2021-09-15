@@ -5,6 +5,7 @@ import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Menu.dart';
 import 'package:morbimirror/Models/Page.dart';
 import 'package:morbimirror/Models/Posts.dart';
+import 'package:morbimirror/Models/advertisment.dart';
 import 'package:morbimirror/Models/appdata.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
@@ -17,6 +18,8 @@ class Global{
   static double iconSize = 0.07;
   static List<Tab> myTabs = new List();
   static List<Category> CategoryList = new List();
+  static String advertisementList;
+  static String advertisementCustomList;
   static List<CategoryContent> categoryContent = new List();
   static List<Menu> menu = new List();
   static List<List<Posts>> categoryPosts = new List();

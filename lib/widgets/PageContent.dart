@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/CustomTextHeadingOftheBanner.dart';
@@ -129,9 +130,12 @@ class _CategoryContentState extends State<CategoryContent> {
             ),
           ]),
         SizedBox(height: 5,),
-        Container(height: 50,width: MediaQuery.of(context).size.width,
-            child: Image.asset('assets/images/headerad.jpg'))
-        ,SizedBox(height: 5,),  ],
+      /*  Container(height: 50,width: MediaQuery.of(context).size.width,
+            child: Image.asset('assets/images/headerad.jpg'))*/
+    Html(
+    data:Global.advertisementCustomList
+    ),
+        SizedBox(height: 5,),  ],
     );
 
 

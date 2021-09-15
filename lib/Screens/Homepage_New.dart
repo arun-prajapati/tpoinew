@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
@@ -11,6 +13,7 @@ import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
 import 'package:http/http.dart' as http;
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/advertisment.dart';
 import 'package:morbimirror/testing.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
@@ -40,10 +43,54 @@ class _homepageState extends State<homepage> {
   @override
   void initState() {
     //GetPageData();
+    getAdvertisementData();
+    getAdvertisementCustomData();
     super.initState();
 //    this.getPosts();
   }
 
+  getAdvertisementData(){
+//calling api
+
+    http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=header'),
+    ).then((res){
+
+      print(res.body);
+      print("KKKKK");
+      String content;
+      var advertiseList = jsonDecode(res.body);
+
+      print(advertiseList['content']);
+      Global.advertisementList = advertiseList['content'];
+
+      print("KKKKMMMM");
+
+
+    });
+
+  }
+
+
+  getAdvertisementCustomData(){
+//calling api
+
+    http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=custom_ad_1'),
+    ).then((res){
+
+      print(res.body);
+      print("NNN");
+      String content;
+      var advertiseCustomList = jsonDecode(res.body);
+
+      print(advertiseCustomList['content']);
+      Global.advertisementCustomList = advertiseCustomList['content'];
+
+      print("KKKKMMMM");
+
+
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -54,17 +101,16 @@ class _homepageState extends State<homepage> {
         body: SafeArea(
           child: Column(
             children: [
-
-
               CustomAppBar(logoimg: 'assets/images/logo.png',
-
                 clickonmenuicon: (){
 
-                  _scaffoldKey.currentState.openDrawer();
-
+                _scaffoldKey.currentState.openDrawer();
                 },),
               SizedBox(height: 4,),
-              Image.asset('assets/images/headerad.jpg',),
+              /*Image.asset('assets/images/headerad.jpg',),*/
+              Html(
+                data:Global.advertisementList
+              ),
               SizedBox(height: 4,),
               Expanded(child: Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
             ],
