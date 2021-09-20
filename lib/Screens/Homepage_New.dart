@@ -16,6 +16,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/advertisment.dart';
 import 'package:morbimirror/testing.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class homepage extends StatefulWidget {
   @override
@@ -108,7 +109,9 @@ class _homepageState extends State<homepage> {
                 },),
               SizedBox(height: 4,),
               /*Image.asset('assets/images/headerad.jpg',),*/
-              Html(
+              Html(onLinkTap: (String url, RenderContext context, Map<String, String> attributes,  element)async{
+                await launch(url);
+              },
                 data:Global.advertisementList
               ),
               SizedBox(height: 4,),
