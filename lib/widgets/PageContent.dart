@@ -9,6 +9,7 @@ import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CategoryContent extends StatefulWidget {
    List<Posts> posts;
@@ -132,7 +133,9 @@ class _CategoryContentState extends State<CategoryContent> {
         SizedBox(height: 5,),
       /*  Container(height: 50,width: MediaQuery.of(context).size.width,
             child: Image.asset('assets/images/headerad.jpg'))*/
-    Html(
+    Html(onLinkTap: (String url, RenderContext context, Map<String, String> attributes,  element)async{
+      await launch(url);
+    },
     data:Global.advertisementCustomList
     ),
         SizedBox(height: 5,),  ],
