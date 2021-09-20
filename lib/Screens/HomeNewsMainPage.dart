@@ -17,6 +17,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Newsmainpage extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
   ScreenshotController screenshotController = ScreenshotController();
   Uint8List _imageFile;
 
+  String urlLink = "https://thepressofindia.com/wp-json/wp/v2/posts";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -255,6 +257,9 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     new Html(
+                                      onLinkTap: (String url, RenderContext context, Map<String, String> attributes,  element)async{
+                                        await launch(url);
+                                      },
                                       data: Global.activePost.content.rendered ??
                                           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                                       style: {

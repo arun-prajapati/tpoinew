@@ -37,7 +37,7 @@ dependencies:
   intl: ^0.17.0
   cached_network_image: ^3.0.0
   transparent_image: ^2.0.0
-  flutter_html: ^2.0.0-nullsafety.1
+  flutter_html:
   shared_preferences: ^2.0.5
   share: ^2.0.1
   firebase_messaging: ^9.1.3
