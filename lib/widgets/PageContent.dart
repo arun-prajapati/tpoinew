@@ -55,8 +55,8 @@ class _CategoryContentState extends State<CategoryContent> {
                     },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-
                         decoration: BoxDecoration(
+
                           color: Colors.amber.withOpacity(0.3),
                           image: DecorationImage(
                               fit: BoxFit.cover,
@@ -66,9 +66,21 @@ class _CategoryContentState extends State<CategoryContent> {
                         ),
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Container(height: 80,
+                            child: Container(height: 90,
                                 width: MediaQuery.of(context).size.width,
-                               // color: Colors.black.withOpacity(0.4),
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: [ 0.5, 0.7, 0.9],
+                                    colors: [
+
+                                      Colors.black.withOpacity(0.2),
+                                      Colors.black.withOpacity(0.2),
+                                      Colors.black45
+                                    ],
+                                  ),
+                                ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
@@ -79,12 +91,13 @@ class _CategoryContentState extends State<CategoryContent> {
                                       decoration: BoxDecoration(color: Colors.deepOrange,
                                         borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),),
+                                      SizedBox(height: 9,),
                                       Text(
                                         i.title.rendered,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            fontWeight: FontWeight.bold,fontSize: 22),
+                                            /*fontWeight: FontWeight.bold,*/fontSize: 18),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -129,6 +142,8 @@ class _CategoryContentState extends State<CategoryContent> {
                 ).toList(), // this was the part the I had to add
               ),
             ),
+
+
           ]),
         SizedBox(height: 5,),
       /*  Container(height: 50,width: MediaQuery.of(context).size.width,

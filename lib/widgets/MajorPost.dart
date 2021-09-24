@@ -623,8 +623,11 @@ class MinorPostType2 extends StatelessWidget {
                           Expanded(
                               child: Text(
                             posts.title.rendered,
-                            textAlign: TextAlign.justify,
+                            textAlign: TextAlign.left,
                             overflow: TextOverflow.clip,
+                                style: TextStyle(height: 1.3,
+                                  color:Color(0xff696969),
+                                ),
                           )),
                         ],
                       ),
@@ -664,9 +667,9 @@ class HeaderTitle extends StatelessWidget {
               child: Text(
                 title ?? "",
                 style: TextStyle(
-                    color: staticDarkblue,
+                    color: Colors.black.withOpacity(0.6),
                     fontSize: MediaQuery.of(context).size.width * 0.05,
-                    fontWeight: FontWeight.w400),
+                    /*fontWeight: FontWeight.w400*/),
               ),
             ),
             Spacer(),
@@ -677,9 +680,9 @@ class HeaderTitle extends StatelessWidget {
                   Navigator.of(context).pushNamed('categorynews');
                 },
                 child: Container(
-                    color: staticDarkblue,
+                    color: staticBlack,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 11,right: 11),
+                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 18,right: 18),
                       child: Text(
                         'SEE ALL' ?? "",
                         style: TextStyle(

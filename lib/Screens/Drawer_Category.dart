@@ -41,7 +41,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true,backgroundColor: Colors.white,title:Text("Choose Category",style: TextStyle(color: staticDarkblue,fontSize: MediaQuery.of(context).size.width*0.06,fontWeight: FontWeight.bold,),),
+      appBar: AppBar(centerTitle: true,backgroundColor: Colors.white,title:Text("Choose Category",style: TextStyle(color: staticDarkRed,fontSize: MediaQuery.of(context).size.width*0.06,fontWeight: FontWeight.bold,),),
         leading: GestureDetector(
           onTap: (){
             Navigator.of(context).pop();
@@ -55,7 +55,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
         children: List.generate(Global.CategoryList.length,(index) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
-            child: Card(elevation: 7.7,color: staticDarkblue,
+            child: Card(elevation: 7.7,color: staticDarkRed,
               child: InkWell(splashColor: staticBlack,onTap: (){
 
                 Global.selectedCategoryId=Global.CategoryList[index].id.toString();

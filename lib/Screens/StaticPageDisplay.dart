@@ -24,7 +24,7 @@ class _StaticPageDisplayState extends State<StaticPageDisplay> {
         backgroundColor: Colors.white,
         title:Global.activePage==null?Text("No Data"):Text("${Global.activePage.title.rendered.replaceAll("&#8211; Terms &#038; Conditions", "")}",
           style: TextStyle(
-            color: staticDarkblue,
+            color: staticDarkRed,
             fontSize: MediaQuery.of(context).size.width*0.06,fontWeight: FontWeight.bold,),
         ),
       leading: GestureDetector(

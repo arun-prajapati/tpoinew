@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const staticOrange = Colors.deepOrange;
 const staticBlue = Colors.redAccent;
 const staticWhite = Colors.white;
-const staticDarkblue= Color(0xff8B0000);
+const staticDarkRed= Color(0xff8B0000);
 const staticBlack= Colors.black;
 
 /*
