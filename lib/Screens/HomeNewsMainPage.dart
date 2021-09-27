@@ -37,6 +37,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
   List<List<Posts>> myPostsList = new List();
   List<Category> myCategories = new List();
   List<Posts> myPosts = new List();
+
+  List<Posts> posts;
+
+  String catId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -328,7 +332,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 ),
                               )
                           ),
-                        Container(
+                        SizedBox(height: 20,),
+                      /*  Container(
                           height: MediaQuery.of(context).size.height * 0.4,
                           width: MediaQuery.of(context).size.width,
 
@@ -336,61 +341,66 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 scrollDirection: Axis.horizontal,
                                 //physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: 4,
+                                itemCount: Global.categoryPosts.length,
                                 itemBuilder: (context, index) {
-                                  return Container(
-                                    width: MediaQuery.of(context).size.width * .4,
-                                    child: Card(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              width: MediaQuery.of(context).size.width * .4,
-                                              height: MediaQuery.of(context).size.width * .4,
-                                              decoration: new BoxDecoration(
-                                                  shape: BoxShape.rectangle,
-                                                  borderRadius: BorderRadius.circular(3),
-                                                  image: new DecorationImage(
-                                                    image: NetworkImage(
-                                                       "https://thepressofindia.com/wp-content/uploads/2020/12/Keshar-Bhvani-Steel-Furniture.jpg"),
-                                                    fit: BoxFit.cover,
-                                                  ))),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: Container(
-                                              height: MediaQuery.of(context).size.width * .2,
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                      child: Text(
-                                                       "sjxnsjxnsxnsmx dwdjwk jswks ",
-                                                        textAlign: TextAlign.left,
-                                                        overflow: TextOverflow.clip,
-                                                        style: TextStyle(height: 1.3,
-                                                          color:Color(0xff696969),
-                                                        ),
-                                                      )),
-                                                ],
+                                  return GestureDetector(onTap: (){
+                                    Global.activeCategory = posts;
+                                    Navigator.of(context).pushNamed('Homenewspagemain');
+                                  },
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width * .4,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(5.0),
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                                width: MediaQuery.of(context).size.width * .4,
+                                                height: MediaQuery.of(context).size.width * .4,
+                                                decoration: new BoxDecoration(
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: BorderRadius.circular(3),
+                                                    image: new DecorationImage(
+                                                      image: Global.activeCategory[index].featuredMedia.medium != null ?NetworkImage(
+                                                        Global.activeCategory[index].featuredMedia.medium):Text("No Data"),
+                                                      fit: BoxFit.cover,
+                                                    ))),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(5.0),
+                                              child: Container(
+                                                height: MediaQuery.of(context).size.width * .2,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  children: [
+                                                    Expanded(
+                                                        child:  Global.activeCategory[index].title.rendered != null ?Text(
+                                                        Global.activeCategory[index].title.rendered,
+                                                          textAlign: TextAlign.left,
+                                                          overflow: TextOverflow.clip,
+                                                          style: TextStyle(height: 1.3,
+                                                            color:Color(0xff696969),
+                                                          ),
+                                                        ):Text("No Data")),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );
 
                                 }),
-                        ),
+                        ),*/
                         ],
                       ),
 
