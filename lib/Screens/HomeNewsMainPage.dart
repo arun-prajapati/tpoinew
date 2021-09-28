@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
@@ -7,6 +8,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:morbimirror/ApiCall/Post_api.dart';
 
 import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
@@ -22,7 +24,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:morbimirror/ApiCall/All_URLS.dart';
+import 'package:http/http.dart' as http;
 class Newsmainpage extends StatefulWidget {
   @override
   _NewsmainpageState createState() => _NewsmainpageState();
@@ -41,6 +44,47 @@ class _NewsmainpageState extends State<Newsmainpage> {
   List<Posts> posts;
 
   String catId;
+
+  bool isLoading = true;
+
+  List<Posts> myPostsList1 = new List();
+
+  getCategories() async {
+    await http.get(Uri.parse(urlForTopBarCategories),
+    ).then((res){
+      //print(res.body);
+      var Storedataoflist = jsonDecode(res.body);
+      // print(Storedataoflist);
+      Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+      print(Global.CategoryList.length);
+      print("///////");
+      // print(jsonEncode(Listofdata).toString());
+    });
+  }
+
+
+  getPost() async {
+    List<Posts> myPostsListAdd = new List();
+    print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
+
+    myPostsListAdd = await getPosts(
+        url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&categories=${Global.selectedCategoryId}");
+
+    if(myPostsListAdd!=null) {
+      myPostsList1 = myPostsList1 + myPostsListAdd;
+    }
+    isLoading = false;
+    setState(() {
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getPost();
+    //getCategories();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -333,74 +377,28 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               )
                           ),
                         SizedBox(height: 20,),
-                      /*  Container(
+                        Container(
                           height: MediaQuery.of(context).size.height * 0.4,
                           width: MediaQuery.of(context).size.width,
 
-                          child: ListView.builder(
+                          child:
+                        ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 //physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: Global.categoryPosts.length,
+                                itemCount: myPostsList1.length,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(onTap: (){
                                     Global.activeCategory = posts;
                                     Navigator.of(context).pushNamed('Homenewspagemain');
                                   },
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * .4,
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(5.0),
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                                width: MediaQuery.of(context).size.width * .4,
-                                                height: MediaQuery.of(context).size.width * .4,
-                                                decoration: new BoxDecoration(
-                                                    shape: BoxShape.rectangle,
-                                                    borderRadius: BorderRadius.circular(3),
-                                                    image: new DecorationImage(
-                                                      image: Global.activeCategory[index].featuredMedia.medium != null ?NetworkImage(
-                                                        Global.activeCategory[index].featuredMedia.medium):Text("No Data"),
-                                                      fit: BoxFit.cover,
-                                                    ))),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(5.0),
-                                              child: Container(
-                                                height: MediaQuery.of(context).size.width * .2,
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                        child:  Global.activeCategory[index].title.rendered != null ?Text(
-                                                        Global.activeCategory[index].title.rendered,
-                                                          textAlign: TextAlign.left,
-                                                          overflow: TextOverflow.clip,
-                                                          style: TextStyle(height: 1.3,
-                                                            color:Color(0xff696969),
-                                                          ),
-                                                        ):Text("No Data")),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                    child: MinorPostType2(
+                                      posts: myPostsList1[index],
                                     ),
                                   );
 
                                 }),
-                        ),*/
+                        ),
                         ],
                       ),
 

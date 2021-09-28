@@ -583,6 +583,16 @@ class MinorPostType2 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Global.activePost = posts;
+        print(posts.categories);
+        print(posts.categories.length);
+        Global.selectedCategoryId = posts.categories.length==1?
+        posts.categories.toString()
+            .replaceAll("[", "").replaceAll("]", ""):
+        posts.categories.toString()
+            .replaceAll("[", "").replaceAll("]", "").substring(3);
+        print(Global.selectedCategoryId);
+        print("ssssss");
+
         Navigator.of(context).pushNamed('Homenewspagemain');
       },
       child: Column(
@@ -677,6 +687,8 @@ class HeaderTitle extends StatelessWidget {
                 onTap: () {
                   Global.activeCategory = posts;
                   Global.selectedCategoryId = catId;
+                  print("<<<<<");
+                  print(Global.selectedCategoryId);
                   Navigator.of(context).pushNamed('categorynews');
                 },
                 child: Container(
