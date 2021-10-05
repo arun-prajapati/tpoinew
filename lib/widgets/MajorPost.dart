@@ -500,21 +500,7 @@ class HorizontalListofPost extends StatelessWidget {
   }
 }
 
-
-
-
-
 //
-
-
-
-
-
-
-
-
-
-
 
 class MajorPostType2 extends StatelessWidget {
   Posts posts;
@@ -673,7 +659,7 @@ class HeaderTitle extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 8,right: 0),
               child: Text(
                 title ?? "",
                 style: TextStyle(
@@ -694,7 +680,7 @@ class HeaderTitle extends StatelessWidget {
                 child: Container(
                     color: staticBlack,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 18,right: 18),
+                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 10,right: 10),
                       child: Text(
                         'SEE ALL' ?? "",
                         style: TextStyle(
@@ -704,7 +690,7 @@ class HeaderTitle extends StatelessWidget {
                       ),
                     ))),
             SizedBox(
-              width: 10,
+              width: 3,
             ),
           ],
         ),

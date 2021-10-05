@@ -8,6 +8,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:intl/intl.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
 
 import 'package:morbimirror/BookMark/bookMark.dart';
@@ -105,10 +106,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
                 child: Image.asset('assets/images/shareF.png',
                     fit: BoxFit.contain)),
             Expanded(
-                child: Image.asset('assets/images/shareW.png',
+                child: Image.asset('assets/images/shareT.png',
                     fit: BoxFit.contain)),
             Expanded(
-                child: Image.asset('assets/images/shareT.png',
+                child: Image.asset('assets/images/shareW.png',
                     fit: BoxFit.contain)),
             //Expanded(child: Image.asset('assets/images/shareT.png'))
           ],
@@ -286,7 +287,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                       ),
                                     ),
                                     Text(
-                                      "- by Admin",
+                                      " by "+Global.activePost.author,
                                       style:
                                           TextStyle(color: Color(0xff696969)),
                                     ),
@@ -369,7 +370,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(
-                                  "You might also like",
+                                  "You Might Also Like",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 17),
@@ -378,7 +379,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                           ),
                         SizedBox(height: 20,),
                         Container(
-                          height: MediaQuery.of(context).size.height * 0.4,
+                          height: 283,
                           width: MediaQuery.of(context).size.width,
 
                           child:
@@ -386,7 +387,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 scrollDirection: Axis.horizontal,
                                 //physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: myPostsList1.length,
+                                itemCount: myPostsList1.length !=null ?(myPostsList1.length > 10 ? 10 : myPostsList1.length):myPostsList1.length,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(onTap: (){
                                     Global.activeCategory = posts;
@@ -492,9 +493,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                     ),*/
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+
                   /*  customBottombar(
                     img: 'assets/images/logo.png',
                     title:

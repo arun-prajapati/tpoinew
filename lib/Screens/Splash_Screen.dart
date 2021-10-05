@@ -36,7 +36,7 @@ class _splashscreenState extends State<splashscreen> {
 
     
     await getMenu();
-    var _duration = new Duration(seconds: 2);
+    var _duration = new Duration(milliseconds: 5);
     print("Global.alldata ${Global.allData}");
     return new Timer(_duration, navigationPage);
   }
@@ -118,7 +118,7 @@ class _splashscreenState extends State<splashscreen> {
     getToken();
     startTime();
     //getValue();
-
+    getLocalData();
     super.initState();
   }
 

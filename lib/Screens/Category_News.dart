@@ -13,6 +13,10 @@ import 'package:morbimirror/widgets/MajorPost.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 
 class CategoryNews extends StatefulWidget {
+
+  List<Posts> posts;
+  CategoryNews({this.posts});
+
   @override
   _CategoryNewsState createState() => _CategoryNewsState();
 }
@@ -22,6 +26,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   bool isLoading = true;
   int CurrentPage=1;
 
+  int _current = 0;
   List<Posts> myPostsList = new List();
 
   getPost() async {
@@ -72,7 +77,8 @@ class _CategoryNewsState extends State<CategoryNews> {
 
               itemCount: myPostsList.length
               ,itemBuilder: (context,index){
-            return index==0?MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
+            return index==0?
+            MajorPost(posts: myPostsList[index],):MinorPost(myPostsList[index]);
           })
 
           ))

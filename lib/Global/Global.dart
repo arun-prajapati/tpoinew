@@ -43,6 +43,6 @@ class Global{
 
 MyDate(DateTime dateTime){
 
-  return DateFormat('KK:mm a , dd-MM-yyyy ').format(dateTime);
+  return DateFormat('MMMM dd,yyyy , KK:mm a ').format(dateTime);
 
 }

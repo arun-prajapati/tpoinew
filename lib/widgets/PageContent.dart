@@ -66,18 +66,22 @@ class _CategoryContentState extends State<CategoryContent> {
                         ),
                         child: Align(
                             alignment: Alignment.bottomCenter,
-                            child: Container(height: 90,
+                            child: Container(height: MediaQuery.of(context).size.height,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    stops: [ 0.5, 0.7, 0.9],
+                                    //stops: [ 0.5, 0.7, 0.9],
                                     colors: [
+                                       Colors.transparent,
+                                      Colors.transparent,
+                                      Colors.transparent,
+                                      Colors.black.withOpacity(0.2),
+                                      Colors.black45,
+                                      Colors.black45,
+                                      Colors.black
 
-                                      Colors.black.withOpacity(0.2),
-                                      Colors.black.withOpacity(0.2),
-                                      Colors.black45
                                     ],
                                   ),
                                 ),
@@ -85,7 +89,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(height: 25,  width: 5,
                                       decoration: BoxDecoration(color: Colors.deepOrange,
@@ -94,10 +98,10 @@ class _CategoryContentState extends State<CategoryContent> {
                                       SizedBox(height: 9,),
                                       Text(
                                         i.title.rendered,
-                                        overflow: TextOverflow.ellipsis,
+                                       // overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             color: Colors.white,
-                                            /*fontWeight: FontWeight.bold,*/fontSize: 18),
+                                      fontSize: 16),
                                       ),
                                       SizedBox(
                                         height: 10,
