@@ -108,77 +108,79 @@ class MajorPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-      child: GestureDetector(
-        onTap: () {
-          Global.activePost = posts;
-          Navigator.of(context).pushNamed('Homenewspagemain');
-        },
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * .3,
-          decoration: new BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              image: new DecorationImage(
-                image: NetworkImage(posts.featuredMedia.medium),
-                fit: BoxFit.cover,
-              )),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Spacer(
-                flex:2,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Colors.transparent, Colors.black])),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 5, 15, 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            SizedBox(
-                              height: 35,
-                            ),
-                            Customtextheader(title: "Morbi",
-                              titleclr: staticWhite,
-                              bgcolor: Colors.black,),
-                            SizedBox(height: 5,),
-                            customtext(
-                              title: posts.title.rendered,
-                              titleclr: staticWhite,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              MyDate(posts.date),
-                              style:
-                              TextStyle(color: staticWhite, fontSize: 10),
-                            ),
-                          ],
-                        ),
+    return GestureDetector(
+      onTap: () {
+        Global.activePost = posts;
+        Navigator.of(context).pushNamed('Homenewspagemain');
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * .3,
+        decoration: new BoxDecoration(
+            shape: BoxShape.rectangle,
+            /*borderRadius: BorderRadius.all(Radius.circular(10)),*/
+            image: new DecorationImage(
+              image: NetworkImage(posts.featuredMedia.medium),
+              fit: BoxFit.cover,
+            )),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Spacer(
+              flex:2,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, Colors.black])),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 5, 15, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 35,
+                          ),
+                          Container(height: 25,  width: 5,
+                            decoration: BoxDecoration(color: Colors.deepOrange,
+                                borderRadius: BorderRadius.all(Radius.circular(5))
+                            ),),
+
+                       /*   Customtextheader(title: "Morbi",
+                            titleclr: staticWhite,
+                            bgcolor: Colors.black,),*/
+                          SizedBox(height: 5,),
+                          customtext(
+                            title: posts.title.rendered,
+                            titleclr: staticWhite,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                         /* Text(
+                            MyDate(posts.date),
+                            style:
+                            TextStyle(color: staticWhite, fontSize: 10),
+                          ),*/
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
-
       ),
+
     );
   }
 }
