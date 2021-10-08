@@ -120,6 +120,7 @@ class _splashscreenState extends State<splashscreen> {
     //getValue();
     getLocalData();
     super.initState();
+
   }
 
   getToken() async {
