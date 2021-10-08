@@ -27,7 +27,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   getPost() async {
     List<Posts> myPostsListAdd = new List();
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
-
+ 
     myPostsListAdd = await getPosts(
         url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
 
