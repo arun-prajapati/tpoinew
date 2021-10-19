@@ -74,7 +74,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
                             children: [
                               Expanded(
                                 child: Text(
-                                    Global.CategoryList[index].name??"",textAlign: TextAlign.center,
+                                    Global.CategoryList[index].name.replaceAll("&amp;", "")??"",textAlign: TextAlign.center,
                                     style: TextStyle(fontSize: 20,color: staticWhite,fontWeight: FontWeight.w400)
                                 ),
                               ),

@@ -31,7 +31,7 @@ class _CategoryNewsState extends State<CategoryNews> {
  
     myPostsListAdd = await getPosts(
         url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
- 
+
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;
     }
