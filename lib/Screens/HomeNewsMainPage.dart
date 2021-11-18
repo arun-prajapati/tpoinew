@@ -93,7 +93,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
       bottomNavigationBar: GestureDetector(
         onTap: () {
           Share.share(
-              "${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.thepressofindia",
+              "${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.thepressofindia",
               subject: "Check Out Latest News");
           print("share work");
         },
