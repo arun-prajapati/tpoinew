@@ -8,25 +8,21 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
-
 import 'package:morbimirror/BookMark/bookMark.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
-import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
-import 'package:morbimirror/CustomFile/Customdrawer.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
-import 'package:morbimirror/widgets/PageContent.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:morbimirror/ApiCall/All_URLS.dart';
-import 'package:http/http.dart' as http;
+
 class Newsmainpage extends StatefulWidget {
   @override
   _NewsmainpageState createState() => _NewsmainpageState();
@@ -51,32 +47,37 @@ class _NewsmainpageState extends State<Newsmainpage> {
   List<Posts> myPostsList1 = new List();
 
   getCategories() async {
-    await http.get(Uri.parse(urlForTopBarCategories),
-    ).then((res){
+    await http
+        .get(
+      Uri.parse(urlForTopBarCategories),
+    )
+        .then((res) {
       //print(res.body);
       var Storedataoflist = jsonDecode(res.body);
       // print(Storedataoflist);
-      Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
+      Global.CategoryList = (Storedataoflist as List)
+          .map((data) => Category.fromJson(data))
+          .toList();
       print(Global.CategoryList.length);
       print("///////");
       // print(jsonEncode(Listofdata).toString());
     });
   }
 
-
   getPost() async {
     List<Posts> myPostsListAdd = new List();
-    print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
+    print(
+        "|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
 
     myPostsListAdd = await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&categories=${Global.selectedCategoryId}");
+        url:
+            "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&categories=${Global.selectedCategoryId}");
 
-    if(myPostsListAdd!=null) {
+    if (myPostsListAdd != null) {
       myPostsList1 = myPostsList1 + myPostsListAdd;
     }
     isLoading = false;
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -86,6 +87,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
     //getCategories();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,8 +95,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
       bottomNavigationBar: GestureDetector(
         onTap: () {
           Share.share(
-           /*   ${Global.activePost.excerpt.rendered}\n*/
-            //put upper code above of Global.activePost.link for share whole post in generated link
+              /*   ${Global.activePost.excerpt.rendered}\n*/
+              //put upper code above of Global.activePost.link for share whole post in generated link
               "${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.thepressofindia",
               subject: "Check Out Latest News");
           print("share work");
@@ -289,7 +291,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                       ),
                                     ),
                                     Text(
-                                      " by "+Global.activePost.author,
+                                      " by " + Global.activePost.author,
                                       style:
                                           TextStyle(color: Color(0xff696969)),
                                     ),
@@ -377,31 +379,35 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 17),
                                 ),
-                              )
+                              )),
+                          SizedBox(
+                            height: 20,
                           ),
-                        SizedBox(height: 20,),
-                        Container(
-                          height: 283,
-                          width: MediaQuery.of(context).size.width,
-
-                          child:
-                        ListView.builder(
+                          Container(
+                            height: 283,
+                            width: MediaQuery.of(context).size.width,
+                            child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 //physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: myPostsList1.length !=null ?(myPostsList1.length > 10 ? 10 : myPostsList1.length):myPostsList1.length,
+                                itemCount: myPostsList1.length != null
+                                    ? (myPostsList1.length > 10
+                                        ? 10
+                                        : myPostsList1.length)
+                                    : myPostsList1.length,
                                 itemBuilder: (context, index) {
-                                  return GestureDetector(onTap: (){
-                                    Global.activeCategory = posts;
-                                    Navigator.of(context).pushNamed('Homenewspagemain');
-                                  },
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Global.activeCategory = posts;
+                                      Navigator.of(context)
+                                          .pushNamed('Homenewspagemain');
+                                    },
                                     child: MinorPostType2(
                                       posts: myPostsList1[index],
                                     ),
                                   );
-
                                 }),
-                        ),
+                          ),
                         ],
                       ),
 

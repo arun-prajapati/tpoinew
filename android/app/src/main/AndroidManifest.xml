@@ -12,7 +12,7 @@
 
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="${applicationName}"
         android:value="2"
         android:label="The Press of INDIA"
         android:usesCleartextTraffic="true"
