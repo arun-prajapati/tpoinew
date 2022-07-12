@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
@@ -272,31 +273,11 @@ class _NewsmainpageState extends State<Newsmainpage> {
 
                           //after image part
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Posted on -",
-                                      style:
-                                          TextStyle(color: Color(0xff696969)),
-                                    ),
-                                    Text(
-                                      MyDate(Global.activePost.date),
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Text(
-                                      " by " + Global.activePost.author,
-                                      style:
-                                          TextStyle(color: Color(0xff696969)),
-                                    ),
-                                  ],
-                                ),
                                 SizedBox(
                                   height: 5,
                                 ),
@@ -304,7 +285,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   Global.activePost.title.rendered
                                       .replaceAll("&#8211", ""),
                                   style: TextStyle(
-                                      // fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                       color: Color(0xff696969),
                                       fontFamily: 'Montserrat-Black'),
@@ -312,14 +293,38 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 SizedBox(
                                   height: 5,
                                 ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      " by " + Global.activePost.author,
+                                      style:
+                                          TextStyle(color: Color(0xff696969)),
+                                    ),
+                                    Text(
+                                      "Posted on -",
+                                      style: TextStyle(
+                                          color: Color(0xff696969),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      MyDate(Global.activePost.date),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 Divider(
                                   color: Colors.black,
                                   height: 0.5,
                                   thickness: 0.3,
                                 ),
-                                SizedBox(
-                                  height: 0,
-                                ),
+
                                 /*  Row(
                               children: [
                                 Text(

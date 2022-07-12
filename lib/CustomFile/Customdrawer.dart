@@ -52,26 +52,23 @@ class CustomDrawer extends StatelessWidget {
                 title: Column(
                   children: [
                     Container(
+                      height: 80,
                       color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 20, horizontal: 10),
                         child: Row(
                           children: [
-                            Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                width: MediaQuery.of(context).size.width * 0.2,
-                                decoration: new BoxDecoration(
-                                    image: new DecorationImage(
-                                  image:
-                                      new AssetImage("assets/images/logo.png"),
-                                  fit: BoxFit.contain,
-                                ))),
-                            Text(
-                              "The Press Of India",
-                              style: TextStyle(color: Colors.white),
-                            )
+                            Row(
+                              children: [
+                                Image.asset('assets/images/logo.png',
+                                    height: 60, width: 60),
+                                Text(
+                                  "The Press Of India",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -111,20 +108,20 @@ class CustomDrawer extends StatelessWidget {
                       },
                     ),
                     ListTile(
+                      leading: Icon(
+                        Icons.contact_phone,
+                      ),
+                      title: Text("Contact Us"),
+                      onTap: () {
+                        //  Global.activePage = Global.faqPage;
+                        //   Navigator.of(context).pushNamed('staticPage');
+                      },
+                    ),
+                    ListTile(
                       leading: Icon(Icons.security),
                       title: Text("Privacy Policy"),
                       onTap: () {
                         Global.activePage = Global.privacyPolicPage;
-                        Navigator.of(context).pushNamed('staticPage');
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.announcement,
-                      ),
-                      title: Text("Faq"),
-                      onTap: () {
-                        Global.activePage = Global.faqPage;
                         Navigator.of(context).pushNamed('staticPage');
                       },
                     ),

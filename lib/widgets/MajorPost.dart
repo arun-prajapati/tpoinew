@@ -1,16 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:intl/intl.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
-import 'package:morbimirror/CustomFile/CustomTextHeadingOftheBanner.dart';
 import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
-import 'package:auto_animated/auto_animated.dart';
-
-import 'PageContent.dart';
 
 class MinorPost extends StatelessWidget {
   Posts posts;
@@ -33,23 +26,31 @@ class MinorPost extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     SizedBox(
-                      width: 15,
+                      width: 0,
                     ),
                     Container(
-                        width: 200,
+                        width: 230,
                         child: Column(
                           children: [
-                            Text(posts.title.rendered),
+                            Text(posts.title.rendered,
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold)),
                             SizedBox(
                               height: 10,
                             ),
-                            Row(crossAxisAlignment: CrossAxisAlignment.start,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Container(height: 25,  width: 8,
-                                  decoration: BoxDecoration(color: Colors.deepOrange,
-                                      borderRadius: BorderRadius.all(Radius.circular(3))
-                                  ),),
+                                Container(
+                                  height: 25,
+                                  width: 8,
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepOrange,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(3))),
+                                ),
                               ],
                             ),
                             /* Row(
@@ -67,29 +68,29 @@ class MinorPost extends StatelessWidget {
                     Center(
                         child: Container(
                       height: MediaQuery.of(context).size.width * 0.25,
-                      width: MediaQuery.of(context).size.width * 0.37,
+                      width: MediaQuery.of(context).size.width * 0.34,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(0.0),
-
-                          /*bottomRight: Radius.circular(50.0)*/
-                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                         image: DecorationImage(
-                          image: posts.featuredMedia.medium != null?NetworkImage(posts.featuredMedia.medium):
-                         AssetImage('assets/images/logo.png'),
+                          image: posts.featuredMedia.medium != null
+                              ? NetworkImage(posts.featuredMedia.medium)
+                              : AssetImage('assets/images/logo.png'),
                           fit: BoxFit.cover,
                         ),
                       ),
                     )),
                   ],
                 ),
-                SizedBox(height: 10,),
-                Container(width: MediaQuery.of(context).size.width*0.9,
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
                   margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
                   height: 0.2,
                   color: Colors.black,
                 ),
-         /*       Icon(Icons.ac_unit_sharp)*/
+                /*       Icon(Icons.ac_unit_sharp)*/
               ],
             ),
           ],
@@ -98,7 +99,6 @@ class MinorPost extends StatelessWidget {
     );
   }
 }
-
 
 //After See All click -- Single container
 class MajorPost extends StatelessWidget {
@@ -127,7 +127,7 @@ class MajorPost extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Spacer(
-              flex:2,
+              flex: 2,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,15 +149,21 @@ class MajorPost extends StatelessWidget {
                           SizedBox(
                             height: 35,
                           ),
-                          Container(height: 25,  width: 5,
-                            decoration: BoxDecoration(color: Colors.deepOrange,
-                                borderRadius: BorderRadius.all(Radius.circular(5))
-                            ),),
+                          Container(
+                            height: 25,
+                            width: 5,
+                            decoration: BoxDecoration(
+                                color: Colors.deepOrange,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                          ),
 
-                       /*   Customtextheader(title: "Morbi",
+                          /*   Customtextheader(title: "Morbi",
                             titleclr: staticWhite,
                             bgcolor: Colors.black,),*/
-                          SizedBox(height: 5,),
+                          SizedBox(
+                            height: 5,
+                          ),
                           customtext(
                             title: posts.title.rendered,
                             titleclr: staticWhite,
@@ -165,7 +171,7 @@ class MajorPost extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                         /* Text(
+                          /* Text(
                             MyDate(posts.date),
                             style:
                             TextStyle(color: staticWhite, fontSize: 10),
@@ -180,12 +186,10 @@ class MajorPost extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }
 //After See All click -- Single container End
-
 
 //Slider
 /*class MajorPost extends StatefulWidget {
@@ -321,7 +325,7 @@ class _MajorPostState extends State<MajorPost> {
               child: Image.asset('assets/images/headerad.jpg'))
           ,SizedBox(height: 5,),  ],
       );
-     *//* Padding
+     */ /* Padding
 (
       padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       child: GestureDetector(
@@ -394,7 +398,7 @@ class _MajorPostState extends State<MajorPost> {
 
       ),
     )
-;*//*
+;*/ /*
   }
 }*/
 //Slider
@@ -443,13 +447,7 @@ class PostForCategory extends StatelessWidget {
   }
 }
 
-
-
-
-
 class HorizontalListofPost extends StatelessWidget {
-
-
   List<Posts> postsList;
 
   HorizontalListofPost({this.postsList});
@@ -466,28 +464,28 @@ class HorizontalListofPost extends StatelessWidget {
     reAnimateOnVisibility: true,
   );
 
-
-
   Widget buildAnimatedItem(
-      BuildContext context,
-      int index,
-      Animation<double> animation,
-      ) => FadeTransition(
-    opacity: Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(animation),
-    // And slide transition
-    child: SlideTransition(
-      position: Tween<Offset>(
-        begin: Offset(0, -1),
-        end: Offset.zero,
-      ).animate(animation),
-      // Paste you Widget
-      child: MinorPostType2(
-          posts: postsList[index + 1],
-    ),
-  ),);
+    BuildContext context,
+    int index,
+    Animation<double> animation,
+  ) =>
+      FadeTransition(
+        opacity: Tween<double>(
+          begin: 0,
+          end: 1,
+        ).animate(animation),
+        // And slide transition
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: Offset(0, -1),
+            end: Offset.zero,
+          ).animate(animation),
+          // Paste you Widget
+          child: MinorPostType2(
+            posts: postsList[index + 1],
+          ),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -497,8 +495,8 @@ class HorizontalListofPost extends StatelessWidget {
         itemBuilder: buildAnimatedItem,
         scrollDirection: Axis.horizontal,
         itemCount: postsList.length - 1,
-      ),);
-
+      ),
+    );
   }
 }
 
@@ -573,11 +571,16 @@ class MinorPostType2 extends StatelessWidget {
         Global.activePost = posts;
         print(posts.categories);
         print(posts.categories.length);
-        Global.selectedCategoryId = posts.categories.length==1?
-        posts.categories.toString()
-            .replaceAll("[", "").replaceAll("]", ""):
-        posts.categories.toString()
-            .replaceAll("[", "").replaceAll("]", "").substring(3);
+        Global.selectedCategoryId = posts.categories.length == 1
+            ? posts.categories
+                .toString()
+                .replaceAll("[", "")
+                .replaceAll("]", "")
+            : posts.categories
+                .toString()
+                .replaceAll("[", "")
+                .replaceAll("]", "")
+                .substring(3);
         print(Global.selectedCategoryId);
         print("ssssss");
 
@@ -603,8 +606,8 @@ class MinorPostType2 extends StatelessWidget {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(3),
                           image: new DecorationImage(
-                            image: NetworkImage(
-                                posts.featuredMedia.medium ?? ""),
+                            image:
+                                NetworkImage(posts.featuredMedia.medium ?? ""),
                             fit: BoxFit.cover,
                           ))),
                   SizedBox(
@@ -623,9 +626,10 @@ class MinorPostType2 extends StatelessWidget {
                             posts.title.rendered,
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.clip,
-                                style: TextStyle(height: 1.3,
-                                  color:Color(0xff696969),
-                                ),
+                            style: TextStyle(
+                              height: 1.3,
+                              color: Color(0xff696969),
+                            ),
                           )),
                         ],
                       ),
@@ -661,13 +665,14 @@ class HeaderTitle extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8,right: 0),
+              padding: const EdgeInsets.only(left: 8, right: 0),
               child: Text(
                 title ?? "",
                 style: TextStyle(
-                    color: Colors.black.withOpacity(0.6),
-                    fontSize: MediaQuery.of(context).size.width * 0.05,
-                    /*fontWeight: FontWeight.w400*/),
+                  color: Colors.black.withOpacity(0.6),
+                  fontSize: MediaQuery.of(context).size.width *
+                      0.05, /*fontWeight: FontWeight.w400*/
+                ),
               ),
             ),
             Spacer(),
@@ -682,13 +687,14 @@ class HeaderTitle extends StatelessWidget {
                 child: Container(
                     color: staticBlack,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8,bottom: 8,left: 10,right: 10),
+                      padding: const EdgeInsets.only(
+                          top: 8, bottom: 8, left: 10, right: 10),
                       child: Text(
                         'SEE ALL' ?? "",
                         style: TextStyle(
-                            color: Colors.white,
-                            fontSize: MediaQuery.of(context).size.width * 0.03,
-                           ),
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.width * 0.03,
+                        ),
                       ),
                     ))),
             SizedBox(
