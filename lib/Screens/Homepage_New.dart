@@ -125,6 +125,7 @@ class _homepageState extends State<homepage> {
   }
 
 
+
   /*GetPageData(){
     for(int i =0;i<Global.menu.length;i++){
 
