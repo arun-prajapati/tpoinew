@@ -1,6 +1,6 @@
 class Advertisement_Custom {
-  int status;
-  String content;
+  int? status;
+  String? content;
 
   Advertisement_Custom({this.status, this.content});
 

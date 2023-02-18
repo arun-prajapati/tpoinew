@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+
 import 'package:morbimirror/CustomFile/Common.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:screenshot/screenshot.dart';
@@ -15,9 +15,9 @@ import 'CustomColorsFile.dart';
 import 'package:morbimirror/Screens/Homepage_New.dart';
 
 class CustomAppBar extends StatelessWidget {
-  final String logoimg;
-  final VoidCallback clickonmenuicon;
-  final VoidCallback clickonsearchicon;
+  final String? logoimg;
+  final VoidCallback? clickonmenuicon;
+  final VoidCallback? clickonsearchicon;
 
   CustomAppBar({
     this.clickonmenuicon,
@@ -27,9 +27,9 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> myTabBars = new List();
+    List<Widget> myTabBars = [];
 
-    GetPageData() {
+   /* GetPageData() {
       for (int i = 0; i < Global.menu.length; i++) {
         myTabBars.add(Testing(
           id: int.parse(Global.menu[i].objectId),
@@ -37,12 +37,12 @@ class CustomAppBar extends StatelessWidget {
           catId: Global.menu[i].objectId,
         ));
       }
-    }
+    }*/
 
     return Container(
       color: Colors.black,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(vertical: 2),
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -52,7 +52,10 @@ class CustomAppBar extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    clickonmenuicon();
+
+                      clickonmenuicon!();
+
+
                   },
                   child: Icon(
                     Icons.menu,
@@ -62,19 +65,18 @@ class CustomAppBar extends StatelessWidget {
                 Icons.menu,
                 color: Colors.transparent,
               ),
-              Opacity(
+           /*   Opacity(
                 opacity: 0,
                 child: Container(
                     child: Icon(
                   Icons.search,
                   color: staticWhite,
                 )),
-              ),
+              ),*/
               Spacer(),
 
                 Container(
-                child: Image.asset(logoimg, height: MediaQuery.of(context).size.width * 0.14,
-                  width: MediaQuery.of(context).size.width * 0.2,
+                child: Image.asset(logoimg!, height: 55,
                 ),
               ),
 
@@ -88,7 +90,7 @@ class CustomAppBar extends StatelessWidget {
                       color: staticWhite,
                     )),
               ),
-              GestureDetector(
+            /*  GestureDetector(
                 onTap: () {
                   GetPageData();
                   Show_toast_Now("Data Refreshing", Colors.green);
@@ -102,7 +104,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               SizedBox(
                 width: 12,
-              ),
+              ),*/
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, 'search');
@@ -126,11 +128,11 @@ class CustomAppBar extends StatelessWidget {
 }
 
 class CustomAppBarWithHeart extends StatefulWidget {
-  final String logoimg;
-  final VoidCallback clickonmenuicon;
-  final VoidCallback clickonsearchicon;
-  final VoidCallback onFav;
-final VoidCallback save;
+  final String? logoimg;
+  final VoidCallback? clickonmenuicon;
+  final VoidCallback? clickonsearchicon;
+  final VoidCallback? onFav;
+final VoidCallback? save;
 
   CustomAppBarWithHeart(
       {this.clickonmenuicon, this.clickonsearchicon, this.logoimg, this.onFav,this.save});
@@ -153,7 +155,7 @@ class _CustomAppBarWithHeartState extends State<CustomAppBarWithHeart> {
             ),
             GestureDetector(
                 onTap: () {
-                  widget.clickonmenuicon();
+                  widget.clickonmenuicon!();
                 },
                 child: Icon(
                   Icons.arrow_back_outlined,

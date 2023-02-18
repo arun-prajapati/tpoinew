@@ -21,7 +21,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
 
   int CurrentPage=1;
 
-  List<Posts> myPostsList = new List();
+  List<Posts> myPostsList = [];
 
 
 
@@ -47,7 +47,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
            // SizedBox(height: 55,),
             CustomAppBar(logoimg: 'assets/images/logo.png',
               clickonmenuicon: (){
-                _scaffoldKey.currentState.openDrawer();
+                _scaffoldKey.currentState?.openDrawer();
               },),
             Expanded(child:  myPostsList.isEmpty?Center(child: Text("No Post"),):ListView.builder(
 

@@ -6,7 +6,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 
 class MinorPost extends StatelessWidget {
-  Posts posts;
+  Posts? posts;
 
   MinorPost(this.posts);
 
@@ -32,7 +32,8 @@ class MinorPost extends StatelessWidget {
                         width: 230,
                         child: Column(
                           children: [
-                            Text(posts.title.rendered,
+
+                            Text(posts!.postTitle!,
                                 style: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold)),
@@ -71,12 +72,13 @@ class MinorPost extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.34,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                          image: posts.featuredMedia.medium != null
-                              ? NetworkImage(posts.featuredMedia.medium)
-                              : AssetImage('assets/images/logo.png'),
+                        image:posts!.featuredMedia!.medium != null ?  DecorationImage(
+                          image:NetworkImage(posts!.featuredMedia!.medium!) ,
                           fit: BoxFit.cover,
-                        ),
+                        ): DecorationImage(
+                        image:AssetImage('assets/images/logo.png'),
+        fit: BoxFit.cover,
+      ),
                       ),
                     )),
                   ],
@@ -102,7 +104,7 @@ class MinorPost extends StatelessWidget {
 
 //After See All click -- Single container
 class MajorPost extends StatelessWidget {
-  Posts posts;
+  Posts? posts;
   //List<Posts> posts;
   MajorPost({this.posts});
 
@@ -120,7 +122,7 @@ class MajorPost extends StatelessWidget {
             shape: BoxShape.rectangle,
             /*borderRadius: BorderRadius.all(Radius.circular(10)),*/
             image: new DecorationImage(
-              image: NetworkImage(posts.featuredMedia.medium),
+              image: NetworkImage(posts!.featuredMedia!.medium!),
               fit: BoxFit.cover,
             )),
         child: Column(
@@ -165,7 +167,7 @@ class MajorPost extends StatelessWidget {
                             height: 5,
                           ),
                           customtext(
-                            title: posts.title.rendered,
+                            title: posts!.postTitle!,
                             titleclr: staticWhite,
                           ),
                           SizedBox(
@@ -374,7 +376,7 @@ class _MajorPostState extends State<MajorPost> {
                               bgcolor: Colors.black,),
                             SizedBox(height: 5,),
                             customtext(
-                              title: posts.title.rendered,
+                              title: posts!.postTitle!,
                               titleclr: staticWhite,
                             ),
                             SizedBox(
@@ -404,34 +406,34 @@ class _MajorPostState extends State<MajorPost> {
 //Slider
 
 class PostForCategory extends StatelessWidget {
-  List<Posts> postsList;
+  List<Posts>? postsList;
 
-  String categoryTitle;
-  String catId;
+  String? categoryTitle;
+  String? catId;
 
   PostForCategory({this.postsList, this.categoryTitle, this.catId});
 
   @override
   Widget build(BuildContext context) {
     //postsList.sort((a, z) => a.toString().compareTo(z.toString()));
-    return postsList.isEmpty
+    return postsList!.isEmpty
         ? SizedBox()
         : SafeArea(
             child: Column(
               children: [
                 HeaderTitle(
                   title: categoryTitle ?? "title",
-                  posts: postsList,
-                  catId: catId,
+                  posts: postsList!,
+                  catId: catId!,
                 ),
                 // MajorPostType2(posts: postsList[0],),
-                postsList.length > 1
+                postsList!.length > 1
                     ? Container(
                         height: MediaQuery.of(context).size.width * 0.8,
                         child: Row(
                           children: [
                             HorizontalListofPost(
-                              postsList: postsList,
+                              postsList: postsList!,
                             ),
                           ],
                         ))
@@ -448,7 +450,7 @@ class PostForCategory extends StatelessWidget {
 }
 
 class HorizontalListofPost extends StatelessWidget {
-  List<Posts> postsList;
+  List<Posts>? postsList;
 
   HorizontalListofPost({this.postsList});
 
@@ -482,7 +484,7 @@ class HorizontalListofPost extends StatelessWidget {
           ).animate(animation),
           // Paste you Widget
           child: MinorPostType2(
-            posts: postsList[index + 1],
+            posts: postsList![index + 1],
           ),
         ),
       );
@@ -494,7 +496,7 @@ class HorizontalListofPost extends StatelessWidget {
         options: options,
         itemBuilder: buildAnimatedItem,
         scrollDirection: Axis.horizontal,
-        itemCount: postsList.length - 1,
+        itemCount: postsList!.length - 1,
       ),
     );
   }
@@ -503,7 +505,7 @@ class HorizontalListofPost extends StatelessWidget {
 //
 
 class MajorPostType2 extends StatelessWidget {
-  Posts posts;
+  Posts? posts;
 
   MajorPostType2({this.posts});
 
@@ -532,7 +534,7 @@ class MajorPostType2 extends StatelessWidget {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(20),
                       image: new DecorationImage(
-                        image: NetworkImage(posts.featuredMedia.medium),
+                        image: NetworkImage(posts!.featuredMedia!.medium!),
                         fit: BoxFit.cover,
                       ))),
               SizedBox(
@@ -545,7 +547,7 @@ class MajorPostType2 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      posts.title.rendered,
+                      posts!.postTitle!,
                       textAlign: TextAlign.justify,
                     ),
                   ],
@@ -560,7 +562,7 @@ class MajorPostType2 extends StatelessWidget {
 }
 
 class MinorPostType2 extends StatelessWidget {
-  Posts posts;
+  Posts? posts;
 
   MinorPostType2({this.posts});
 
@@ -569,18 +571,6 @@ class MinorPostType2 extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Global.activePost = posts;
-        print(posts.categories);
-        print(posts.categories.length);
-        Global.selectedCategoryId = posts.categories.length == 1
-            ? posts.categories
-                .toString()
-                .replaceAll("[", "")
-                .replaceAll("]", "")
-            : posts.categories
-                .toString()
-                .replaceAll("[", "")
-                .replaceAll("]", "")
-                .substring(3);
         print(Global.selectedCategoryId);
         print("ssssss");
 
@@ -607,7 +597,7 @@ class MinorPostType2 extends StatelessWidget {
                           borderRadius: BorderRadius.circular(3),
                           image: new DecorationImage(
                             image:
-                                NetworkImage(posts.featuredMedia.medium ?? ""),
+                                NetworkImage(posts!.featuredMedia!.medium ?? ""),
                             fit: BoxFit.cover,
                           ))),
                   SizedBox(
@@ -623,7 +613,7 @@ class MinorPostType2 extends StatelessWidget {
                         children: [
                           Expanded(
                               child: Text(
-                            posts.title.rendered,
+                            posts!.postTitle!,
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.clip,
                             style: TextStyle(
@@ -646,10 +636,10 @@ class MinorPostType2 extends StatelessWidget {
 }
 
 class HeaderTitle extends StatelessWidget {
-  String title;
-  List<Posts> posts;
+  String? title;
+  List<Posts>? posts;
 
-  String catId;
+  String? catId;
 
   HeaderTitle({this.title, this.posts, this.catId});
 

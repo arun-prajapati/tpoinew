@@ -18,7 +18,7 @@ class _searchingState extends State<searching> {
 
   final String apiUrl = "${BaseURL}wp-json/wp/v2/";
   final String searchurl ="${BaseURL}wp-json/wp/v2/posts?search=";
-  Posts post;
+  Posts? post;
 
   bool isLoaded = false;
   bool isSearched = false;
@@ -138,7 +138,7 @@ class _searchingState extends State<searching> {
                         return GestureDetector(onTap: (){
 
                           Global.activePost = searchResults[index];
-                          print(Global.activePost.id);
+                          print(Global.activePost!.iD!);
 
                           Navigator.of(context).push(
                               MaterialPageRoute(
@@ -146,7 +146,7 @@ class _searchingState extends State<searching> {
                                       Datasearched(
                                           searchResults[
                                           index]
-                                              .id)));
+                                              .iD)));
                         },
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(8.0,8,8,0),
@@ -165,7 +165,7 @@ class _searchingState extends State<searching> {
                                                   topRight: Radius.circular(0.0),
                                                   /*bottomRight: Radius.circular(50.0)*/),
                                                   image: DecorationImage(
-                                                    image: NetworkImage(searchResults[index].featuredMedia.medium),
+                                                    image: NetworkImage(searchResults[index].featuredMedia!.medium!),
                                                     fit: BoxFit.fill,
                                                   ),
 
@@ -176,11 +176,11 @@ class _searchingState extends State<searching> {
                                           Container(width: 200,
                                               child: Column(
                                                 children: [
-                                                  Text(searchResults[index].title.rendered),
+                                                  Text(searchResults[index].postTitle!),
                                                   SizedBox(height: 10,),
                                                   Row(
                                                     children: [
-                                                      Text(MyDate(searchResults[index].date),),
+                                                      Text(searchResults[index].postDate!,),
 
                                                     ],
                                                   ),

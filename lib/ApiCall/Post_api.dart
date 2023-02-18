@@ -5,18 +5,18 @@ import 'package:morbimirror/Models/Posts.dart';
 
 
 
-Future<List<Posts>> getPosts({String url }) async {
+Future<List<Posts>> getPosts({String? url }) async {
 //calling api
-  List<Posts> Listofpost = new List();
-    await  http.get(Uri.parse(url)).then((res){
+  List<Posts>? Listofpost = [];
+    await  http.get(Uri.parse(url!)).then((res){
     print(res.body);
     var Storedataofpost = jsonDecode(res.body);
     print(Storedataofpost);
     Listofpost = (Storedataofpost as List).map((data)=>Posts.fromJson(data)).toList();
-    print(Listofpost.length);
+    print(Listofpost!.length);
     print(jsonEncode(Listofpost).toString());
   });
 
-return Listofpost;
+return Listofpost!;
 
 }

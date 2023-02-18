@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class customtext extends StatelessWidget {
-  final String title;
-  final Color titleclr;
+  final String? title;
+  final Color? titleclr;
 
   customtext({
     this.title,
@@ -14,7 +14,7 @@ class customtext extends StatelessWidget {
     return Container(
         width: MediaQuery.of(context).size.width * 0.8,
         child: Text(
-          title,
+          title!,
           textAlign: TextAlign.justify,
           style: TextStyle(color: titleclr, fontSize: 16),
         ));

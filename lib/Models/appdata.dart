@@ -11,9 +11,9 @@ class AllData {
     this.myPosts,
   });
 
-  List<Category> myCategories;
-  List<List<Posts>> myPostsList;
-  List<Posts> myPosts;
+  List<Category>? myCategories;
+  List<List<Posts>>? myPostsList;
+  List<Posts>? myPosts;
 
   factory AllData.fromJson(Map<String, dynamic> json) => AllData(
     myCategories: List<Category>.from(json["myCategories"].map((x) => Category.fromJson(x))),
@@ -22,8 +22,8 @@ class AllData {
   );
 
   Map<String, dynamic> toJson() => {
-      "myCategories": List<dynamic>.from(myCategories.map((x) => x.toJson())),
-    "myPostsList": List<dynamic>.from(myPostsList.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
-    "myPosts": List<dynamic>.from(myPosts.map((x) => x.toJson())),
+      "myCategories": List<dynamic>.from(myCategories!.map((x) => x.toJson())),
+    "myPostsList": List<dynamic>.from(myPostsList!.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+    "myPosts": List<dynamic>.from(myPosts!.map((x) => x.toJson())),
   };
 }

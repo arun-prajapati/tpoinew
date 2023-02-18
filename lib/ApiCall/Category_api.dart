@@ -5,7 +5,7 @@ import 'package:morbimirror/ApiCall/All_URLS.dart';
 
 import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Category.dart';
-import 'package:morbimirror/Models/Menu.dart';
+
 
 
 import 'All_URLS.dart';
@@ -22,15 +22,18 @@ getNewsData(){
     print(res.body);
 
     var Storedataoflist = jsonDecode(res.body);
+
+
+
     print(Storedataoflist);
     Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
-    print(Global.CategoryList.length);
+    print(Global.CategoryList!.length);
     print(jsonEncode(Global.CategoryList).toString());
   });
 
 }
 
-getMenu() async {
+/*getMenu() async {
 
  await http.get(Uri.parse(urlForMenu),
   ).then((res){
@@ -56,11 +59,11 @@ getMenu() async {
         )
     );
 
-    Global.allData.add(null);
+    //Global.allData.add();
 
    // Global.categoryPosts.add(await getPosts(url: "https://morbimirror.com/wp-json/wp/v2/posts?status=publish&per_page=20&page=1&categories=${Global.menu[i].objectId}"));
   }
-}
+}*/
 
 
 getCategories() async {
@@ -70,17 +73,17 @@ getCategories() async {
     var Storedataoflist = jsonDecode(res.body);
    // print(Storedataoflist);
     Global.CategoryList = (Storedataoflist as List).map((data)=>Category.fromJson(data)).toList();
-    print(Global.CategoryList.length);
+    print(Global.CategoryList!.length);
    // print(jsonEncode(Listofdata).toString());
   });
 }
 
-getCategoriesFromURL({String Url}) async {
+getCategoriesFromURL({String? Url}) async {
 
   List<Category> CategoryList = [];
 
 
-  await http.get(Uri.parse(Url),
+  await http.get(Uri.parse(Url!),
   ).then((res){
     //print(res.body);
     var Storedataoflist = jsonDecode(res.body);

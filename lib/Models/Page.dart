@@ -34,28 +34,28 @@ class PageData {
     this.links,
   });
 
-  int id;
-  DateTime date;
-  DateTime dateGmt;
-  Guid guid;
-  DateTime modified;
-  DateTime modifiedGmt;
-  String slug;
-  String status;
-  String type;
-  String link;
-  Guid title;
-  Content content;
-  Content excerpt;
-  int author;
-  int featuredMedia;
-  int parent;
-  int menuOrder;
-  String commentStatus;
-  String pingStatus;
-  String template;
-  List<dynamic> meta;
-  Links links;
+  int? id;
+  DateTime? date;
+  DateTime? dateGmt;
+  Guid? guid;
+  DateTime? modified;
+  DateTime? modifiedGmt;
+  String? slug;
+  String? status;
+  String? type;
+  String? link;
+  Guid? title;
+  Content? content;
+  Content? excerpt;
+  int? author;
+  int? featuredMedia;
+  int? parent;
+  int? menuOrder;
+  String? commentStatus;
+  String? pingStatus;
+  String? template;
+  List<dynamic>? meta;
+  Links? links;
 
   factory PageData.fromJson(Map<String, dynamic> json) => PageData(
     id: json["id"],
@@ -84,18 +84,18 @@ class PageData {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "date": date.toIso8601String(),
-    "date_gmt": dateGmt.toIso8601String(),
-    "guid": guid.toJson(),
-    "modified": modified.toIso8601String(),
-    "modified_gmt": modifiedGmt.toIso8601String(),
+    "date": date?.toIso8601String(),
+    "date_gmt": dateGmt?.toIso8601String(),
+    "guid": guid?.toJson(),
+    "modified": modified?.toIso8601String(),
+    "modified_gmt": modifiedGmt?.toIso8601String(),
     "slug": slug,
     "status": status,
     "type": type,
     "link": link,
-    "title": title.toJson(),
-    "content": content.toJson(),
-    "excerpt": excerpt.toJson(),
+    "title": title?.toJson(),
+    "content": content?.toJson(),
+    "excerpt": excerpt?.toJson(),
     "author": author,
     "featured_media": featuredMedia,
     "parent": parent,
@@ -103,8 +103,8 @@ class PageData {
     "comment_status": commentStatus,
     "ping_status": pingStatus,
     "template": template,
-    "meta": List<dynamic>.from(meta.map((x) => x)),
-    "_links": links.toJson(),
+    "meta": List<dynamic>.from(meta!.map((x) => x)),
+    "_links": links?.toJson(),
   };
 }
 
@@ -114,8 +114,8 @@ class Content {
     this.protected,
   });
 
-  String rendered;
-  bool protected;
+  String? rendered;
+  bool? protected;
 
   factory Content.fromJson(Map<String, dynamic> json) => Content(
     rendered: json["rendered"],
@@ -133,7 +133,7 @@ class Guid {
     this.rendered,
   });
 
-  String rendered;
+  String? rendered;
 
   factory Guid.fromJson(Map<String, dynamic> json) => Guid(
     rendered: json["rendered"],
@@ -157,15 +157,15 @@ class Links {
     this.curies,
   });
 
-  List<About> self;
-  List<About> collection;
-  List<About> about;
-  List<Author> author;
-  List<Author> replies;
-  List<VersionHistory> versionHistory;
-  List<PredecessorVersion> predecessorVersion;
-  List<About> wpAttachment;
-  List<Cury> curies;
+  List<About>? self;
+  List<About>? collection;
+  List<About>? about;
+  List<Author>? author;
+  List<Author>? replies;
+  List<VersionHistory>? versionHistory;
+  List<PredecessorVersion>? predecessorVersion;
+  List<About>? wpAttachment;
+  List<Cury>? curies;
 
   factory Links.fromJson(Map<String, dynamic> json) => Links(
     self: List<About>.from(json["self"].map((x) => About.fromJson(x))),
@@ -180,15 +180,15 @@ class Links {
   );
 
   Map<String, dynamic> toJson() => {
-    "self": List<dynamic>.from(self.map((x) => x.toJson())),
-    "collection": List<dynamic>.from(collection.map((x) => x.toJson())),
-    "about": List<dynamic>.from(about.map((x) => x.toJson())),
-    "author": List<dynamic>.from(author.map((x) => x.toJson())),
-    "replies": List<dynamic>.from(replies.map((x) => x.toJson())),
-    "version-history": List<dynamic>.from(versionHistory.map((x) => x.toJson())),
-    "predecessor-version": List<dynamic>.from(predecessorVersion.map((x) => x.toJson())),
-    "wp:attachment": List<dynamic>.from(wpAttachment.map((x) => x.toJson())),
-    "curies": List<dynamic>.from(curies.map((x) => x.toJson())),
+    "self": List<dynamic>.from(self!.map((x) => x.toJson())),
+    "collection": List<dynamic>.from(collection!.map((x) => x.toJson())),
+    "about": List<dynamic>.from(about!.map((x) => x.toJson())),
+    "author": List<dynamic>.from(author!.map((x) => x.toJson())),
+    "replies": List<dynamic>.from(replies!.map((x) => x.toJson())),
+    "version-history": List<dynamic>.from(versionHistory!.map((x) => x.toJson())),
+    "predecessor-version": List<dynamic>.from(predecessorVersion!.map((x) => x.toJson())),
+    "wp:attachment": List<dynamic>.from(wpAttachment!.map((x) => x.toJson())),
+    "curies": List<dynamic>.from(curies!.map((x) => x.toJson())),
   };
 }
 
@@ -197,7 +197,7 @@ class About {
     this.href,
   });
 
-  String href;
+  String? href;
 
   factory About.fromJson(Map<String, dynamic> json) => About(
     href: json["href"],
@@ -214,8 +214,8 @@ class Author {
     this.href,
   });
 
-  bool embeddable;
-  String href;
+  bool? embeddable;
+  String? href;
 
   factory Author.fromJson(Map<String, dynamic> json) => Author(
     embeddable: json["embeddable"],
@@ -235,9 +235,9 @@ class Cury {
     this.templated,
   });
 
-  String name;
-  String href;
-  bool templated;
+  String? name;
+  String? href;
+  bool? templated;
 
   factory Cury.fromJson(Map<String, dynamic> json) => Cury(
     name: json["name"],
@@ -258,8 +258,8 @@ class PredecessorVersion {
     this.href,
   });
 
-  int id;
-  String href;
+  int? id;
+  String? href;
 
   factory PredecessorVersion.fromJson(Map<String, dynamic> json) => PredecessorVersion(
     id: json["id"],
@@ -278,8 +278,8 @@ class VersionHistory {
     this.href,
   });
 
-  int count;
-  String href;
+  int? count;
+  String? href;
 
   factory VersionHistory.fromJson(Map<String, dynamic> json) => VersionHistory(
     count: json["count"],

@@ -4,7 +4,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
-  VoidCallback refresh;
+  VoidCallback? refresh;
 
   CustomDrawer({this.refresh});
 
@@ -38,95 +38,77 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.65,
+      width: MediaQuery.of(context).size.width * 0.60,
       child: Drawer(
         child: SafeArea(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              ListTile(
-                onTap: () {},
-                contentPadding:
-                    EdgeInsets.only(left: 0, right: 0, bottom: 0, top: 0),
-                title: Column(
-                  children: [
-                    Container(
-                      height: 80,
-                      color: Colors.black,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 20, horizontal: 10),
-                        child: Row(
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset('assets/images/logo.png',
-                                    height: 60, width: 60),
-                                Text(
-                                  "The Press Of India",
-                                  style: TextStyle(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
+          child: Column(
+            children: [
+              Container(
+
+                color: Colors.black,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 2, horizontal: 10),
+                  child: Row(
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset('assets/images/logo.png',
+                              height: 55, width: 60),
+                          Text(
+                            "The Press Of India",
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed('home');
-                      },
-                      child: ListTile(
-                        leading: Icon(Icons.home),
-                        title: Text("Home"),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.bookmark),
-                      title: Text("Bookmark"),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('bookmark');
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.category),
-                      title: Text("Category"),
-                      onTap: () {
-                        Navigator.of(context).pushNamed('drawer_category');
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.outlined_flag),
-                      title: Text("About Us"),
-                      onTap: () {
-                        Global.activePage = Global.aboutUsPage;
-                        Navigator.of(context).pushNamed('staticPage');
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.contact_phone,
-                      ),
-                      title: Text("Contact Us"),
-                      onTap: () {
-                        //  Global.activePage = Global.faqPage;
-                        //   Navigator.of(context).pushNamed('staticPage');
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.security),
-                      title: Text("Privacy Policy"),
-                      onTap: () {
-                        Global.activePage = Global.privacyPolicPage;
-                        Navigator.of(context).pushNamed('staticPage');
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('home');
+                },
+                child: ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text("Home"),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.bookmark),
+                title: Text("Bookmark"),
+                onTap: () {
+                  Navigator.of(context).pushNamed('bookmark');
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.outlined_flag),
+                title: Text("About Us"),
+                onTap: () {
+                  Global.activePage = Global.aboutUsPage;
+                  Navigator.of(context).pushNamed('staticPage');
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.contact_phone,
+                ),
+                title: Text("Contact Us"),
+                onTap: () {
+                  //  Global.activePage = Global.faqPage;
+                  //   Navigator.of(context).pushNamed('staticPage');
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.security),
+                title: Text("Privacy Policy"),
+                onTap: () {
+                  Global.activePage = Global.privacyPolicPage;
+                  Navigator.of(context).pushNamed('staticPage');
+                },
               ),
             ],
           ),

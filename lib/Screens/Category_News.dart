@@ -26,7 +26,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   List<Posts> myPostsList = [];
 
   getPost() async {
-    List<Posts> myPostsListAdd = new List();
+    List<Posts> myPostsListAdd = [];
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
  
     myPostsListAdd = await getPosts(
@@ -40,7 +40,7 @@ class _CategoryNewsState extends State<CategoryNews> {
     setState(() {
     });
   }
-  Posts posts;
+  Posts? posts;
   int _current = 0;
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _CategoryNewsState extends State<CategoryNews> {
           SafeArea(
             child: CustomAppBar(logoimg: 'assets/images/logo.png',
               clickonmenuicon: (){
-                _scaffoldKey.currentState.openDrawer();
+                _scaffoldKey.currentState?.openDrawer();
               },),
           ),
           Expanded(child: NotificationListener<ScrollEndNotification>(

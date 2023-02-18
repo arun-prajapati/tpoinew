@@ -1,14 +1,14 @@
 
 
 class User {
-  String username;
-  String phoneNo;
-  String countryCode;
-  String image;
-  String status;
-  String email;
-  String firebaseId;
-  String apiToken;
+  String? username;
+  String? phoneNo;
+  String? countryCode;
+  String? image;
+  String? status;
+  String? email;
+  String? firebaseId;
+  String? apiToken;
 
   User(
       {this.username,

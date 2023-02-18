@@ -1,6 +1,6 @@
 class Advertisment {
-  int status;
-  String content;
+  int? status;
+  String? content;
 
   Advertisment({this.status, this.content});
 

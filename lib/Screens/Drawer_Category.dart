@@ -52,13 +52,13 @@ class _News_category_drawerState extends State<News_category_drawer> {
 
         crossAxisCount: 2,
         // Generate 100 widgets that display their index in the List.
-        children: List.generate(Global.CategoryList.length,(index) {
+        children: List.generate(Global.CategoryList!.length,(index) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: Card(elevation: 7.7,color: staticDarkRed,
               child: InkWell(splashColor: staticBlack,onTap: (){
 
-                Global.selectedCategoryId=Global.CategoryList[index].id.toString();
+                Global.selectedCategoryId=Global.CategoryList![index].catId.toString();
                 Navigator.of(context).pushNamed('categorynews');
 
               },
@@ -74,7 +74,7 @@ class _News_category_drawerState extends State<News_category_drawer> {
                             children: [
                               Expanded(
                                 child: Text(
-                                    Global.CategoryList[index].name.replaceAll("&amp;", "")??"",textAlign: TextAlign.center,
+                                    Global.CategoryList![index].catName!.replaceAll("&amp;", "")??"",textAlign: TextAlign.center,
                                     style: TextStyle(fontSize: 20,color: staticWhite,fontWeight: FontWeight.w400)
                                 ),
                               ),

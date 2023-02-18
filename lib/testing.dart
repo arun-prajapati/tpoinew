@@ -17,23 +17,23 @@ import 'ApiCall/Post_api.dart';
 import 'Global/Global.dart';
 
 class Testing extends StatefulWidget {
-  int id;
-  int index;
-  String catId;
+  int? id;
+  int? index;
+  String? catId;
 
   Testing({this.id, this.index, this.catId, this.name});
 
-  String name;
+  String? name;
 
   @override
   _TestingState createState() => _TestingState();
 }
 
 class _TestingState extends State<Testing> {
-  bool isLoading = Global.allData.isEmpty;
-  List<Category> myCategories = new List();
-  List<List<Posts>> myPostsList = new List();
-  List<Posts> myPosts = new List();
+  bool isLoading = Global.allData!.isEmpty;
+  List<Category> myCategories = [];
+  List<List<Posts>> myPostsList = [];
+  List<Posts> myPosts = [];
 
   @override
   void initState() {
@@ -45,18 +45,18 @@ class _TestingState extends State<Testing> {
 
 
   getCat() async {
-    if(Global.allData[widget.index]!=null) {
+    if(Global.allData![widget.index!]!=null) {
       print("||||||||||||||||||||||||||");
       print(myPosts.length);
       print(myPostsList.length);
-      myPostsList = Global.allData[widget.index].myPostsList;
-      myPosts = Global.allData[widget.index].myPosts;
-      myCategories = Global.allData[widget.index].myCategories;
+      myPostsList = Global.allData![widget.index!]!.myPostsList!;
+      myPosts = Global.allData![widget.index!]!.myPosts!;
+      myCategories = Global.allData![widget.index!]!.myCategories!;
     }
 
     print("Pulling Categories for id ${widget.id} ::: ${widget.name}");
 
-    if (Global.allData[widget.index] == null || Global.loadData) {
+    if (Global.allData![widget.index!] == null || Global.loadData) {
       myCategories.clear();
       myPostsList.clear();
       myCategories = await getCategoriesFromURL(Url: urlForTopBarSubCategories + widget.id.toString());
@@ -69,11 +69,11 @@ class _TestingState extends State<Testing> {
       } else {
         for (int i = 0; i < myCategories.length; i++) {
           print(
-              "Pulling Categories for id ${widget.id} subcat id ${myCategories[i].id}");
+              "Pulling Categories for id ${widget.id} subcat id ${myCategories[i].catId}");
 
           myPostsList.add(await getPosts(
               url:
-                  "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${myCategories[i].id}"));
+                  "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=5&page=1&categories=${myCategories[i].catId}"));
         }
         print("Pulling Posts for id ${widget.id}");
         myPosts = await getPosts(
@@ -87,11 +87,11 @@ class _TestingState extends State<Testing> {
       print("PostList List Length : " + myPostsList.length.toString());
       print("Post Length : " + myPosts.length.toString());
 
-      Global.allData[widget.index] = AllData(
+      Global.allData![widget.index!] = AllData(
           myCategories: myCategories,
           myPosts: myPosts,
           myPostsList: myPostsList);
-      print("GGGGGGGGGGGGG ${Global.allData[2]}");
+      print("GGGGGGGGGGGGG ${Global.allData![2]}");
 /*      SharedPreferences pref = await SharedPreferences.getInstance();
       String abc = jsonEncode(Global.allData);
       print("String ::::::::${abc}");
@@ -101,9 +101,9 @@ class _TestingState extends State<Testing> {
 
       setState(() {});
     } else {
-      myPostsList = Global.allData[widget.index].myPostsList;
-      myPosts = Global.allData[widget.index].myPosts;
-      myCategories = Global.allData[widget.index].myCategories;
+      myPostsList = Global.allData![widget.index!]!.myPostsList!;
+      myPosts = Global.allData![widget.index!]!.myPosts!;
+      myCategories = Global.allData![widget.index!]!.myCategories!;
       print("MyCategories ::::::::: $myCategories");
       isLoading = false;
       setState(() {});
@@ -117,7 +117,7 @@ class _TestingState extends State<Testing> {
     sharedPreferences.setString("myCategories", jsonEncode(myCategories));
 
 
-    log(jsonEncode(Global.allData[2]));
+    log(jsonEncode(Global.allData![2]));
 
 
 
@@ -158,8 +158,8 @@ class _TestingState extends State<Testing> {
                             return myPostsList[index].length > 2
                                 ? PostForCategory(
                                     postsList: myPostsList[index],
-                                    categoryTitle: myCategories[index].name,
-                                    catId: myCategories[index].id.toString(),
+                                    categoryTitle: myCategories[index].catName,
+                                    catId: myCategories[index].catId.toString(),
                                   )
                                 : SizedBox();
                           }),

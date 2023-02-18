@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:gallery_saver/gallery_saver.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
@@ -23,6 +23,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Newsmainpage extends StatefulWidget {
   @override
@@ -32,20 +33,20 @@ class Newsmainpage extends StatefulWidget {
 class _NewsmainpageState extends State<Newsmainpage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ScreenshotController screenshotController = ScreenshotController();
-  Uint8List _imageFile;
-  List<Posts> postsList;
+  Uint8List? _imageFile;
+  List<Posts>? postsList;
   String urlLink = "https://thepressofindia.com/wp-json/wp/v2/posts";
-  List<List<Posts>> myPostsList = new List();
-  List<Category> myCategories = new List();
-  List<Posts> myPosts = new List();
+  List<List<Posts>> myPostsList = [];
+  List<Category> myCategories = [];
+  List<Posts> myPosts = [];
 
-  List<Posts> posts;
+  List<Posts>? posts;
 
-  String catId;
+  String? catId;
 
   bool isLoading = true;
 
-  List<Posts> myPostsList1 = new List();
+  List<Posts> myPostsList1 = [];
 
   getCategories() async {
     await http
@@ -59,14 +60,14 @@ class _NewsmainpageState extends State<Newsmainpage> {
       Global.CategoryList = (Storedataoflist as List)
           .map((data) => Category.fromJson(data))
           .toList();
-      print(Global.CategoryList.length);
+      print(Global.CategoryList!.length);
       print("///////");
       // print(jsonEncode(Listofdata).toString());
     });
   }
 
   getPost() async {
-    List<Posts> myPostsListAdd = new List();
+    List<Posts> myPostsListAdd = [];
     print(
         "|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
 
@@ -98,7 +99,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
           Share.share(
               /*   ${Global.activePost.excerpt.rendered}\n*/
               //put upper code above of Global.activePost.link for share whole post in generated link
-              "${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.thepressofindia",
+              "${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.thepressofindia",
               subject: "Check Out Latest News");
           print("share work");
         },
@@ -138,7 +139,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                         padding: const EdgeInsets.only(top: 10),
                         child: CustomAppBarWithHeart(
                           save: () {
-                            screenshotController
+                            /*screenshotController
                                 .capture()
                                 .then((Uint8List image) async {
                               DateTime ketF = new DateTime.now();
@@ -167,7 +168,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 print(kompresimg);
                                 print(myImgDir);
                                 print(imagePath);
-                                GallerySaver.saveImage(kompresimg.path)
+                                *//*GallerySaver.saveImage(kompresimg.path)
                                     .then((bool success) {
                                   Fluttertoast.showToast(
                                       msg: "Post Saved in picture folder",
@@ -177,7 +178,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   setState(() {
                                     print("SAVED");
                                   });
-                                });
+                                });*//*
 
                                 /// Share Plugin
                                 //await Share.shareFiles([imagePath.path]);
@@ -191,14 +192,14 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               print(onError);
                             });
 
-                            setState(() {});
+                            setState(() {});*/
                           },
                           onFav: () {
                             if (Global.bookMarkPosts
                                 .contains(Global.activePost)) {
-                              removeBookMark(Global.activePost);
+                              removeBookMark(Global.activePost!);
                             } else {
-                              SaveBookMark(Global.activePost);
+                              SaveBookMark(Global.activePost!);
                             }
 
                             setState(() {});
@@ -209,7 +210,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                           },
                           clickonsearchicon: () {
                             Share.share(
-                                "${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
+                                "${Global.activePost!.postName}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
                           },
                         ),
                       ),
@@ -220,7 +221,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                 flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
                     background: Image.network(
-                      Global.activePost.featuredMedia.medium,
+                      Global.activePost!.featuredMedia!.medium!,
                       fit: BoxFit.cover,
                     ))),
           ];
@@ -282,7 +283,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   height: 5,
                                 ),
                                 Text(
-                                  Global.activePost.title.rendered
+                                  Global.activePost!.postName!
                                       .replaceAll("&#8211", ""),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -298,22 +299,22 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      " by " + Global.activePost.author,
+                                      " by " + Global.activePost!.postAuthor!,
                                       style:
                                           TextStyle(color: Color(0xff696969)),
                                     ),
                                     Text(
-                                      "Posted on -",
+                                      "Posted on - ${Global.activePost!.postDate!}",
                                       style: TextStyle(
                                           color: Color(0xff696969),
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text(
-                                      MyDate(Global.activePost.date),
+                                    /*Text(
+                                     // MyDate(Global.activePost!.postDate!),
                                       style: TextStyle(
                                         fontSize: 12,
                                       ),
-                                    ),
+                                    ),*/
                                   ],
                                 ),
                                 SizedBox(
@@ -348,14 +349,14 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       new Html(
-                                        onLinkTap: (String url,
+                                        onLinkTap: (String? url,
                                             RenderContext context,
                                             Map<String, String> attributes,
                                             element) async {
-                                          await launch(url);
+                                          await launchUrlString(url!);
                                         },
                                         data: Global
-                                                .activePost.content.rendered ??
+                                                .activePost!.postContent ??
                                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                                         style: {
                                           "p": Style(

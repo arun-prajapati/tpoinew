@@ -11,9 +11,9 @@ import 'CustomTextHeadingOftheBanner.dart';
 class customBottombar extends StatelessWidget {
 
 
-  final String img;
-  final String title;
-  final Color titleclr;
+  final String? img;
+  final String? title;
+  final Color? titleclr;
   customBottombar({this.img, this.title, this.titleclr});
 
 

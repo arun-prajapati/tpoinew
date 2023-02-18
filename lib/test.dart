@@ -8,8 +8,8 @@ class animation extends StatefulWidget {
 }
 
 class animationState extends State<animation> with TickerProviderStateMixin {
-  AnimationController _controller;
-  Animation<double> _animation;
+  AnimationController? _controller;
+  Animation<double>? _animation;
   bool upDown = true;
 
   @override
@@ -20,7 +20,7 @@ class animationState extends State<animation> with TickerProviderStateMixin {
     );
 
     _animation = new CurvedAnimation(
-      parent: _controller,
+      parent: _controller!,
       curve: new Interval(0.0, 1.0, curve: Curves.linear),
     );
 
@@ -38,10 +38,10 @@ class animationState extends State<animation> with TickerProviderStateMixin {
       setState((){
         if(upDown) {
           upDown = false;
-          _controller.forward(from: 0.0);
+          _controller!.forward(from: 0.0);
         } else {
           upDown = true;
-          _controller.reverse(from: 1.0);
+          _controller!.reverse(from: 1.0);
         }
       });
     }
@@ -52,12 +52,12 @@ class animationState extends State<animation> with TickerProviderStateMixin {
               new Positioned(
                 bottom: 0.0,
                 child: new AnimatedBuilder(
-                  animation: _animation,
-                  builder: (BuildContext context, Widget child) {
+                  animation: _animation!,
+                  builder: (BuildContext? context, Widget? child) {
                     return new Container(
                       height: _height,
                       child: new CustomPaint(
-                        painter: new Sky(_width, _height * _animation.value),
+                        painter: new Sky(_width, _height * _animation!.value),
                       ),
                     );
                   },

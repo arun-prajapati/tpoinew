@@ -10,9 +10,10 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CategoryContent extends StatefulWidget {
-   List<Posts> posts;
+   List<Posts>? posts;
 
   CategoryContent({this.posts});
 
@@ -46,7 +47,7 @@ class _CategoryContentState extends State<CategoryContent> {
                 },
                 height: 250.0,
               ),
-              items: widget.posts.map((i) {
+              items: widget.posts!.map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return GestureDetector(onTap: (){
@@ -61,7 +62,7 @@ class _CategoryContentState extends State<CategoryContent> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: CachedNetworkImageProvider(
-                                i.featuredMedia.medium,
+                                i.featuredMedia!.medium!,
                               )),
                         ),
                         child: Align(
@@ -97,7 +98,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                       ),),
                                       SizedBox(height: 9,),
                                       Text(
-                                        i.title.rendered,
+                                        i.postTitle!,
                                        // overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                             color: Colors.white,
@@ -126,8 +127,8 @@ class _CategoryContentState extends State<CategoryContent> {
               right: 10.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.posts.map((image) {
-                  int index=widget.posts.indexOf(image);
+                children: widget.posts!.map((image) {
+                  int index=widget.posts!.indexOf(image);
                   return Container(
                     width: 6.0,
                     height: 6.0,
@@ -152,8 +153,8 @@ class _CategoryContentState extends State<CategoryContent> {
         SizedBox(height: 5,),
       /*  Container(height: 50,width: MediaQuery.of(context).size.width,
             child: Image.asset('assets/images/headerad.jpg'))*/
-    Html(onLinkTap: (String url, RenderContext context, Map<String, String> attributes,  element)async{
-      await launch(url);
+    Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
+      await launchUrlString(url!);
     },
     data:Global.advertisementCustomList
     ),
@@ -161,7 +162,7 @@ class _CategoryContentState extends State<CategoryContent> {
     );
 
 
-    ListView.builder(
+  /*  ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -170,7 +171,7 @@ class _CategoryContentState extends State<CategoryContent> {
 
 
      // return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
-    });
+    });*/
   }
 }
 

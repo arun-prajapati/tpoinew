@@ -9,7 +9,7 @@ import 'package:morbimirror/widgets/MajorPost.dart';
 
 class OnlyPosts extends StatefulWidget {
 
-  List<Posts> posts;
+  List<Posts>? posts;
   OnlyPosts({this.posts});
 
   @override
@@ -21,9 +21,9 @@ class _OnlyPostsState extends State<OnlyPosts> {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-        itemCount: widget.posts.length
+        itemCount: widget.posts!.length
         ,itemBuilder: (context,index){
-      return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
+      return index==0?MajorPost(posts: widget.posts![index],):MinorPost(widget.posts![index]);
     });
   }
 }

@@ -63,13 +63,13 @@ class _TestImgState extends State<TestImg> {
                 'Capture Above Widget',
               ),
               onPressed: () {
-                screenshotController
+               /* screenshotController
                     .capture(delay: Duration(milliseconds: 10))
                     .then((capturedImage) async {
                   ShowCapturedWidget(context, capturedImage);
                 }).catchError((onError) {
                   print(onError);
-                });
+                });*/
               },
             ),
             ElevatedButton(

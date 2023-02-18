@@ -35,15 +35,15 @@ class _splashscreenState extends State<splashscreen> {
     await getAddData();
 
     
-    await getMenu();
+   // await getMenu();
     var _duration = new Duration(milliseconds: 5);
     print("Global.alldata ${Global.allData}");
     return new Timer(_duration, navigationPage);
   }
 
   getLocalData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String data = sharedPreferences.getString("data");
+    SharedPreferences? sharedPreferences = await SharedPreferences.getInstance();
+    String? data = sharedPreferences.getString("data");
     if(data!=null)
     Global.allData = (jsonDecode(data) as List).map((e) {
       if(e==null){
@@ -56,30 +56,30 @@ class _splashscreenState extends State<splashscreen> {
 
 
 
-    String myPostsList = sharedPreferences.getString("myPostsList");
+    String? myPostsList = sharedPreferences.getString("myPostsList");
     if(myPostsList!=null){
       print("PPPPPPPPPPPPPP");
-      Global.allData[2].myPostsList=((jsonDecode(myPostsList) as List).map((e) => (e as List).map((g) => Posts.fromJson(g)).toList()).toList());
+      Global.allData![2]?.myPostsList=((jsonDecode(myPostsList) as List).map((e) => (e as List).map((g) => Posts.fromJson(g)).toList()).toList());
     }
 
-    String myPosts = sharedPreferences.getString("myPosts");
+    String? myPosts = sharedPreferences.getString("myPosts");
     if(myPosts!=null){
       print("XXXXXXXXXXXX");
 
 
-      Global.allData[2].myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
+      Global.allData![2]?.myPosts=(jsonDecode(myPosts) as List ).map((g) => Posts.fromJson(g)).toList().toList();
     }
-    String myCategories = sharedPreferences.getString("myCategories");
+    String? myCategories = sharedPreferences.getString("myCategories");
     if(myCategories!=null){
       print("NNNNNNNNNNN");
 
-      Global.allData[2].myCategories=(jsonDecode(myCategories) as List ).map((g) => Category.fromJson(g)).toList();
+      Global.allData![2]?.myCategories=(jsonDecode(myCategories) as List ).map((g) => Category.fromJson(g)).toList();
     }
 
 
     print("++++++++++++++++++++++++++ !!!");
-    log(jsonEncode(Global.allData[2]));
-    print(Global.allData.length);
+    log(jsonEncode(Global.allData![2]));
+    print(Global.allData!.length);
 
 
   }
@@ -124,7 +124,7 @@ class _splashscreenState extends State<splashscreen> {
   }
 
   getToken() async {
-    String token = await FirebaseMessaging.instance.getToken();
+    String? token = await FirebaseMessaging.instance.getToken();
     FirebaseMessaging.instance.subscribeToTopic('News');
     print(token);
   }

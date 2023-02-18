@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Customtextheader extends StatelessWidget {
-  final String title;
-  final Color titleclr;
-  final Color bgcolor;
+  final String? title;
+  final Color? titleclr;
+  final Color? bgcolor;
 
 
   Customtextheader({this.title, this.titleclr, this.bgcolor});
@@ -13,7 +13,7 @@ class Customtextheader extends StatelessWidget {
     return Container(color: bgcolor,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(title,textAlign: TextAlign.justify,style: TextStyle(
+          child: Text(title!,textAlign: TextAlign.justify,style: TextStyle(
             color: titleclr,
           ),),
         ));

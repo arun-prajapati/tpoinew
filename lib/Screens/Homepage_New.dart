@@ -17,6 +17,7 @@ import 'package:morbimirror/Models/advertisment.dart';
 import 'package:morbimirror/testing.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class homepage extends StatefulWidget {
   @override
@@ -25,12 +26,12 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
 
-  List<Widget> myTabBars = new List();
+  List<Widget> myTabBars = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final String apiUrl = "https://thepressofindia.com/wp-json/wp/v2/";
   // Empty list for our posts
-  List posts;
+  List? posts;
   // Function to fetch list of posts
   Future<String> getPosts() async {
     var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
@@ -95,7 +96,7 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: Global.myTabs.length,
+      length: Global.myTabs!.length,
       child: Scaffold(
         key: _scaffoldKey,
         drawer: CustomDrawer(),
@@ -105,17 +106,17 @@ class _homepageState extends State<homepage> {
               CustomAppBar(logoimg: 'assets/images/logo.png',
                 clickonmenuicon: (){
 
-                _scaffoldKey.currentState.openDrawer();
+                _scaffoldKey.currentState!.openDrawer();
                 },),
               SizedBox(height: 4,),
               /*Image.asset('assets/images/headerad.jpg',),*/
-              Html(onLinkTap: (String url, RenderContext context, Map<String, String> attributes,  element)async{
-                await launch(url);
+              Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
+                await launchUrlString(url!);
               },
                 data:Global.advertisementList
               ),
               SizedBox(height: 4,),
-              Expanded(child: Testing(id: int.parse(Global.menu[2].objectId),index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
+              //Expanded(child: Testing(id: ,index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
             ],
           ),
         ),
