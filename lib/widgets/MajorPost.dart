@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:auto_animated/auto_animated.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/CustomtextTitle.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:morbimirror/Models/Category.dart';
 import 'package:morbimirror/Models/Posts.dart';
+import 'package:morbimirror/Screens/SubCategoryList.dart';
 
 class MinorPost extends StatelessWidget {
   Posts? posts;
@@ -407,14 +412,18 @@ class _MajorPostState extends State<MajorPost> {
 
 class PostForCategory extends StatelessWidget {
   List<Posts>? postsList;
-
+  MainCategory? category;
   String? categoryTitle;
   String? catId;
 
-  PostForCategory({this.postsList, this.categoryTitle, this.catId});
+
+  PostForCategory({this.postsList, this.categoryTitle, this.catId,this.category});
 
   @override
   Widget build(BuildContext context) {
+
+
+
     //postsList.sort((a, z) => a.toString().compareTo(z.toString()));
     return postsList!.isEmpty
         ? SizedBox()
@@ -425,6 +434,7 @@ class PostForCategory extends StatelessWidget {
                   title: categoryTitle ?? "title",
                   posts: postsList!,
                   catId: catId!,
+                  category: category!,
                 ),
                 // MajorPostType2(posts: postsList[0],),
                 postsList!.length > 1
@@ -434,6 +444,8 @@ class PostForCategory extends StatelessWidget {
                           children: [
                             HorizontalListofPost(
                               postsList: postsList!,
+                              id: catId,
+
                             ),
                           ],
                         ))
@@ -451,8 +463,9 @@ class PostForCategory extends StatelessWidget {
 
 class HorizontalListofPost extends StatelessWidget {
   List<Posts>? postsList;
+  String? id;
 
-  HorizontalListofPost({this.postsList});
+  HorizontalListofPost({this.postsList,this.id});
 
   final options = LiveOptions(
     // Start animation after (default zero)
@@ -485,6 +498,7 @@ class HorizontalListofPost extends StatelessWidget {
           // Paste you Widget
           child: MinorPostType2(
             posts: postsList![index + 1],
+            id: id!,
           ),
         ),
       );
@@ -563,18 +577,21 @@ class MajorPostType2 extends StatelessWidget {
 
 class MinorPostType2 extends StatelessWidget {
   Posts? posts;
+  String? id;
 
-  MinorPostType2({this.posts});
+  MinorPostType2({this.posts,this.id});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Global.activePost = posts;
+        Global.selectedCategoryId=id??"1";
         print(Global.selectedCategoryId);
         print("ssssss");
+        Navigator.of(context)
+            .pushNamed('Homenewspagemain');
 
-        Navigator.of(context).pushNamed('Homenewspagemain');
       },
       child: Column(
         children: [
@@ -595,9 +612,11 @@ class MinorPostType2 extends StatelessWidget {
                       decoration: new BoxDecoration(
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(3),
-                          image: new DecorationImage(
-                            image:
-                                NetworkImage(posts!.featuredMedia!.medium ?? ""),
+                          image:posts!.featuredMedia!.medium==null? new DecorationImage(
+                            image:AssetImage('assets/images/logo.png'),
+                            fit: BoxFit.contain,
+                          ): new DecorationImage(
+                            image:CachedNetworkImageProvider(posts!.featuredMedia!.medium!),
                             fit: BoxFit.cover,
                           ))),
                   SizedBox(
@@ -638,10 +657,11 @@ class MinorPostType2 extends StatelessWidget {
 class HeaderTitle extends StatelessWidget {
   String? title;
   List<Posts>? posts;
+  MainCategory? category;
 
   String? catId;
 
-  HeaderTitle({this.title, this.posts, this.catId});
+  HeaderTitle({this.title, this.posts, this.catId,this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -667,12 +687,19 @@ class HeaderTitle extends StatelessWidget {
             ),
             Spacer(),
             GestureDetector(
+
                 onTap: () {
-                  Global.activeCategory = posts;
-                  Global.selectedCategoryId = catId;
-                  print("<<<<<");
-                  print(Global.selectedCategoryId);
-                  Navigator.of(context).pushNamed('categorynews');
+print(jsonEncode(category));
+                 if(category!=null && category!.category!=null && category!.category!.isNotEmpty){
+                    Global.selectedCat = category;
+                   Navigator.of(context).pushNamed(SubCategoryListPage.route);
+                  }else {
+                    Global.activeCategory = posts;
+                    Global.selectedCategoryId = catId;
+                    print("<<<<<");
+                    print(Global.selectedCategoryId);
+                    Navigator.of(context).pushNamed('categorynews');
+                  }
                 },
                 child: Container(
                     color: staticBlack,

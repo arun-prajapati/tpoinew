@@ -73,7 +73,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
 
     myPostsListAdd = await getPosts(
         url:
-            "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&categories=${Global.selectedCategoryId}");
+            "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId??1}");
+
 
     if (myPostsListAdd != null) {
       myPostsList1 = myPostsList1 + myPostsListAdd;
@@ -220,7 +221,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
                 automaticallyImplyLeading: false,
                 flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
-                    background: Image.network(
+                    background: Global.activePost!.featuredMedia!.medium==null?Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.cover,
+                    ) :Image.network(
                       Global.activePost!.featuredMedia!.medium!,
                       fit: BoxFit.cover,
                     ))),
@@ -240,33 +244,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                     children: [
                       Column(
                         children: [
-                          /* Stack(children: [
 
-
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * .3,
-                            decoration: new BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.all(Radius.circular(0)),
-                                image: new DecorationImage(
-                                  image: NetworkImage(
-                                      Global.activePost.featuredMedia.medium),
-                                  fit: BoxFit.cover,
-                                )),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                Spacer(
-                                  flex: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-
-                        ],
-
-                        ),*/
 
                           SizedBox(
                             height: 5,
@@ -279,46 +257,54 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  Global.activePost!.postName!
-                                      .replaceAll("&#8211", ""),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Color(0xff696969),
-                                      fontFamily: 'Montserrat-Black'),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      " by " + Global.activePost!.postAuthor!,
-                                      style:
-                                          TextStyle(color: Color(0xff696969)),
-                                    ),
-                                    Text(
-                                      "Posted on - ${Global.activePost!.postDate!}",
-                                      style: TextStyle(
-                                          color: Color(0xff696969),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    /*Text(
-                                     // MyDate(Global.activePost!.postDate!),
-                                      style: TextStyle(
-                                        fontSize: 12,
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 5,
                                       ),
-                                    ),*/
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
+                                      Text(
+                                        Global.activePost!.postName!
+                                            .replaceAll("&#8211", ""),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 20,
+                                            color: Color(0xff696969),
+                                            fontFamily: 'Montserrat-Black'),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            " by " + Global.activePost!.postAuthor!,
+                                            style:
+                                                TextStyle(color: Color(0xff696969)),
+                                          ),
+                                          Text(
+                                            "Posted on - ${Global.activePost!.postDate!}",
+                                            style: TextStyle(
+                                                color: Color(0xff696969),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          /*Text(
+                                           // MyDate(Global.activePost!.postDate!),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                            ),
+                                          ),*/
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Divider(
                                   color: Colors.black,
@@ -326,21 +312,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   thickness: 0.3,
                                 ),
 
-                                /*  Row(
-                              children: [
-                                Text(
-                                  "The Press of INDIA",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: staticBlue),
-                                ),
-                                Spacer(),
 
-                              ],
-                            ),*/
-                                /* SizedBox(
-                              height: 10,
-                            ),*/
                                 Container(
                                   width: MediaQuery.of(context).size.width,
                                   child: Column(
@@ -362,6 +334,14 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                           "p": Style(
                                               textAlign: TextAlign.left,
                                               fontSize: FontSize.large),
+                                          "img": Style(
+                                            alignment: Alignment.center,
+                                            width: Width(MediaQuery.of(context).size.width-20),
+                                            textAlign: TextAlign.center,
+                                            display: Display.block,
+
+                                            padding: EdgeInsets.only(top: 10)
+                                          )
                                         },
                                       ),
                                     ],
@@ -417,102 +397,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
                         ],
                       ),
 
-                      /*  Container(width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.black.withOpacity(0.2),
-                                Colors.black12.withOpacity(0.2),
-                                Colors.black26.withOpacity(0.1),
-                                Colors.white.withOpacity(0.2)
-                              ]
-                          )
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 6, bottom: 6),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: CustomAppBarWithHeart(
 
-                            save: (){
-
-                              screenshotController.capture().then((Uint8List image) async{
-                                DateTime ketF = new DateTime.now();
-                                String baru = "${ketF.year}${ketF.month}${ketF.day}";
-
-                                int rand = new Random().nextInt(100000);
-
-                                print("sdadad");
-                                if (image != null) {
-                                  final directory = await getExternalStorageDirectory();
-                                  final imagePath = await File('${directory.path}/image.png').create();
-                                  await imagePath.writeAsBytes(image);
-
-                                  final myImagePath = '${directory.path}/MyImages' ;
-                                  final myImgDir = await new Directory(myImagePath).create();
-                                  var kompresimg = new File("$myImagePath/image_$baru$rand.jpg")
-                                    ..writeAsBytesSync(image);
-
-                                  print(kompresimg);
-                                  print(myImgDir);
-                                  print(imagePath);
-                                  GallerySaver.saveImage(kompresimg.path).then((bool success) {
-                                    Fluttertoast.showToast(msg: "Post Saved in picture folder",
-                                        fontSize: 15,textColor: Colors.white,backgroundColor: Colors.green);
-                                    setState(() {
-                                      print("SAVED");
-                                    });
-                                  });
-                                  /// Share Plugin
-                                  //await Share.shareFiles([imagePath.path]);
-
-                                }
-                                setState(() {
-                                  _imageFile = image;
-                                  print(_imageFile);
-                                });
-                              }).catchError((onError) {
-                                print(onError);
-                              });
-
-                              setState(() {
-
-                              });
-
-                            },
-
-                            onFav: () {
-
-                              if (Global.bookMarkPosts.contains(Global.activePost)) {
-                                removeBookMark(Global.activePost);
-                              } else {
-                                SaveBookMark(Global.activePost);
-                              }
-
-                              setState(() {});
-                            },
-                            logoimg: 'assets/images/logo.png',
-                            clickonmenuicon: () {
-                              Navigator.of(context).pop();
-                            },
-                            clickonsearchicon: () {
-                              Share.share(
-                                  "${Global.activePost.excerpt.rendered}\n${Global.activePost.link}\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
-                            },
-                          ),
-                        ),
-                      ),
-                    ),*/
                     ],
                   ),
 
-                  /*  customBottombar(
-                    img: 'assets/images/logo.png',
-                    title:
-                    "મોરબીવાસીઓ તમામ વિસ્તારોમની સચોટ અને તટસ્થ માહિતી હર પળ ઘરે બેઠા મળી રહે એ માટે મોરબીવાસીઓનું પોતાનું THE PRESS OF INDIA શરૂ કરવાનો અમારો ધ્યેય છે જે ધ્યેય આપ સૌ મિત્રોના સાથ સહકારથી શ્રેષ્ઠતા સાથે કામયાબીના શિખરો સર કરશે જેના માટે મોરબી ગૌરવ અનુભવશે.",
-                  ),*/
                 ],
               ),
             ),

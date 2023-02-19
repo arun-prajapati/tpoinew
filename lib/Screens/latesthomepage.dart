@@ -10,11 +10,7 @@ class latestHomePage extends StatefulWidget {
 
 class _latestHomePageState extends State<latestHomePage> {
 
-  getAllCat(){
-    http.get(Uri.parse("")).then((value) {
 
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

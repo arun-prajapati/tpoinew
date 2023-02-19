@@ -13,7 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class CategoryContent extends StatefulWidget {
-   List<Posts>? posts;
+  List<Posts>? posts;
 
   CategoryContent({this.posts});
 
@@ -22,147 +22,150 @@ class CategoryContent extends StatefulWidget {
 }
 
 class _CategoryContentState extends State<CategoryContent> {
-
   int _current = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         //slider home page
-        Stack(
-          children: [
-            CarouselSlider(
-              options: CarouselOptions(autoPlay: true,
-                autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-                enableInfiniteScroll: true,
-                enlargeCenterPage: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 300),
-                viewportFraction: 1.0,
-                //enlargeCenterPage: false,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _current = index;
-                  });
-                },
-                height: 250.0,
-              ),
-              items: widget.posts!.map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return GestureDetector(onTap: (){
-                       Global.activePost = i;
-                    Navigator.of(context).pushNamed('Homenewspagemain');
+        Stack(children: [
+          CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: true,
+              autoPlayCurve: Curves.fastLinearToSlowEaseIn,
+              enableInfiniteScroll: true,
+              enlargeCenterPage: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 300),
+              viewportFraction: 1.0,
+              //enlargeCenterPage: false,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              },
+              height: 250.0,
+            ),
+            items: widget.posts!.map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onTap: () {
+                      Global.activePost = i;
+                      Navigator.of(context).pushNamed('Homenewspagemain');
                     },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-
-                          color: Colors.amber.withOpacity(0.3),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: CachedNetworkImageProvider(
-                                i.featuredMedia!.medium!,
-                              )),
-                        ),
-                        child: Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(height: MediaQuery.of(context).size.height,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    //stops: [ 0.5, 0.7, 0.9],
-                                    colors: [
-                                       Colors.transparent,
-                                      Colors.transparent,
-                                      Colors.transparent,
-                                      Colors.black.withOpacity(0.2),
-                                      Colors.black45,
-                                      Colors.black45,
-                                      Colors.black
-
-                                    ],
-                                  ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.amber.withOpacity(0.3),
+                        image: i.featuredMedia!.medium == null
+                            ? new DecorationImage(
+                                image: AssetImage('assets/images/logo.png'),
+                                fit: BoxFit.contain,
+                              )
+                            : DecorationImage(
+                                fit: BoxFit.cover,
+                                image: CachedNetworkImageProvider(
+                                  i.featuredMedia!.medium!,
+                                )),
+                      ),
+                      child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  //stops: [ 0.5, 0.7, 0.9],
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.transparent,
+                                    Colors.transparent,
+                                    Colors.black.withOpacity(0.2),
+                                    Colors.black45,
+                                    Colors.black45,
+                                    Colors.black
+                                  ],
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(height: 25,  width: 5,
-                                      decoration: BoxDecoration(color: Colors.deepOrange,
-                                        borderRadius: BorderRadius.all(Radius.circular(5))
-                                      ),),
-                                      SizedBox(height: 9,),
-                                      Text(
-                                        i.postTitle!,
-                                       // overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                      fontSize: 16),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                     /* Text(
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      height: 25,
+                                      width: 5,
+                                      decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.all(Radius.circular(5))),
+                                    ),
+                                    SizedBox(
+                                      height: 9,
+                                    ),
+                                    Text(
+                                      i.postTitle!,
+                                      // overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(color: Colors.white, fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    /* Text(
                                         MyDate(i.date),
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,
                                             fontSize: 12),
                                       ),*/
-                                    ],
-                                  ),
-                                ))),
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
-            ),
-            Positioned( top:0.0,
-              right: 10.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: widget.posts!.map((image) {
-                  int index=widget.posts!.indexOf(image);
+                                  ],
+                                ),
+                              ))),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+          Positioned(
+            top: 0.0,
+            right: 10.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widget.posts!.map(
+                (image) {
+                  int index = widget.posts!.indexOf(image);
                   return Container(
                     width: 6.0,
                     height: 6.0,
                     margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
-
-                        border:  _current == index?Border.all(color: Colors.transparent):
-                        Border.all(color: Colors.white),
+                        border: _current == index ? Border.all(color: Colors.transparent) : Border.all(color: Colors.white),
                         shape: BoxShape.circle,
-                        color: _current == index
-                            ? Colors.white
-                            : Colors.transparent
-                    ),
+                        color: _current == index ? Colors.white : Colors.transparent),
                   );
                 },
-                ).toList(), // this was the part the I had to add
-              ),
+              ).toList(), // this was the part the I had to add
             ),
-
-
-          ]),
-        SizedBox(height: 5,),
-      /*  Container(height: 50,width: MediaQuery.of(context).size.width,
-            child: Image.asset('assets/images/headerad.jpg'))*/
-    Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
-      await launchUrlString(url!);
-    },
-    data:Global.advertisementCustomList
-    ),
-        SizedBox(height: 5,),  ],
+          ),
+        ]),
+        SizedBox(
+          height: 5,
+        ),
+        Container(height: 50, width: MediaQuery.of(context).size.width, child: Image.asset('assets/images/headerad.jpg')),
+     if(Global.advertisementCustomList!=null)   Html(
+            onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, element) async {
+              await launchUrlString(url!);
+            },
+            data: Global.advertisementCustomList),
+        SizedBox(
+          height: 5,
+        ),
+      ],
     );
 
-
-  /*  ListView.builder(
+    /*  ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),

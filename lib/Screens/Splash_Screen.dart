@@ -26,7 +26,7 @@ class splashscreen extends StatefulWidget {
 
 class _splashscreenState extends State<splashscreen> {
   startTime() async {
-     getLocalData();
+  //   getLocalData();
     await readBookMark();
     await getPrivacyPage();
     await getAboutUs();
@@ -118,7 +118,7 @@ class _splashscreenState extends State<splashscreen> {
     getToken();
     startTime();
     //getValue();
-    getLocalData();
+    //getLocalData();
     super.initState();
 
   }

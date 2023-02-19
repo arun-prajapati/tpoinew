@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:morbimirror/Global/Global.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -110,6 +111,35 @@ class CustomDrawer extends StatelessWidget {
                   Navigator.of(context).pushNamed('staticPage');
                 },
               ),
+              ListTile(
+                leading: Icon(Bootstrap.facebook,color: Color(0xff3b5998) ,),
+                title: Text("Facebook",style: TextStyle(color: Color(0xff3b5998)),),
+                onTap: () {
+                  launchUrl(Uri.parse("https://www.facebook.com/thepressofindia/"));
+                },
+              ),
+              ListTile(
+                leading: Icon(Bootstrap.youtube,color: Colors.red ,),
+                title: Text("Youtube",style: TextStyle(color: Colors.red),),
+                onTap: () {
+                  launchUrl(Uri.parse("https://www.youtube.com/channel/UCGtMZRCb2Mf86kZPcbBaFPA"));
+                },
+              ),
+              ListTile(
+                leading: Icon(Bootstrap.instagram,color: Color(0xff962fbf) ,),
+                title: Text("Instagram",style: TextStyle(color: Color(0xff962fbf)),),
+                onTap: () {
+                  launchUrl(Uri.parse("https://www.instagram.com/thepressofindia/"));
+                },
+              ),
+              ListTile(
+                leading: Icon(Bootstrap.twitter,color: Color(0xff00ACEE) ,),
+                title: Text("Twitter",style: TextStyle(color: Color(0xff00ACEE)),),
+                onTap: () {
+                  launchUrl(Uri.parse("https://twitter.com/thepressofindia"));
+                },
+              ),
+
             ],
           ),
         ),

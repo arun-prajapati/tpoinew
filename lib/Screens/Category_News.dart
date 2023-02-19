@@ -29,8 +29,11 @@ class _CategoryNewsState extends State<CategoryNews> {
     List<Posts> myPostsListAdd = [];
     print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
  
+   /* myPostsListAdd = await getPosts(
+        url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");*/
+
     myPostsListAdd = await getPosts(
-        url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");
+        url: "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}");
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;

@@ -37,7 +37,10 @@ class Global{
   static String? sharedPrefData;
   static List<Posts> bookMarkPosts= [];
   static bool loadData = true;
-  
+
+
+  static List<MainCategory>? mainCategory;
+  static MainCategory? selectedCat;
 
 }
 
