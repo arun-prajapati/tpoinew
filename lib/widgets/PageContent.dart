@@ -57,8 +57,9 @@ class _CategoryContentState extends State<CategoryContent> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        color: Colors.amber.withOpacity(0.3),
+
                         image: i.featuredMedia!.medium == null
+                      //  image: 1==1
                             ? new DecorationImage(
                                 image: AssetImage('assets/images/logo.png'),
                                 fit: BoxFit.contain,
@@ -72,7 +73,7 @@ class _CategoryContentState extends State<CategoryContent> {
                       child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                              height: MediaQuery.of(context).size.height,
+                              height: MediaQuery.of(context).size.height/8,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
@@ -81,12 +82,8 @@ class _CategoryContentState extends State<CategoryContent> {
                                   //stops: [ 0.5, 0.7, 0.9],
                                   colors: [
                                     Colors.transparent,
-                                    Colors.transparent,
-                                    Colors.transparent,
-                                    Colors.black.withOpacity(0.2),
-                                    Colors.black45,
-                                    Colors.black45,
-                                    Colors.black
+
+                                    Colors.black54
                                   ],
                                 ),
                               ),
@@ -97,9 +94,9 @@ class _CategoryContentState extends State<CategoryContent> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     Container(
-                                      height: 25,
+                                      height: 20,
                                       width: 5,
-                                      decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.all(Radius.circular(5))),
+                                      decoration: BoxDecoration(color: Color(0xffE60000), borderRadius: BorderRadius.all(Radius.circular(5))),
                                     ),
                                     SizedBox(
                                       height: 9,
@@ -150,10 +147,10 @@ class _CategoryContentState extends State<CategoryContent> {
             ),
           ),
         ]),
-        SizedBox(
+       /* SizedBox(
           height: 5,
         ),
-        Container(height: 50, width: MediaQuery.of(context).size.width, child: Image.asset('assets/images/headerad.jpg')),
+        Container(height: 50, width: MediaQuery.of(context).size.width, child: Image.asset('assets/images/headerad.jpg')),*/
      if(Global.advertisementCustomList!=null)   Html(
             onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, element) async {
               await launchUrlString(url!);

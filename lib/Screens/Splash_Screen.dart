@@ -140,8 +140,8 @@ class _splashscreenState extends State<splashscreen> {
           children: <Widget>[
             Image.asset(
               'assets/images/logo.png',
-              height: 110,
-              width: 110,
+
+              width: MediaQuery.of(context).size.width*.4,
             )
           ],
         ),

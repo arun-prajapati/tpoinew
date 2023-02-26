@@ -14,7 +14,7 @@
     <application
         android:name="${applicationName}"
         android:value="2"
-        android:label="The Press of INDIA"
+        android:label="The Press Of India"
         android:usesCleartextTraffic="true"
         android:icon="@mipmap/launcher_icon">
 

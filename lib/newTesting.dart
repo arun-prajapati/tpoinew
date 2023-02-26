@@ -35,10 +35,12 @@ class _TestingNewState extends State<TestingNew> {
 
   @override
   void initState() {
+    posts = Global.mainCategory![0].posts!.sublist(0,Global.mainCategory![0].posts!.length<4?Global.mainCategory![0].posts!.length:4);
+
     // TODO: implement initState
     super.initState();
 
-getAllFeaturedPosts();
+//getAllFeaturedPosts();
 
 
 
@@ -46,6 +48,8 @@ getAllFeaturedPosts();
   }
 
   getAllFeaturedPosts(){
+
+
     Global.mainCategory!.forEach((element) {
       if( element.posts!.isNotEmpty && element.posts!.length>2) {
         posts!.add(element.posts![0]);

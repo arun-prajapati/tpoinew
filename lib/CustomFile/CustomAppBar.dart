@@ -40,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
     }*/
 
     return Container(
-      color: Colors.black,
+      color: Color(0xff222222),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 2),
         child: Container(
@@ -76,7 +76,7 @@ class CustomAppBar extends StatelessWidget {
               Spacer(),
 
                 Container(
-                child: Image.asset(logoimg!, height: 55,
+                child: Image.asset(logoimg!, height: 52,
                 ),
               ),
 
@@ -117,7 +117,7 @@ class CustomAppBar extends StatelessWidget {
                 )),
               ),
               SizedBox(
-                width: 5,
+                width: 20,
               ),
             ],
           ),

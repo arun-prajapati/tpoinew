@@ -10,6 +10,7 @@ import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:icons_plus/icons_plus.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
 import 'package:morbimirror/BookMark/bookMark.dart';
@@ -109,15 +110,27 @@ class _NewsmainpageState extends State<Newsmainpage> {
           //mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+
             Expanded(
-                child: Image.asset('assets/images/shareF.png',
-                    fit: BoxFit.contain)),
+                child:             Container(color: Color(0xff4267B2),child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Bootstrap.facebook,color: Colors.white ,),
+                )),
+            ),
             Expanded(
-                child: Image.asset('assets/images/shareT.png',
-                    fit: BoxFit.contain)),
+              child:             Container(color: Color(0xff1DA1F2),child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Bootstrap.twitter,color: Colors.white ,),
+              )),
+            ),
             Expanded(
-                child: Image.asset('assets/images/shareW.png',
-                    fit: BoxFit.contain)),
+              child:             Container(color: Color(0xff128C7E),child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Bootstrap.whatsapp,color: Colors.white ,),
+              )),
+            ),
+
+
             //Expanded(child: Image.asset('assets/images/shareT.png'))
           ],
         ),
@@ -266,7 +279,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                         height: 5,
                                       ),
                                       Text(
-                                        Global.activePost!.postName!
+                                        Global.activePost!.postTitle!
                                             .replaceAll("&#8211", ""),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,

@@ -636,8 +636,10 @@ class MinorPostType2 extends StatelessWidget {
                             textAlign: TextAlign.left,
                             overflow: TextOverflow.clip,
                             style: TextStyle(
+                              fontSize: 14,
                               height: 1.3,
                               color: Color(0xff696969),
+
                             ),
                           )),
                         ],
@@ -679,9 +681,8 @@ class HeaderTitle extends StatelessWidget {
               child: Text(
                 title ?? "",
                 style: TextStyle(
-                  color: Colors.black.withOpacity(0.6),
-                  fontSize: MediaQuery.of(context).size.width *
-                      0.05, /*fontWeight: FontWeight.w400*/
+                  color: Color(0xff707070),
+                  fontSize: 16, /*fontWeight: FontWeight.w400*/
                 ),
               ),
             ),
