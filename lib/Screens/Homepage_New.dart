@@ -68,14 +68,13 @@ class _homepageState extends State<homepage> {
 
                 _scaffoldKey.currentState!.openDrawer();
                 },),
-              SizedBox(height: 4,),
+
               /*Image.asset('assets/images/headerad.jpg',),*/
               Global.advertisementList!=null?Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
                 await launchUrlString(url!);
               },
                 data:Global.advertisementList
               ):SizedBox(),
-              SizedBox(height: 4,),
               //Expanded(child: Testing(id: ,index: 2,catId: Global.menu[2].objectId,name: Global.menu[2].title,))
               Expanded(child: TestingNew())
             ],

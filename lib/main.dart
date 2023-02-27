@@ -13,6 +13,10 @@ import 'package:morbimirror/Screens/StaticPageDisplay.dart';
 import 'package:morbimirror/Screens/SubCategoryList.dart';
 import 'package:morbimirror/test.dart';
 import 'package:morbimirror/testing.dart';
+import 'ApiCall/Advertisement.dart';
+import 'ApiCall/Category_api.dart';
+import 'ApiCall/staticPageContent.dart';
+import 'BookMark/bookMark.dart';
 import 'Global/Global.dart';
 import 'Screens/BookMarkPage.dart';
 import 'Screens/Category_News.dart';
@@ -37,8 +41,15 @@ class MyHttpOverrides extends HttpOverrides{
    HttpOverrides.global = new MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
 
+   await Future.wait([DatabaseHelper.getAllCat(),readBookMark(),getPrivacyPage(),getAboutUs(),getCategories(),getAddData()]);
+/*  await readBookMark();
+  await getPrivacyPage();
+  await getAboutUs();
+  await getFaq();
+  await getCategories();
+  await getAddData();*/
   await Firebase.initializeApp();
-  await DatabaseHelper.getAllCat();
+ // await DatabaseHelper.getAllCat();
   runApp(MyApp());
 }
 
@@ -101,7 +112,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:splashscreen(),
+      home:homepage(),
       routes: {
 
         'home':(context)=>homepage(),

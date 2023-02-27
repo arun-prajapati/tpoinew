@@ -25,7 +25,7 @@ SaveBookMark( Posts post ) async {
  }
 
 
-readBookMark()  async {
+Future readBookMark()  async {
 
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 

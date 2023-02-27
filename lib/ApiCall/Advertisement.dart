@@ -9,10 +9,10 @@ import 'package:morbimirror/Models/advertisment.dart';
 import 'All_URLS.dart';
 
 
-getAddData(){
+Future getAddData() async {
 //calling api
 
-  http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=header'),
+  await http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=header'),
   ).then((res){
 
     print(res.body);

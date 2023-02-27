@@ -114,28 +114,28 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Icon(Bootstrap.facebook,color: Color(0xff3b5998) ,),
+                leading: Image.asset("assets/images/facebook.png",height: 20,),
                 title: Text("Facebook",style: TextStyle(color: Color(0xff3b5998)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.facebook.com/thepressofindia/"));
                 },
               ),
               ListTile(
-                leading: Icon(Bootstrap.youtube,color: Colors.red ,),
+                leading: Image.asset("assets/images/youtube.png",width  : 24,),
                 title: Text("Youtube",style: TextStyle(color: Colors.red),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.youtube.com/channel/UCGtMZRCb2Mf86kZPcbBaFPA"));
                 },
               ),
               ListTile(
-                leading: Icon(Bootstrap.instagram,color: Color(0xff962fbf) ,),
+                leading: Icon(FontAwesome.instagram,color:Color(0xff962fbf),weight: 20,),
                 title: Text("Instagram",style: TextStyle(color: Color(0xff962fbf)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.instagram.com/thepressofindia/"));
                 },
               ),
               ListTile(
-                leading: Icon(Bootstrap.twitter,color: Color(0xff00ACEE) ,),
+                leading: Image.asset("assets/images/twitter.png",height: 20,),
                 title: Text("Twitter",style: TextStyle(color: Color(0xff00ACEE)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://twitter.com/thepressofindia"));

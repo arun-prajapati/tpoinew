@@ -6,8 +6,8 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Page.dart';
 
 
-getPrivacyPage(){
-  http.get(Uri.parse('$privacyPolicy'),
+Future getPrivacyPage() async {
+ await http.get(Uri.parse('$privacyPolicy'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
@@ -16,8 +16,8 @@ getPrivacyPage(){
   });
 }
 
-getAboutUs(){
-  http.get(Uri.parse('$aboutUs'),
+Future getAboutUs() async {
+await  http.get(Uri.parse('$aboutUs'),
   ).then((res){
 
     var Storedataoflist = jsonDecode(res.body);
@@ -28,8 +28,8 @@ getAboutUs(){
 }
 
 
-getFaq(){
-  http.get(Uri.parse('$faq'),
+getFaq() async {
+  await http.get(Uri.parse('$faq'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);

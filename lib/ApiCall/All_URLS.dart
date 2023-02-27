@@ -15,7 +15,7 @@ const String aboutUs = "${BaseURL}wp-json/wp/v2/pages/17313";
 const String faq = "${BaseURL}wp-json/wp/v2/pages/17315";
 
 class DatabaseHelper {
-  static getAllCat() async {
+  static Future getAllCat() async {
     print('Getting Data');
     await http.get(Uri.parse("https://thepressofindia.com/wp-json/wp/v2/subcat_posts")).then((value) {
       print("====");

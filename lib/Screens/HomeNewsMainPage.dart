@@ -114,19 +114,19 @@ class _NewsmainpageState extends State<Newsmainpage> {
             Expanded(
                 child:             Container(color: Color(0xff4267B2),child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Icon(Bootstrap.facebook,color: Colors.white ,),
+                  child: Icon(FontAwesome.square_facebook,color: Colors.white,size: 24,),
                 )),
             ),
             Expanded(
               child:             Container(color: Color(0xff1DA1F2),child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Bootstrap.twitter,color: Colors.white ,),
+                child: Icon(FontAwesome.twitter,color: Colors.white,size: 24,),
               )),
             ),
             Expanded(
-              child:             Container(color: Color(0xff128C7E),child: Padding(
+              child:             Container(color: Color(0xff26D367),child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(Bootstrap.whatsapp,color: Colors.white ,),
+                child: Icon(FontAwesome.whatsapp,color: Colors.white,size: 24,),
               )),
             ),
 
@@ -141,9 +141,9 @@ class _NewsmainpageState extends State<Newsmainpage> {
           return <Widget>[
             SliverAppBar(
                 backgroundColor: Colors.black,
-                expandedHeight: 200.0,
+                expandedHeight: 250.0,
                 floating: false,
-                pinned: true,
+                pinned: false,
                 actions: [
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -271,7 +271,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -282,29 +282,44 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                         Global.activePost!.postTitle!
                                             .replaceAll("&#8211", ""),
                                         style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.normal,
                                             fontSize: 20,
                                             color: Color(0xff696969),
                                             fontFamily: 'Montserrat-Black'),
                                       ),
                                       SizedBox(
-                                        height: 5,
+                                        height: 10,
                                       ),
                                       Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+
                                         children: [
                                           Text(
-                                            " by " + Global.activePost!.postAuthor!,
+                                            "By",
                                             style:
-                                                TextStyle(color: Color(0xff696969)),
+                                            TextStyle(
+                                                color: Color(0xffA0A0A0),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 10
+                                            ),
                                           ),
                                           Text(
-                                            "Posted on - ${Global.activePost!.postDate!}",
-                                            style: TextStyle(
-                                                color: Color(0xff696969),
-                                                fontWeight: FontWeight.bold),
+                                            " The Press Of India",
+                                            style:
+                                            TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10
+                                            ),
                                           ),
+                                          Text(
+                                            " - ${Global.activePost!.postDate!}",
+                                            style: TextStyle(
+                                                color: Color(0xffA0A0A0),
+                                                fontWeight: FontWeight.normal,
+                                            fontSize: 10
+                                            ),
+                                          ),
+
                                           /*Text(
                                            // MyDate(Global.activePost!.postDate!),
                                             style: TextStyle(
@@ -323,6 +338,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   color: Colors.black,
                                   height: 0.5,
                                   thickness: 0.3,
+                                  indent: 8,
+                                  endIndent: 8,
                                 ),
 
 
@@ -349,11 +366,10 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                               fontSize: FontSize.large),
                                           "img": Style(
                                             alignment: Alignment.center,
-                                            width: Width(MediaQuery.of(context).size.width-20),
+                                            width: Width(MediaQuery.of(context).size.width-16),
                                             textAlign: TextAlign.center,
                                             display: Display.block,
-
-                                            padding: EdgeInsets.only(top: 10)
+                                            padding: EdgeInsets.only(bottom: 10)
                                           )
                                         },
                                       ),
@@ -370,13 +386,15 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               height: 50,
                               width: MediaQuery.of(context).size.width,
                               color: Colors.black,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Text(
-                                  "You Might Also Like",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 17),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Text(
+                                    "You Might Also Like",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 17),
+                                  ),
                                 ),
                               )),
                           SizedBox(

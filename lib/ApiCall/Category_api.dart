@@ -66,7 +66,7 @@ getNewsData(){
 }*/
 
 
-getCategories() async {
+Future getCategories() async {
   await http.get(Uri.parse(urlForTopBarCategories),
   ).then((res){
     //print(res.body);

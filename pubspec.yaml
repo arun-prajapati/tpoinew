@@ -67,18 +67,15 @@ flutter_icons:
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter_native_splash:
-  color: "#ffffff"
-  image: assets/logo-development.png
-  branding: assets/branding-development.png
-  color_dark: "#121212"
-  image_dark: assets/logo-development.png
-  branding_dark: assets/branding-development.png
+  color: "#fAfAfA"
+  image: assets/images/splashLogo.png
+
+
 
   android_12:
-    image: assets/logo-development.png
+    image: assets/images/splashLogo.png
     icon_background_color: "#ffffff"
-    image_dark: assets/logo-development.png
-    icon_background_color_dark: "#121212"
+
 
   web: false
 

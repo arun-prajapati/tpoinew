@@ -147,9 +147,7 @@ class _TestingState extends State<Testing> {
                   child: Column(
                     children: [
                       CategoryContent(posts: myPosts),
-                      SizedBox(
-                        height: 10,
-                      ),
+
                       ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,

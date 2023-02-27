@@ -96,7 +96,7 @@ class _CategoryContentState extends State<CategoryContent> {
                                     Container(
                                       height: 20,
                                       width: 5,
-                                      decoration: BoxDecoration(color: Color(0xffE60000), borderRadius: BorderRadius.all(Radius.circular(5))),
+                                      decoration: BoxDecoration(color: Color(0xffE60000), borderRadius: BorderRadius.all(Radius.circular(2))),
                                     ),
                                     SizedBox(
                                       height: 9,
@@ -124,6 +124,7 @@ class _CategoryContentState extends State<CategoryContent> {
                 },
               );
             }).toList(),
+
           ),
           Positioned(
             top: 0.0,

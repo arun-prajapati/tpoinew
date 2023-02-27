@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
 import 'package:morbimirror/ApiCall/Post_api.dart';
 import 'package:morbimirror/CustomFile/CustomAppBar.dart';
@@ -12,6 +13,7 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/widgets/MajorPost.dart';
 import 'package:morbimirror/widgets/PageContent.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class CategoryNews extends StatefulWidget {
   @override
@@ -33,7 +35,7 @@ class _CategoryNewsState extends State<CategoryNews> {
         url: "${BaseURL}wp-json/wp/v2/posts?status=publish&order=desc&per_page=20&page=$CurrentPage&categories=${Global.selectedCategoryId}");*/
 
     myPostsListAdd = await getPosts(
-        url: "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}");
+        url: "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId}&page=$CurrentPage");
 
     if(myPostsListAdd!=null) {
       myPostsList = myPostsList + myPostsListAdd;
@@ -78,7 +80,11 @@ class _CategoryNewsState extends State<CategoryNews> {
           },child: SingleChildScrollView(
             child: Column(
               children: [
-
+                Global.advertisementList!=null?Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
+                  await launchUrlString(url!);
+                },
+                    data:Global.advertisementList
+                ):SizedBox(),
                 Stack(children: [
                   CarouselSlider.builder(
                     options: CarouselOptions(autoPlay: true,

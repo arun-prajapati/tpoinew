@@ -40,8 +40,8 @@ class MinorPost extends StatelessWidget {
 
                             Text(posts!.postTitle!,
                                 style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold)),
+                                    color: Color(0xff707070),
+                                    fontWeight: FontWeight.normal)),
                             SizedBox(
                               height: 10,
                             ),
@@ -50,12 +50,12 @@ class MinorPost extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 25,
-                                  width: 8,
+                                  height: 20,
+                                  width: 6,
                                   decoration: BoxDecoration(
-                                      color: Colors.deepOrange,
+                                      color: Color(0xffD41912),
                                       borderRadius:
-                                          BorderRadius.all(Radius.circular(3))),
+                                          BorderRadius.all(Radius.circular(2))),
                                 ),
                               ],
                             ),
@@ -92,10 +92,10 @@ class MinorPost extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.9,
+                  width: MediaQuery.of(context).size.width-18,
                   margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
                   height: 0.2,
-                  color: Colors.black,
+                  color: Color(0xff707070),
                 ),
                 /*       Icon(Icons.ac_unit_sharp)*/
               ],
@@ -157,12 +157,12 @@ class MajorPost extends StatelessWidget {
                             height: 35,
                           ),
                           Container(
-                            height: 25,
+                            height: 20,
                             width: 5,
                             decoration: BoxDecoration(
-                                color: Colors.deepOrange,
+                                color: Color(0xffD41912),
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(5))),
+                                    BorderRadius.all(Radius.circular(2))),
                           ),
 
                           /*   Customtextheader(title: "Morbi",
@@ -439,7 +439,7 @@ class PostForCategory extends StatelessWidget {
                 // MajorPostType2(posts: postsList[0],),
                 postsList!.length > 1
                     ? Container(
-                        height: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.width * 0.66,
                         child: Row(
                           children: [
                             HorizontalListofPost(
@@ -671,59 +671,58 @@ class HeaderTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 5,
-        ),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8, right: 0),
-              child: Text(
-                title ?? "",
-                style: TextStyle(
-                  color: Color(0xff707070),
-                  fontSize: 16, /*fontWeight: FontWeight.w400*/
+
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 4, right: 0),
+                child: Text(
+                  title ?? "",
+                  style: TextStyle(
+                    color: Color(0xff707070),
+                    fontSize: 15, /*fontWeight: FontWeight.w400*/
+                  ),
                 ),
               ),
-            ),
-            Spacer(),
-            GestureDetector(
+              Spacer(),
+              GestureDetector(
 
-                onTap: () {
+                  onTap: () {
 print(jsonEncode(category));
-                 if(category!=null && category!.category!=null && category!.category!.isNotEmpty){
-                    Global.selectedCat = category;
-                   Navigator.of(context).pushNamed(SubCategoryListPage.route);
-                  }else {
-                    Global.activeCategory = posts;
-                    Global.selectedCategoryId = catId;
-                    print("<<<<<");
-                    print(Global.selectedCategoryId);
-                    Navigator.of(context).pushNamed('categorynews');
-                  }
-                },
-                child: Container(
-                    color: staticBlack,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8, bottom: 8, left: 10, right: 10),
-                      child: Text(
-                        'SEE ALL' ?? "",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width * 0.03,
+                   if(category!=null && category!.category!=null && category!.category!.isNotEmpty){
+                      Global.selectedCat = category;
+                     Navigator.of(context).pushNamed(SubCategoryListPage.route);
+                    }else {
+                      Global.activeCategory = posts;
+                      Global.selectedCategoryId = catId;
+                      print("<<<<<");
+                      print(Global.selectedCategoryId);
+                      Navigator.of(context).pushNamed('categorynews');
+                    }
+                  },
+                  child: Container(
+                      color: staticBlack,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 8, bottom: 8, left: 13, right: 13),
+                        child: Text(
+                          'SEE ALL' ?? "",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: MediaQuery.of(context).size.width * 0.03,
+                          ),
                         ),
-                      ),
-                    ))),
-            SizedBox(
-              width: 3,
-            ),
-          ],
+                      ))),
+              SizedBox(
+                width: 4,
+              ),
+            ],
+          ),
         ),
         //Divider(color: staticDarkblue,thickness: 3,height: 0,)
-        SizedBox(
-          height: 5,
-        ),
+
       ],
     );
   }
