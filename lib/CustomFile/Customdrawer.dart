@@ -49,13 +49,15 @@ class CustomDrawer extends StatelessWidget {
                 color: Color(0xff222222),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 3, horizontal: 10),
+                      vertical: 2, horizontal: 10),
                   child: Row(
                     children: [
+                      SizedBox(width: 20,),
                       Row(
                         children: [
-                          Image.asset('assets/images/logo.png',
-                              height: 50, width: 60),
+                          Image.asset("assets/images/logo.png", height: 51,
+                          ),
+                          SizedBox(width: 20,),
                           Text(
                             "The Press Of India",
                             style: TextStyle(color: Colors.white),

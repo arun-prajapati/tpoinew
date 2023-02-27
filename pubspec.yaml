@@ -43,16 +43,9 @@ dependencies:
   firebase_messaging: ^14.2.1
   firebase_core: ^2.4.1
   url_launcher: ^6.0.9
-
-
-
-
   flutter_svg: ^2.0.0+1
   auto_animated: ^3.0.1
-
   screenshot: ^1.2.3
-
-
   visibility_detector: ^0.2.2
   icons_plus: ^4.0.0
 
@@ -61,16 +54,33 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.0
+  flutter_launcher_icons: ^0.12.0
+  flutter_native_splash: ^2.2.18
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/appicon.png"
+  image_path: "assets/icon/icon.png"
   remove_alpha_ios: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo-development.png
+  branding: assets/branding-development.png
+  color_dark: "#121212"
+  image_dark: assets/logo-development.png
+  branding_dark: assets/branding-development.png
+
+  android_12:
+    image: assets/logo-development.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/logo-development.png
+    icon_background_color_dark: "#121212"
+
+  web: false
 
 # The following section is specific to Flutter.
 flutter:

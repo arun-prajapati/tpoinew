@@ -151,14 +151,14 @@ class _CategoryContentState extends State<CategoryContent> {
           height: 5,
         ),
         Container(height: 50, width: MediaQuery.of(context).size.width, child: Image.asset('assets/images/headerad.jpg')),*/
-     if(Global.advertisementCustomList!=null)   Html(
+    /* if(Global.advertisementCustomList!=null)   Html(
             onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, element) async {
               await launchUrlString(url!);
             },
             data: Global.advertisementCustomList),
         SizedBox(
           height: 5,
-        ),
+        ),*/
       ],
     );
 
