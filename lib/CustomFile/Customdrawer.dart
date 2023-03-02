@@ -114,28 +114,28 @@ class CustomDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: Image.asset("assets/images/facebook.png",height: 20,),
+                leading:Icon(FontAwesome.square_facebook,color: Color(0xff3b5998)),
                 title: Text("Facebook",style: TextStyle(color: Color(0xff3b5998)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.facebook.com/thepressofindia/"));
                 },
               ),
               ListTile(
-                leading: Image.asset("assets/images/youtube.png",width  : 24,),
+                leading: Icon(FontAwesome.youtube,color: Colors.red,),
                 title: Text("Youtube",style: TextStyle(color: Colors.red),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.youtube.com/channel/UCGtMZRCb2Mf86kZPcbBaFPA"));
                 },
               ),
               ListTile(
-                leading: Icon(FontAwesome.instagram,color:Color(0xff962fbf),weight: 20,),
+                leading: Icon(FontAwesome.instagram,color:Color(0xff962fbf),),
                 title: Text("Instagram",style: TextStyle(color: Color(0xff962fbf)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://www.instagram.com/thepressofindia/"));
                 },
               ),
               ListTile(
-                leading: Image.asset("assets/images/twitter.png",height: 20,),
+                leading: Icon(FontAwesome.twitter,color:Color(0xff00ACEE),),
                 title: Text("Twitter",style: TextStyle(color: Color(0xff00ACEE)),),
                 onTap: () {
                   launchUrl(Uri.parse("https://twitter.com/thepressofindia"));

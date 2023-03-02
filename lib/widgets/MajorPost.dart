@@ -682,7 +682,7 @@ class HeaderTitle extends StatelessWidget {
                   title ?? "",
                   style: TextStyle(
                     color: Color(0xff707070),
-                    fontSize: 15, /*fontWeight: FontWeight.w400*/
+                    fontSize: 16, /*fontWeight: FontWeight.w400*/
                   ),
                 ),
               ),

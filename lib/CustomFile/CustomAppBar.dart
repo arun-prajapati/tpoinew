@@ -183,7 +183,7 @@ class _CustomAppBarWithHeartState extends State<CustomAppBarWithHeart> {
                   Global.bookMarkPosts.contains(Global.activePost)
                       ? Icons.favorite
                       : Icons.favorite_border,
-                  color: staticWhite,
+                  color: Colors.transparent,
                 )),
             SizedBox(width: 15),
             Opacity(

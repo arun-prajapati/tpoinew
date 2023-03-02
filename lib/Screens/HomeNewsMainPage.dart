@@ -369,8 +369,13 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                             width: Width(MediaQuery.of(context).size.width-16),
                                             textAlign: TextAlign.center,
                                             display: Display.block,
-                                            padding: EdgeInsets.only(bottom: 10)
+                                            padding: EdgeInsets.only(bottom: 10,top: 10),
+
+                                          ),
+                                          "a":Style(
+                                            color: Color(0xffD41912)
                                           )
+
                                         },
                                       ),
                                     ],
