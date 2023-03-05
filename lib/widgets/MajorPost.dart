@@ -78,7 +78,7 @@ class MinorPost extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         image:posts!.featuredMedia!.medium != null ?  DecorationImage(
-                          image:NetworkImage(posts!.featuredMedia!.medium!) ,
+                          image:CachedNetworkImageProvider(posts!.featuredMedia!.medium!,errorListener: () =>AssetImage('assets/images/logo.png') ,) ,
                           fit: BoxFit.cover,
                         ): DecorationImage(
                         image:AssetImage('assets/images/logo.png'),

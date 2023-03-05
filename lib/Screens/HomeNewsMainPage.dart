@@ -335,9 +335,9 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   ),
                                 ),
                                 Divider(
-                                  color: Colors.black,
-                                  height: 0.5,
-                                  thickness: 0.3,
+                                  color: Colors.grey.shade300,
+                                  height: 1,
+                                  thickness: 1,
                                   indent: 8,
                                   endIndent: 8,
                                 ),
@@ -345,6 +345,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
 
                                 Container(
                                   width: MediaQuery.of(context).size.width,
+                                  //color: Colors.red,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -369,7 +370,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                             width: Width(MediaQuery.of(context).size.width-16),
                                             textAlign: TextAlign.center,
                                             display: Display.block,
-                                            padding: EdgeInsets.only(bottom: 10,top: 10),
+                                            padding: EdgeInsets.only(bottom: 10,top: 0),
 
                                           ),
                                           "a":Style(

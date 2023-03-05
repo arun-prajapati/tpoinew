@@ -52,10 +52,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-
                       clickonmenuicon!();
-
-
                   },
                   child: Icon(
                     Icons.menu,

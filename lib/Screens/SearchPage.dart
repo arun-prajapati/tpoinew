@@ -8,6 +8,8 @@ import 'package:morbimirror/Global/Global.dart';
 import 'package:morbimirror/Models/Posts.dart';
 import 'package:morbimirror/Screens/Searched_Data.dart';
 
+import '../widgets/MajorPost.dart';
+
 class searching extends StatefulWidget {
   @override
   _searchingState createState() => _searchingState();
@@ -16,8 +18,8 @@ class searching extends StatefulWidget {
 class _searchingState extends State<searching> {
   final TextEditingController _controller = new TextEditingController();
 
-  final String apiUrl = "${BaseURL}wp-json/wp/v2/";
-  final String searchurl ="${BaseURL}wp-json/wp/v2/posts?search=";
+
+  final String searchurl ="https://thepressofindia.com/wp-json/wp/v2/search_posts/?page=1&search=";
   Posts? post;
 
   bool isLoaded = false;
@@ -25,20 +27,11 @@ class _searchingState extends State<searching> {
 
   List<Posts> searchResults = [];
 
- getPosts() async {
-    var res = await http.get(Uri.parse(Uri.encodeFull(apiUrl + "posts?_embed")), headers: {"Accept": "application/json"});
-    // fill our posts list with results and update state
-    setState(() {
-      var resBody = json.decode(res.body);
-      post = Posts.fromJson(resBody);
-      isLoaded = true;
-    });
-    return "Success!";
-  }
 
 
   void searchposts()async{
 
+    print("Searching");
     if (_controller.text.isNotEmpty) {
       setState(() {
         isSearched = true;
@@ -47,10 +40,11 @@ class _searchingState extends State<searching> {
       var res = await http.get(Uri.parse(Uri.encodeFull(searchurl + _controller.text.trim())), headers: {"Accept": "application/json"});
       // fill our posts list with results and update state
 
+      print(res.body);
       setState(() {
         var resBody = json.decode(res.body);
 
-        resBody.forEach((element){
+        resBody['posts'].forEach((element){
           searchResults.add(Posts.fromJson(element));
         });
 
@@ -66,146 +60,168 @@ class _searchingState extends State<searching> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 0, right: 0, top: 10, bottom: 10),
-                child: Container(
-                  child: TextField(onSubmitted: (value){
-                    searchposts();
-                  },
-                    controller: _controller,
-                    decoration: new InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                      filled: true,
-                      fillColor: staticWhite,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: staticWhite),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      border: new OutlineInputBorder(
-                          borderSide: new BorderSide(color: staticBlack)),
-                      hintText: 'Search Here',
+      body: Column(
+        children: [
+          Container(
+            color: Color(0xff222222),
+            child: SafeArea(
+              child: Row(
+                children: [
 
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.arrow_back,color: Colors.white,),
                     ),
                   ),
-                ),
-              ),
-            ),
-           /* GestureDetector(
-              child: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8
+                      ),
+                      child: Container(
+                        child: TextField(
+                          onSubmitted: (value){
+                            searchposts();
+                          },
+                          controller: _controller,
+                          decoration: new InputDecoration(
+                            contentPadding: EdgeInsets.all(10),
+                            filled: true,
+                            fillColor: staticWhite,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: staticWhite),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
 
-              onTap: (){
-                print("searchposts");
-                searchposts();
-              }
-            ),*/
-          ],
-        ),
-        backgroundColor: staticBlue,
-      ),
-      body: Container(
-        child: isLoaded?
-        Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, top: 20, bottom: 20),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    "Search Results",
-                    style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold),
+                            border: new OutlineInputBorder(
+                                borderSide: new BorderSide(color: staticBlack)),
+                            hintText: 'Search Here',
+
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: (){
+                      searchposts();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.search,color: Colors.white,),
+                    ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: searchResults.length > 0
-                  ? ListView.builder(
-                  itemCount: searchResults.length,
-                  itemBuilder:
-                      (BuildContext context, int index) {
+          ),
+          Expanded(
+            child: Container(
+              child: isLoaded?
+              Column(
+                children: <Widget>[
+             /*     Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, top: 20, bottom: 20),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          "Search Results",
+                          style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),*/
+                  Expanded(
+                    child: searchResults.length > 0
+                        ? ListView.builder(
+                      padding: EdgeInsets.zero,
+                        itemCount: searchResults.length,
+                        itemBuilder:
+                            (BuildContext context, int index) {
 
-                        return GestureDetector(onTap: (){
+                          return MinorPost(searchResults[index]);
 
-                          Global.activePost = searchResults[index];
-                          print(Global.activePost!.iD!);
+                            /*  return GestureDetector(onTap: (){
 
-                          Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) =>
-                                      Datasearched(
-                                          searchResults[
-                                          index]
-                                              .iD)));
-                        },
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(8.0,8,8,0),
-                            child: Card(
-                              child: Row(
-                                children: <Widget>[
-                                  Column(
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Center(
-                                              child:Container(
-                                                height: MediaQuery.of(context).size.width*0.25,
-                                                width: MediaQuery.of(context).size.width*0.35,
-                                                decoration: BoxDecoration(borderRadius: BorderRadius.only(
-                                                  topRight: Radius.circular(0.0),
-                                                  /*bottomRight: Radius.circular(50.0)*/),
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(searchResults[index].featuredMedia!.medium!),
-                                                    fit: BoxFit.fill,
-                                                  ),
+                                Global.activePost = searchResults[index];
+                                print(Global.activePost!.iD!);
 
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            Datasearched(
+                                                searchResults[
+                                                index]
+                                                    .iD)));
+                              },
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(8.0,8,8,0),
+                                  child: Card(
+                                    child: Row(
+                                      children: <Widget>[
+                                        Column(
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Center(
+                                                    child:Container(
+                                                      height: MediaQuery.of(context).size.width*0.25,
+                                                      width: MediaQuery.of(context).size.width*0.35,
+                                                      decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                                                        topRight: Radius.circular(0.0),
+                                                        *//*bottomRight: Radius.circular(50.0)*//*),
+                                                        image: DecorationImage(
+                                                          image: NetworkImage(searchResults[index].featuredMedia!.medium!),
+                                                          fit: BoxFit.fill,
+                                                        ),
+
+                                                      ),
+                                                    )
                                                 ),
-                                              )
-                                          ),
-                                          SizedBox(width: 10,),
-                                          Container(width: 200,
-                                              child: Column(
-                                                children: [
-                                                  Text(searchResults[index].postTitle!),
-                                                  SizedBox(height: 10,),
-                                                  Row(
-                                                    children: [
-                                                      Text(searchResults[index].postDate!,),
+                                                SizedBox(width: 10,),
+                                                Container(width: 200,
+                                                    child: Column(
+                                                      children: [
+                                                        Text(searchResults[index].postTitle!),
+                                                        SizedBox(height: 10,),
+                                                        Row(
+                                                          children: [
+                                                            Text(searchResults[index].postDate!,),
 
-                                                    ],
-                                                  ),
-                                                ],
-                                              ))
-                                        ],
-                                      ),
-                                    ],
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ))
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+
+                                      ],
+                                    ),
                                   ),
-
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                  })
-                  : Center(child: Text("No News found")),
-            )
-          ],
-        )
-            : Center(
-          child: isSearched
-              ? CircularProgressIndicator()
-              : Container(),
-        )
+                                ),
+                              );*/
+                        })
+                        : Center(child: Text("No News found")),
+                  )
+                ],
+              )
+                  : Center(
+                child: isSearched
+                    ? CircularProgressIndicator()
+                    : Container(),
+              )
+            ),
+          ),
+        ],
       ),
     );
   }

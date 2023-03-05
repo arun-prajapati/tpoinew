@@ -139,7 +139,7 @@ class _SubCategoryListPageState extends State<SubCategoryListPage> {
                   children: [
                     CategoryContent(posts: Global.selectedCat!.posts!.sublist(0,Global.selectedCat!.posts!.length>3?4:Global.selectedCat!.posts!.length)),
                     SizedBox(
-                      height: 10,
+                      height: 3,
                     ),
                     ListView.builder(
                         physics: NeverScrollableScrollPhysics(),

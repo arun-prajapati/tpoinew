@@ -76,7 +76,7 @@ class _TestingNewState extends State<TestingNew> {
             if(posts!=null && posts!.isNotEmpty)
            CategoryContent(posts: posts),
             SizedBox(
-              height: 5,
+              height: 3,
             ),
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
