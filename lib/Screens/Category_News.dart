@@ -73,6 +73,7 @@ class _CategoryNewsState extends State<CategoryNews> {
           ),
           Expanded(child: NotificationListener<ScrollEndNotification>(
               onNotification: (notification) {
+                print("scrolling");
 
                 getPost();
 
@@ -213,8 +214,7 @@ class _CategoryNewsState extends State<CategoryNews> {
                 ),
                 ListView.builder(shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-
-    itemCount: myPostsList.length ,
+                  itemCount: myPostsList.length ,
                     itemBuilder: (context,index){
                   return MinorPost(myPostsList[index]);
                 }),

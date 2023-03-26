@@ -143,10 +143,15 @@ class MajorPost extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Colors.transparent, Colors.black])),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        //stops: [ 0.5, 0.7, 0.9],
+                        colors: [
+                          Colors.transparent,
+
+                          Colors.black54
+                        ],)),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 5, 15, 10),
                       child: Column(

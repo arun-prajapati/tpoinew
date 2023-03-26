@@ -352,6 +352,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       new Html(
+
                                         onLinkTap: (String? url,
                                             RenderContext context,
                                             Map<String, String> attributes,
@@ -375,6 +376,13 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                           ),
                                           "a":Style(
                                             color: Color(0xffD41912)
+                                          ),
+                                          "h3":Style(
+                                            color: Color(0xff111111),
+                                            fontSize: FontSize.xLarge,
+                                            padding: EdgeInsets.symmetric(horizontal: 25),
+                                            textAlign: TextAlign.left,
+                                            fontWeight: FontWeight.w100
                                           )
 
                                         },

@@ -57,6 +57,7 @@ class CustomAppBar extends StatelessWidget {
                   child: Icon(
                     Icons.menu,
                     color: staticWhite,
+                    size: 30,
                   )),
               Icon(
                 Icons.menu,
@@ -111,10 +112,11 @@ class CustomAppBar extends StatelessWidget {
                     child: Icon(
                   Icons.search,
                   color: staticWhite,
+                      size: 30,
                 )),
               ),
               SizedBox(
-                width: 20,
+                width: 20 ,
               ),
             ],
           ),

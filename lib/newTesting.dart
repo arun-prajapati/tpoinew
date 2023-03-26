@@ -86,9 +86,9 @@ class _TestingNewState extends State<TestingNew> {
                   print(index);
                   print(jsonEncode( Global.mainCategory![index]));
 
-                  return Global.mainCategory![index].category!.length > 2
+                  return Global.mainCategory![index].category!.length >2 || Global.mainCategory![index].posts!.length > 2
                       ? PostForCategory(
-                    postsList: Global.mainCategory![index].posts,
+                    postsList: Global.mainCategory![index].posts ,
                     category: Global.mainCategory![index],
                     categoryTitle: Global.mainCategory![index].parentCatName,
                     catId: Global.mainCategory![index].parentCatId.toString(),

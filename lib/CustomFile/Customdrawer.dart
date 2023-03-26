@@ -52,12 +52,12 @@ class CustomDrawer extends StatelessWidget {
                       vertical: 2, horizontal: 10),
                   child: Row(
                     children: [
-                      SizedBox(width: 20,),
+                      SizedBox(width: 5,),
                       Row(
                         children: [
                           Image.asset("assets/images/logo.png", height: 51,
                           ),
-                          SizedBox(width: 20,),
+                          SizedBox(width: 18,),
                           Text(
                             "The Press Of India",
                             style: TextStyle(color: Colors.white),
