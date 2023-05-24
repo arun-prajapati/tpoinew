@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:morbimirror/Global/Global.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -101,6 +102,8 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 title: Text("Contact Us"),
                 onTap: () {
+                  Global.activePage = Global.faqPage;
+                  Navigator.of(context).pushNamed('staticPage');
                   //  Global.activePage = Global.faqPage;
                   //   Navigator.of(context).pushNamed('staticPage');
                 },
@@ -141,7 +144,14 @@ class CustomDrawer extends StatelessWidget {
                   launchUrl(Uri.parse("https://twitter.com/thepressofindia"));
                 },
               ),
+              ListTile(
+                leading: Icon(FontAwesome.share_nodes,color:Colors.green),
+                title: Text("Share App",style: TextStyle(color:Colors.green),),
+                onTap: () {
+                  Share.share("The Press Of India\nIndia’s No.1 Web News Network\nWe Provide Latest Breaking News Of India & World\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
 
+                },
+              ),
             ],
           ),
         ),

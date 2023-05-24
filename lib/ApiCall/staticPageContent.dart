@@ -28,12 +28,15 @@ await  http.get(Uri.parse('$aboutUs'),
 }
 
 
-getFaq() async {
+Future getFaq() async {
   await http.get(Uri.parse('$faq'),
   ).then((res){
     print(res.body);
     var Storedataoflist = jsonDecode(res.body);
     print(Storedataoflist);
     Global.faqPage =PageData.fromJson(Storedataoflist);
+
+    print("FAQ ${res.body}");
+
   });
 }

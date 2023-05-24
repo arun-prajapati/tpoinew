@@ -450,6 +450,7 @@ class PostForCategory extends StatelessWidget {
                             HorizontalListofPost(
                               postsList: postsList!,
                               id: catId,
+                              catId: catId,
 
                             ),
                           ],
@@ -469,17 +470,15 @@ class PostForCategory extends StatelessWidget {
 class HorizontalListofPost extends StatelessWidget {
   List<Posts>? postsList;
   String? id;
+  String? catId;
 
-  HorizontalListofPost({this.postsList,this.id});
+  HorizontalListofPost({this.postsList,this.id,this.catId});
 
   final options = LiveOptions(
     // Start animation after (default zero)
     delay: Duration(seconds: 1),
-
     showItemInterval: Duration(milliseconds: 100),
-
     showItemDuration: Duration(milliseconds: 80),
-
     visibleFraction: 0.03,
     reAnimateOnVisibility: true,
   );
@@ -504,6 +503,7 @@ class HorizontalListofPost extends StatelessWidget {
           child: MinorPostType2(
             posts: postsList![index + 1],
             id: id!,
+            catId: catId,
           ),
         ),
       );
@@ -583,13 +583,15 @@ class MajorPostType2 extends StatelessWidget {
 class MinorPostType2 extends StatelessWidget {
   Posts? posts;
   String? id;
+  String? catId;
 
-  MinorPostType2({this.posts,this.id});
+  MinorPostType2({this.posts,this.id,this.catId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Global.idFor10Posts=catId;
         Global.activePost = posts;
         Global.selectedCategoryId=id??"1";
         print(Global.selectedCategoryId);
@@ -705,6 +707,7 @@ print(jsonEncode(category));
                       print("<<<<<");
                       print(Global.selectedCategoryId);
                       Navigator.of(context).pushNamed('categorynews');
+                      Global.idFor10Posts=catId;
                     }
                   },
                   child: Container(

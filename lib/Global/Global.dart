@@ -30,6 +30,7 @@ class Global{
   static List<Posts>? activeCategory;
   static List<AllData?>? allData = [];
   static String? selectedCategoryId;
+  static String? idFor10Posts;
   static PageData? privacyPolicPage;
   static PageData? faqPage;
   static PageData? aboutUsPage;

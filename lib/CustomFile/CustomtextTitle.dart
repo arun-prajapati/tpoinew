@@ -12,10 +12,10 @@ class customtext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.9,
         child: Text(
           title!,
-          textAlign: TextAlign.justify,
+          textAlign: TextAlign.left,
           style: TextStyle(color: titleclr, fontSize: 16),
         ));
   }

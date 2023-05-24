@@ -86,7 +86,7 @@ class _TestingNewState extends State<TestingNew> {
                   print(index);
                   print(jsonEncode( Global.mainCategory![index]));
 
-                  return Global.mainCategory![index].category!.length >2 || Global.mainCategory![index].posts!.length > 2
+                  return Global.mainCategory![index].category!.isNotEmpty || Global.mainCategory![index].posts!.isNotEmpty
                       ? PostForCategory(
                     postsList: Global.mainCategory![index].posts ,
                     category: Global.mainCategory![index],
@@ -94,7 +94,7 @@ class _TestingNewState extends State<TestingNew> {
                     catId: Global.mainCategory![index].parentCatId.toString(),
 
                   )
-                      : SizedBox();
+                      : SizedBox(); /* Text("${Global.mainCategory![index].parentCatId } ${Global.mainCategory![index].posts!.length}");*/
                 }),
           ],
         ),

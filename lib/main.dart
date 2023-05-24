@@ -41,7 +41,7 @@ class MyHttpOverrides extends HttpOverrides{
    HttpOverrides.global = new MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
 
-   await Future.wait([DatabaseHelper.getAllCat(),readBookMark(),getPrivacyPage(),getAboutUs(),getCategories(),getAddData()]);
+   await Future.wait([DatabaseHelper.getAllCat(),readBookMark(),getPrivacyPage(),getAboutUs(),getCategories(),getAddData(),getFaq()]);
 /*  await readBookMark();
   await getPrivacyPage();
   await getAboutUs();

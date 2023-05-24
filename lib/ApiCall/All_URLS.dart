@@ -14,6 +14,8 @@ const String privacyPolicy = "${BaseURL}wp-json/wp/v2/pages/3";
 const String aboutUs = "${BaseURL}wp-json/wp/v2/pages/17313";
 const String faq = "${BaseURL}wp-json/wp/v2/pages/17315";
 
+
+
 class DatabaseHelper {
   static Future getAllCat() async {
     print('Getting Data');

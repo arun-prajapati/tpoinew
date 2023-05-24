@@ -34,16 +34,16 @@ class Newsmainpage extends StatefulWidget {
 class _NewsmainpageState extends State<Newsmainpage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ScreenshotController screenshotController = ScreenshotController();
-  Uint8List? _imageFile;
-  List<Posts>? postsList;
+
+
   String urlLink = "https://thepressofindia.com/wp-json/wp/v2/posts";
-  List<List<Posts>> myPostsList = [];
-  List<Category> myCategories = [];
-  List<Posts> myPosts = [];
+
+
+
 
   List<Posts>? posts;
 
-  String? catId;
+
 
   bool isLoading = true;
 
@@ -70,11 +70,11 @@ class _NewsmainpageState extends State<Newsmainpage> {
   getPost() async {
     List<Posts> myPostsListAdd = [];
     print(
-        "|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.selectedCategoryId}");
+        "|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.idFor10Posts}");
 
     myPostsListAdd = await getPosts(
         url:
-            "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.selectedCategoryId??1}");
+            "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.idFor10Posts}");
 
 
     if (myPostsListAdd != null) {
@@ -140,7 +140,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.transparent,
                 expandedHeight: 250.0,
                 floating: false,
                 pinned: false,
@@ -271,7 +271,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -371,7 +371,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                             width: Width(MediaQuery.of(context).size.width-16),
                                             textAlign: TextAlign.center,
                                             display: Display.block,
-                                            padding: EdgeInsets.only(bottom: 10,top: 0),
+                                            padding: EdgeInsets.only(bottom: 10,top: 10),
 
                                           ),
                                           "a":Style(
@@ -435,6 +435,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                     },
                                     child: MinorPostType2(
                                       posts: myPostsList1[index],
+                                      catId: Global.idFor10Posts,
+                                      id: Global.idFor10Posts,
                                     ),
                                   );
                                 }),
