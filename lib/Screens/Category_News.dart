@@ -104,7 +104,7 @@ class _CategoryNewsState extends State<CategoryNews> {
                       height: 250.0,
                     ),
                     itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-    MajorPost(posts: myPostsList[itemIndex]),
+    MajorPost(posts: myPostsList[itemIndex],catID: int.parse(Global.selectedCategoryId!)),
                     itemCount: myPostsList.length !=null ?(myPostsList.length > 4 ? 4 : myPostsList.length):myPostsList.length,
                  /*   items: myPostsList.sublist(0,4).map((i) {
                       return Builder(

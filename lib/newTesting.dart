@@ -74,7 +74,7 @@ class _TestingNewState extends State<TestingNew> {
         child: Column(
           children: [
             if(posts!=null && posts!.isNotEmpty)
-           CategoryContent(posts: posts),
+           CategoryContent(posts: posts,catID:Global.mainCategory![0].parentCatId ),
             SizedBox(
               height: 3,
             ),

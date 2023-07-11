@@ -35,7 +35,7 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 
- main() async {
+ void main() async {
 
   getAdvertisement();
    HttpOverrides.global = new MyHttpOverrides();

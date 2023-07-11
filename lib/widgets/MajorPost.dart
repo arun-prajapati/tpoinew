@@ -110,13 +110,15 @@ class MinorPost extends StatelessWidget {
 //After See All click -- Single container
 class MajorPost extends StatelessWidget {
   Posts? posts;
+  int? catID;
   //List<Posts> posts;
-  MajorPost({this.posts});
+  MajorPost({this.posts,this.catID});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Global.idFor10Posts = catID.toString();
         Global.activePost = posts;
         Navigator.of(context).pushNamed('Homenewspagemain');
       },

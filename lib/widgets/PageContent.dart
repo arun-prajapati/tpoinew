@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:morbimirror/CustomFile/CustomBottomBar.dart';
 import 'package:morbimirror/CustomFile/CustomColorsFile.dart';
 import 'package:morbimirror/CustomFile/CustomTextHeadingOftheBanner.dart';
@@ -14,8 +15,9 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class CategoryContent extends StatefulWidget {
   List<Posts>? posts;
+  int? catID;
 
-  CategoryContent({this.posts});
+  CategoryContent({this.posts,this.catID});
 
   @override
   _CategoryContentState createState() => _CategoryContentState();
@@ -51,6 +53,8 @@ class _CategoryContentState extends State<CategoryContent> {
                 builder: (BuildContext context) {
                   return GestureDetector(
                     onTap: () {
+                      Fluttertoast.showToast(msg: "${widget.catID.toString()}");
+                      Global.idFor10Posts = widget.catID.toString();
                       Global.activePost = i;
                       Navigator.of(context).pushNamed('Homenewspagemain');
                     },
