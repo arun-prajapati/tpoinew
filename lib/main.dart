@@ -6,7 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:morbimirror/ApiCall/All_URLS.dart';
-//import 'package:morbiupdate /Screens/BookMarkPage.dart';
 import 'package:morbimirror/Screens/SearchPage.dart';
 import 'package:morbimirror/Screens/Splash_Screen.dart';
 import 'package:morbimirror/Screens/StaticPageDisplay.dart';
@@ -114,7 +113,6 @@ class MyApp extends StatelessWidget {
       ),
       home:homepage(),
       routes: {
-
         'home':(context)=>homepage(),
         'categorynews':(context)=>CategoryNews(),
         'Homenewspagemain':(context)=>Newsmainpage(),

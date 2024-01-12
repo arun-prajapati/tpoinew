@@ -37,11 +37,7 @@ class MinorPost extends StatelessWidget {
                         width: 230,
                         child: Column(
                           children: [
-
-                            Text(posts!.postTitle!,
-                                style: TextStyle(
-                                    color: Color(0xff707070),
-                                    fontWeight: FontWeight.normal)),
+                            Text(posts!.postTitle!, style: TextStyle(color: Color(0xff707070), fontWeight: FontWeight.normal)),
                             SizedBox(
                               height: 10,
                             ),
@@ -52,10 +48,7 @@ class MinorPost extends StatelessWidget {
                                 Container(
                                   height: 20,
                                   width: 6,
-                                  decoration: BoxDecoration(
-                                      color: Color(0xffD41912),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(2))),
+                                  decoration: BoxDecoration(color: Color(0xffD41912), borderRadius: BorderRadius.all(Radius.circular(2))),
                                 ),
                               ],
                             ),
@@ -77,13 +70,15 @@ class MinorPost extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.34,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                        image:posts!.featuredMedia!.medium != null ?  DecorationImage(
-                          image:CachedNetworkImageProvider(posts!.featuredMedia!.medium!,errorListener: () =>AssetImage('assets/images/logo.png') ,) ,
-                          fit: BoxFit.cover,
-                        ): DecorationImage(
-                        image:AssetImage('assets/images/logo.png'),
-        fit: BoxFit.cover,
-      ),
+                        image: posts!.featuredMedia!.medium != null
+                            ? DecorationImage(
+                                image: CachedNetworkImageProvider(
+                                  posts!.featuredMedia!.medium!,
+                                  // errorListener: () => AssetImage('assets/images/logo.png'),
+                                ),
+                                fit: BoxFit.cover,
+                              )
+                            : DecorationImage(image: AssetImage('assets/images/logo.png'), fit: BoxFit.cover),
                       ),
                     )),
                   ],
@@ -92,7 +87,7 @@ class MinorPost extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width-18,
+                  width: MediaQuery.of(context).size.width - 18,
                   margin: new EdgeInsetsDirectional.only(start: 1.0, end: 1.0),
                   height: 0.2,
                   color: Color(0xff707070),
@@ -111,8 +106,9 @@ class MinorPost extends StatelessWidget {
 class MajorPost extends StatelessWidget {
   Posts? posts;
   int? catID;
+
   //List<Posts> posts;
-  MajorPost({this.posts,this.catID});
+  MajorPost({this.posts, this.catID});
 
   @override
   Widget build(BuildContext context) {
@@ -145,15 +141,12 @@ class MajorPost extends StatelessWidget {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        //stops: [ 0.5, 0.7, 0.9],
-                        colors: [
-                          Colors.transparent,
-
-                          Colors.black54
-                        ],)),
+                        gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      //stops: [ 0.5, 0.7, 0.9],
+                      colors: [Colors.transparent, Colors.black54],
+                    )),
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(10, 5, 15, 10),
                       child: Column(
@@ -166,10 +159,7 @@ class MajorPost extends StatelessWidget {
                           Container(
                             height: 20,
                             width: 5,
-                            decoration: BoxDecoration(
-                                color: Color(0xffD41912),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(2))),
+                            decoration: BoxDecoration(color: Color(0xffD41912), borderRadius: BorderRadius.all(Radius.circular(2))),
                           ),
 
                           /*   Customtextheader(title: "Morbi",
@@ -423,14 +413,10 @@ class PostForCategory extends StatelessWidget {
   String? categoryTitle;
   String? catId;
 
-
-  PostForCategory({this.postsList, this.categoryTitle, this.catId,this.category});
+  PostForCategory({this.postsList, this.categoryTitle, this.catId, this.category});
 
   @override
   Widget build(BuildContext context) {
-
-
-
     //postsList.sort((a, z) => a.toString().compareTo(z.toString()));
     return postsList!.isEmpty
         ? SizedBox()
@@ -453,7 +439,6 @@ class PostForCategory extends StatelessWidget {
                               postsList: postsList!,
                               id: catId,
                               catId: catId,
-
                             ),
                           ],
                         ))
@@ -474,7 +459,7 @@ class HorizontalListofPost extends StatelessWidget {
   String? id;
   String? catId;
 
-  HorizontalListofPost({this.postsList,this.id,this.catId});
+  HorizontalListofPost({this.postsList, this.id, this.catId});
 
   final options = LiveOptions(
     // Start animation after (default zero)
@@ -587,20 +572,18 @@ class MinorPostType2 extends StatelessWidget {
   String? id;
   String? catId;
 
-  MinorPostType2({this.posts,this.id,this.catId});
+  MinorPostType2({this.posts, this.id, this.catId});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Global.idFor10Posts=catId;
+        Global.idFor10Posts = catId;
         Global.activePost = posts;
-        Global.selectedCategoryId=id??"1";
+        Global.selectedCategoryId = id ?? "1";
         print(Global.selectedCategoryId);
         print("ssssss");
-        Navigator.of(context)
-            .pushNamed('Homenewspagemain');
-
+        Navigator.of(context).pushNamed('Homenewspagemain');
       },
       child: Column(
         children: [
@@ -621,13 +604,15 @@ class MinorPostType2 extends StatelessWidget {
                       decoration: new BoxDecoration(
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(3),
-                          image:posts!.featuredMedia!.medium==null? new DecorationImage(
-                            image:AssetImage('assets/images/logo.png'),
-                            fit: BoxFit.contain,
-                          ): new DecorationImage(
-                            image:CachedNetworkImageProvider(posts!.featuredMedia!.medium!),
-                            fit: BoxFit.cover,
-                          ))),
+                          image: posts!.featuredMedia!.medium == null
+                              ? new DecorationImage(
+                                  image: AssetImage('assets/images/logo.png'),
+                                  fit: BoxFit.contain,
+                                )
+                              : new DecorationImage(
+                                  image: CachedNetworkImageProvider(posts!.featuredMedia!.medium!),
+                                  fit: BoxFit.cover,
+                                ))),
                   SizedBox(
                     height: 5,
                   ),
@@ -648,7 +633,6 @@ class MinorPostType2 extends StatelessWidget {
                               fontSize: 14,
                               height: 1.3,
                               color: Color(0xff696969),
-
                             ),
                           )),
                         ],
@@ -672,7 +656,7 @@ class HeaderTitle extends StatelessWidget {
 
   String? catId;
 
-  HeaderTitle({this.title, this.posts, this.catId,this.category});
+  HeaderTitle({this.title, this.posts, this.catId, this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -680,7 +664,6 @@ class HeaderTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 5.0),
           child: Row(
@@ -697,26 +680,24 @@ class HeaderTitle extends StatelessWidget {
               ),
               Spacer(),
               GestureDetector(
-
                   onTap: () {
-print(jsonEncode(category));
-                   if(category!=null && category!.category!=null && category!.category!.isNotEmpty){
+                    print(jsonEncode(category));
+                    if (category != null && category!.category != null && category!.category!.isNotEmpty) {
                       Global.selectedCat = category;
-                     Navigator.of(context).pushNamed(SubCategoryListPage.route);
-                    }else {
+                      Navigator.of(context).pushNamed(SubCategoryListPage.route);
+                    } else {
                       Global.activeCategory = posts;
                       Global.selectedCategoryId = catId;
                       print("<<<<<");
                       print(Global.selectedCategoryId);
                       Navigator.of(context).pushNamed('categorynews');
-                      Global.idFor10Posts=catId;
+                      Global.idFor10Posts = catId;
                     }
                   },
                   child: Container(
                       color: staticBlack,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, bottom: 8, left: 13, right: 13),
+                        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 13, right: 13),
                         child: Text(
                           'SEE ALL' ?? "",
                           style: TextStyle(
@@ -732,7 +713,6 @@ print(jsonEncode(category));
           ),
         ),
         //Divider(color: staticDarkblue,thickness: 3,height: 0,)
-
       ],
     );
   }

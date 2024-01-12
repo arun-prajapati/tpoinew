@@ -8,16 +8,13 @@ import 'package:morbimirror/Models/advertisment.dart';
 
 import 'All_URLS.dart';
 
-
 Future getAddData() async {
 //calling api
 
-  await http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=header'),
-  ).then((res){
-
+  await http.get(Uri.parse('${BaseURL}wp-json/wp/v2/get_add?position=header')).then((res) {
     print(res.body);
     print("KKKKK");
-String content;
+    String content;
     var advertiseList = jsonDecode(res.body);
 
     print(advertiseList['content']);
@@ -27,7 +24,5 @@ String content;
     //print(advertiseList);
     /*Global.adList = (advertiseList as List).map((data)=>Advertisment.fromJson(data)).toList();
     print(Global.adList.length);*/
-
   });
-
 }

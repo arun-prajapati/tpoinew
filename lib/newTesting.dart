@@ -30,70 +30,53 @@ class TestingNew extends StatefulWidget {
 }
 
 class _TestingNewState extends State<TestingNew> {
-
-  List<Posts>? posts=[];
+  List<Posts>? posts = [];
 
   @override
   void initState() {
-    posts = Global.mainCategory![0].posts!.sublist(0,Global.mainCategory![0].posts!.length<4?Global.mainCategory![0].posts!.length:4);
+    posts = Global.mainCategory![0].posts!.sublist(0, Global.mainCategory![0].posts!.length < 4 ? Global.mainCategory![0].posts!.length : 4);
 
     // TODO: implement initState
     super.initState();
 
 //getAllFeaturedPosts();
-
-
-
-
   }
 
-  getAllFeaturedPosts(){
-
-
+  getAllFeaturedPosts() {
     Global.mainCategory!.forEach((element) {
-      if( element.posts!.isNotEmpty && element.posts!.length>2) {
+      if (element.posts!.isNotEmpty && element.posts!.length > 2) {
         posts!.add(element.posts![0]);
         posts!.add(element.posts![1]);
       }
     });
-    setState(() {
-
-    });
+    setState(() {});
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
     print("------------------------------------");
 
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            if(posts!=null && posts!.isNotEmpty)
-           CategoryContent(posts: posts,catID:Global.mainCategory![0].parentCatId ),
-            SizedBox(
-              height: 3,
-            ),
+            if (posts != null && posts!.isNotEmpty) CategoryContent(posts: posts, catID: Global.mainCategory![0].parentCatId),
+            SizedBox(height: 3),
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: Global.mainCategory!.length,
                 itemBuilder: (context, index) {
                   print(index);
-                  print(jsonEncode( Global.mainCategory![index]));
+                  print(jsonEncode(Global.mainCategory![index]));
 
                   return Global.mainCategory![index].category!.isNotEmpty || Global.mainCategory![index].posts!.isNotEmpty
                       ? PostForCategory(
-                    postsList: Global.mainCategory![index].posts ,
-                    category: Global.mainCategory![index],
-                    categoryTitle: Global.mainCategory![index].parentCatName,
-                    catId: Global.mainCategory![index].parentCatId.toString(),
-
-                  )
+                          postsList: Global.mainCategory![index].posts,
+                          category: Global.mainCategory![index],
+                          categoryTitle: Global.mainCategory![index].parentCatName,
+                          catId: Global.mainCategory![index].parentCatId.toString(),
+                        )
                       : SizedBox(); /* Text("${Global.mainCategory![index].parentCatId } ${Global.mainCategory![index].posts!.length}");*/
                 }),
           ],

@@ -36,7 +36,6 @@ dependencies:
   fluttertoast: ^8.1.2
   intl: ^0.18.0
   cached_network_image: ^3.2.3
-
   flutter_html: ^3.0.0-alpha.6
   shared_preferences: ^2.0.5
   share_plus: ^4.0.10
@@ -45,7 +44,7 @@ dependencies:
   url_launcher: ^6.0.9
   flutter_svg: ^2.0.0+1
   auto_animated: ^3.0.1
-  screenshot: ^1.2.3
+  screenshot: ^2.1.0
   visibility_detector: ^0.2.2
   icons_plus: ^4.0.0
 

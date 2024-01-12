@@ -81,11 +81,12 @@ class _CategoryNewsState extends State<CategoryNews> {
           },child: SingleChildScrollView(
             child: Column(
               children: [
-                Global.advertisementList!=null?Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
-                  await launchUrlString(url!);
-                },
-                    data:Global.advertisementList
-                ):SizedBox(),
+                // Global.advertisementList!=null?Html(onLinkTap: (String? url, RenderContext context, Map<String, String> attributes,  element)async{
+                //   await launchUrlString(url!);
+                // },
+                //     data:Global.advertisementList
+                // ):SizedBox(),
+
                 Stack(children: [
                   CarouselSlider.builder(
                     options: CarouselOptions(autoPlay: true,

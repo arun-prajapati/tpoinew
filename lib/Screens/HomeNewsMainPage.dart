@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_html/style.dart';
+// import 'package:flutter_html/style.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:http/http.dart' as http;
@@ -35,15 +35,9 @@ class _NewsmainpageState extends State<Newsmainpage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   ScreenshotController screenshotController = ScreenshotController();
 
-
   String urlLink = "https://thepressofindia.com/wp-json/wp/v2/posts";
 
-
-
-
   List<Posts>? posts;
-
-
 
   bool isLoading = true;
 
@@ -58,9 +52,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
       //print(res.body);
       var Storedataoflist = jsonDecode(res.body);
       // print(Storedataoflist);
-      Global.CategoryList = (Storedataoflist as List)
-          .map((data) => Category.fromJson(data))
-          .toList();
+      Global.CategoryList = (Storedataoflist as List).map((data) => Category.fromJson(data)).toList();
       print(Global.CategoryList!.length);
       print("///////");
       // print(jsonEncode(Listofdata).toString());
@@ -69,13 +61,9 @@ class _NewsmainpageState extends State<Newsmainpage> {
 
   getPost() async {
     List<Posts> myPostsListAdd = [];
-    print(
-        "|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.idFor10Posts}");
+    print("|||||||||| GETTING POSTS FOR ID |||||||||||   ${Global.idFor10Posts}");
 
-    myPostsListAdd = await getPosts(
-        url:
-            "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.idFor10Posts}");
-
+    myPostsListAdd = await getPosts(url: "https://thepressofindia.com/wp-json/wp/v2/get_cat_posts/?category=${Global.idFor10Posts}");
 
     if (myPostsListAdd != null) {
       myPostsList1 = myPostsList1 + myPostsListAdd;
@@ -110,26 +98,42 @@ class _NewsmainpageState extends State<Newsmainpage> {
           //mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Expanded(
-                child:             Container(color: Color(0xff4267B2),child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(FontAwesome.square_facebook,color: Colors.white,size: 24,),
-                )),
+              child: Container(
+                  color: Color(0xff4267B2),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      FontAwesome.square_facebook,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  )),
             ),
             Expanded(
-              child:             Container(color: Color(0xff1DA1F2),child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(FontAwesome.twitter,color: Colors.white,size: 24,),
-              )),
+              child: Container(
+                  color: Color(0xff1DA1F2),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      FontAwesome.twitter,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  )),
             ),
             Expanded(
-              child:             Container(color: Color(0xff26D367),child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(FontAwesome.whatsapp,color: Colors.white,size: 24,),
-              )),
+              child: Container(
+                  color: Color(0xff26D367),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      FontAwesome.whatsapp,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  )),
             ),
-
 
             //Expanded(child: Image.asset('assets/images/shareT.png'))
           ],
@@ -182,7 +186,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 print(kompresimg);
                                 print(myImgDir);
                                 print(imagePath);
-                                *//*GallerySaver.saveImage(kompresimg.path)
+                                */ /*GallerySaver.saveImage(kompresimg.path)
                                     .then((bool success) {
                                   Fluttertoast.showToast(
                                       msg: "Post Saved in picture folder",
@@ -192,7 +196,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   setState(() {
                                     print("SAVED");
                                   });
-                                });*//*
+                                });*/ /*
 
                                 /// Share Plugin
                                 //await Share.shareFiles([imagePath.path]);
@@ -209,8 +213,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                             setState(() {});*/
                           },
                           onFav: () {
-                            if (Global.bookMarkPosts
-                                .contains(Global.activePost)) {
+                            if (Global.bookMarkPosts.contains(Global.activePost)) {
                               removeBookMark(Global.activePost!);
                             } else {
                               SaveBookMark(Global.activePost!);
@@ -223,8 +226,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                             Navigator.of(context).pop();
                           },
                           clickonsearchicon: () {
-                            Share.share(
-                                "${Global.activePost!.postName}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
+                            Share.share("${Global.activePost!.postName}\n${Global.activePost!.link}\n\nhttps://play.google.com/store/apps/details?id=com.vgotweb.thepressofindia");
                           },
                         ),
                       ),
@@ -234,13 +236,15 @@ class _NewsmainpageState extends State<Newsmainpage> {
                 automaticallyImplyLeading: false,
                 flexibleSpace: FlexibleSpaceBar(
                     centerTitle: true,
-                    background: Global.activePost!.featuredMedia!.medium==null?Image.asset(
-                      'assets/images/logo.png',
-                      fit: BoxFit.cover,
-                    ) :Image.network(
-                      Global.activePost!.featuredMedia!.medium!,
-                      fit: BoxFit.cover,
-                    ))),
+                    background: Global.activePost!.featuredMedia!.medium == null
+                        ? Image.asset(
+                            'assets/images/logo.png',
+                            fit: BoxFit.cover,
+                          )
+                        : Image.network(
+                            Global.activePost!.featuredMedia!.medium!,
+                            fit: BoxFit.cover,
+                          ))),
           ];
         },
         body: SingleChildScrollView(
@@ -257,8 +261,6 @@ class _NewsmainpageState extends State<Newsmainpage> {
                     children: [
                       Column(
                         children: [
-
-
                           SizedBox(
                             height: 5,
                           ),
@@ -279,45 +281,25 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                         height: 5,
                                       ),
                                       Text(
-                                        Global.activePost!.postTitle!
-                                            .replaceAll("&#8211", ""),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 20,
-                                            color: Color(0xff696969),
-                                            fontFamily: 'Montserrat-Black'),
+                                        Global.activePost!.postTitle!.replaceAll("&#8211", ""),
+                                        style: TextStyle(fontWeight: FontWeight.normal, fontSize: 20, color: Color(0xff696969), fontFamily: 'Montserrat-Black'),
                                       ),
                                       SizedBox(
                                         height: 10,
                                       ),
                                       Row(
-
                                         children: [
                                           Text(
                                             "By",
-                                            style:
-                                            TextStyle(
-                                                color: Color(0xffA0A0A0),
-                                                fontWeight: FontWeight.normal,
-                                                fontSize: 10
-                                            ),
+                                            style: TextStyle(color: Color(0xffA0A0A0), fontWeight: FontWeight.normal, fontSize: 10),
                                           ),
                                           Text(
                                             " The Press Of India",
-                                            style:
-                                            TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 10
-                                            ),
+                                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 10),
                                           ),
                                           Text(
                                             " - ${Global.activePost!.postDate!}",
-                                            style: TextStyle(
-                                                color: Color(0xffA0A0A0),
-                                                fontWeight: FontWeight.normal,
-                                            fontSize: 10
-                                            ),
+                                            style: TextStyle(color: Color(0xffA0A0A0), fontWeight: FontWeight.normal, fontSize: 10),
                                           ),
 
                                           /*Text(
@@ -334,59 +316,38 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                     ],
                                   ),
                                 ),
-                                Divider(
-                                  color: Colors.grey.shade300,
-                                  height: 1,
-                                  thickness: 1,
-                                  indent: 8,
-                                  endIndent: 8,
-                                ),
-
-
+                                Divider(color: Colors.grey.shade300, height: 1, thickness: 1, indent: 8, endIndent: 8),
                                 Container(
                                   width: MediaQuery.of(context).size.width,
                                   //color: Colors.red,
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      new Html(
-
-                                        onLinkTap: (String? url,
-                                            RenderContext context,
-                                            Map<String, String> attributes,
-                                            element) async {
-                                          await launchUrlString(url!);
-                                        },
-                                        data: Global
-                                                .activePost!.postContent ??
-                                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                                        style: {
-                                          "p": Style(
-                                              textAlign: TextAlign.left,
-                                              fontSize: FontSize.large),
-                                          "img": Style(
-                                            alignment: Alignment.center,
-                                            width: Width(MediaQuery.of(context).size.width-16),
-                                            textAlign: TextAlign.center,
-                                            display: Display.block,
-                                            padding: EdgeInsets.only(bottom: 10,top: 10),
-
-                                          ),
-                                          "a":Style(
-                                            color: Color(0xffD41912)
-                                          ),
-                                          "h3":Style(
-                                            color: Color(0xff111111),
-                                            fontSize: FontSize.xLarge,
-                                            padding: EdgeInsets.symmetric(horizontal: 25),
-                                            textAlign: TextAlign.left,
-                                            fontWeight: FontWeight.w100
-                                          )
-
-                                        },
-                                      ),
+                                      // new Html(
+                                      //   onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, element) async {
+                                      //     await launchUrlString(url!);
+                                      //   },
+                                      //   data: Global.activePost!.postContent ??
+                                      //       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n \n and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                                      //   style: {
+                                      //     "p": Style(textAlign: TextAlign.left, fontSize: FontSize.large),
+                                      //     "img": Style(
+                                      //       alignment: Alignment.center,
+                                      //       width: Width(MediaQuery.of(context).size.width - 16),
+                                      //       textAlign: TextAlign.center,
+                                      //       display: Display.block,
+                                      //       padding: HtmlPaddings.only(bottom: 10, top: 10),
+                                      //     ),
+                                      //     "a": Style(color: Color(0xffD41912)),
+                                      //     "h3": Style(
+                                      //         color: Color(0xff111111),
+                                      //         fontSize: FontSize.xLarge,
+                                      //         padding: HtmlPaddings.symmetric(horizontal: 25),
+                                      //         textAlign: TextAlign.left,
+                                      //         fontWeight: FontWeight.w100)
+                                      //   },
+                                      // ),
                                     ],
                                   ),
                                 )
@@ -406,8 +367,7 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                   child: Text(
                                     "You Might Also Like",
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 17),
+                                    style: TextStyle(color: Colors.white, fontSize: 17),
                                   ),
                                 ),
                               )),
@@ -421,17 +381,12 @@ class _NewsmainpageState extends State<Newsmainpage> {
                                 scrollDirection: Axis.horizontal,
                                 //physics: NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
-                                itemCount: myPostsList1.length != null
-                                    ? (myPostsList1.length > 10
-                                        ? 10
-                                        : myPostsList1.length)
-                                    : myPostsList1.length,
+                                itemCount: myPostsList1.length != null ? (myPostsList1.length > 10 ? 10 : myPostsList1.length) : myPostsList1.length,
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                     onTap: () {
                                       Global.activeCategory = posts;
-                                      Navigator.of(context)
-                                          .pushNamed('Homenewspagemain');
+                                      Navigator.of(context).pushNamed('Homenewspagemain');
                                     },
                                     child: MinorPostType2(
                                       posts: myPostsList1[index],
@@ -443,11 +398,8 @@ class _NewsmainpageState extends State<Newsmainpage> {
                           ),
                         ],
                       ),
-
-
                     ],
                   ),
-
                 ],
               ),
             ),

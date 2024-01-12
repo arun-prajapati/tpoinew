@@ -17,7 +17,7 @@ class CategoryContent extends StatefulWidget {
   List<Posts>? posts;
   int? catID;
 
-  CategoryContent({this.posts,this.catID});
+  CategoryContent({this.posts, this.catID});
 
   @override
   _CategoryContentState createState() => _CategoryContentState();
@@ -25,6 +25,7 @@ class CategoryContent extends StatefulWidget {
 
 class _CategoryContentState extends State<CategoryContent> {
   int _current = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,58 +62,26 @@ class _CategoryContentState extends State<CategoryContent> {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-
                         image: i.featuredMedia!.medium == null
-                      //  image: 1==1
-                            ? new DecorationImage(
-                                image: AssetImage('assets/images/logo.png'),
-                                fit: BoxFit.contain,
-                              )
-                            : DecorationImage(
-                                fit: BoxFit.cover,
-                                image: CachedNetworkImageProvider(
-                                  i.featuredMedia!.medium!,
-                                )),
+                            ? new DecorationImage(image: AssetImage('assets/images/logo.png'), fit: BoxFit.contain)
+                            : DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(i.featuredMedia!.medium!)),
                       ),
                       child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                              height: MediaQuery.of(context).size.height/8,
+                              height: MediaQuery.of(context).size.height / 8,
                               width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  //stops: [ 0.5, 0.7, 0.9],
-                                  colors: [
-                                    Colors.transparent,
-
-                                    Colors.black54
-                                  ],
-                                ),
-                              ),
+                              decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.transparent, Colors.black54])),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    Container(
-                                      height: 20,
-                                      width: 5,
-                                      decoration: BoxDecoration(color: Color(0xffE60000), borderRadius: BorderRadius.all(Radius.circular(2))),
-                                    ),
-                                    SizedBox(
-                                      height: 9,
-                                    ),
-                                    Text(
-                                      i.postTitle!,
-                                      // overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(color: Colors.white, fontSize: 16),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
+                                    Container(height: 20, width: 5, decoration: BoxDecoration(color: Color(0xffE60000), borderRadius: BorderRadius.all(Radius.circular(2)))),
+                                    SizedBox(height: 9),
+                                    Text(i.postTitle!, style: TextStyle(color: Colors.white, fontSize: 16)),
+                                    // SizedBox(height: 10),
                                     /* Text(
                                         MyDate(i.date),
                                         style: TextStyle(
@@ -128,7 +97,6 @@ class _CategoryContentState extends State<CategoryContent> {
                 },
               );
             }).toList(),
-
           ),
           Positioned(
             top: 0.0,
@@ -152,11 +120,11 @@ class _CategoryContentState extends State<CategoryContent> {
             ),
           ),
         ]),
-       /* SizedBox(
+        /* SizedBox(
           height: 5,
         ),
         Container(height: 50, width: MediaQuery.of(context).size.width, child: Image.asset('assets/images/headerad.jpg')),*/
-    /* if(Global.advertisementCustomList!=null)   Html(
+        /* if(Global.advertisementCustomList!=null)   Html(
             onLinkTap: (String? url, RenderContext context, Map<String, String> attributes, element) async {
               await launchUrlString(url!);
             },
@@ -177,9 +145,11 @@ class _CategoryContentState extends State<CategoryContent> {
 
      // return index==0?MajorPost(posts: widget.posts[index],):MinorPost(widget.posts[index]);
     });*/
+
   }
 }
 
+/// Code Comments
 /*
 
 SingleChildScrollView(
